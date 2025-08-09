@@ -59,7 +59,7 @@ const Navbar: React.FC = () => {
             </NavDropdown>
             <Nav.Link as={Link} to="/team" className={isActive('/team') ? 'active' : ''} onClick={() => setExpanded(false)}>Team</Nav.Link>
             <Nav.Link as={Link} to="/contact" className={isActive('/contact') ? 'active' : ''} onClick={() => setExpanded(false)}>Contact</Nav.Link>
-            <Nav.Link as={Link} to="/partner" className="btn btn-outline-primary-gradient ms-2" onClick={() => setExpanded(false)}>Partner With Us</Nav.Link>
+            <Nav.Link as={Link} to="/partner" className="ms-2" onClick={() => setExpanded(false)}>Partner With Us</Nav.Link>
           </Nav>
         </BSNavbar.Collapse>
       </Container>

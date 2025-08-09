@@ -33,13 +33,15 @@
   font-weight: 700;
   margin-bottom: 20px;
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 3px; /* Increased letter spacing */
+  line-height: 1.2; /* Added line height */
   color: var(--white-color);
 }
 
 .hero-subtitle {
   font-size: 1.5rem;
   margin-bottom: 40px;
+  line-height: 1.6; /* Increased line height */
 }
 
 .supporter-logo {
@@ -51,4 +53,26 @@
 .supporter-logo:hover {
   filter: grayscale(0%);
   transform: scale(1.1);
+}
+
+.home-feature-card {
+  transition: all 0.3s ease;
+  border-radius: 15px; /* Increased border-radius */
+  box-shadow: var(--shadow-lg); /* Stronger default shadow */
+}
+
+.home-feature-card:hover {
+  transform: translateY(-5px); /* Lift effect on hover */
+  box-shadow: 0 12px 24px rgba(0,0,0,0.2); /* Stronger hover shadow */
+}
+
+.home-feature-card .card-body i {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: rgba(var(--primary-color-rgb), 0.1); /* Using primary color with transparency */
+  margin: 0 auto 20px auto; /* Center the icon and add bottom margin */
 }

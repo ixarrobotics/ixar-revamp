@@ -47,7 +47,7 @@ const Home: React.FC = () => {
           <h2 className="section-title text-center">Why Choose Us?</h2>
           <Row>
             <Col md={4} className="mb-4">
-              <Card className="text-center h-100">
+              <Card className="text-center h-100 home-feature-card">
                 <Card.Body>
                   <i className="fas fa-rocket fa-3x text-primary mb-3"></i>
                   <Card.Title>Quick Deployment</Card.Title>
@@ -56,7 +56,7 @@ const Home: React.FC = () => {
               </Card>
             </Col>
             <Col md={4} className="mb-4">
-              <Card className="text-center h-100">
+              <Card className="text-center h-100 home-feature-card">
                 <Card.Body>
                   <i className="fas fa-clock fa-3x text-primary mb-3"></i>
                   <Card.Title>24/7 Operations</Card.Title>
@@ -65,7 +65,7 @@ const Home: React.FC = () => {
               </Card>
             </Col>
             <Col md={4} className="mb-4">
-              <Card className="text-center h-100">
+              <Card className="text-center h-100 home-feature-card">
                 <Card.Body>
                   <i className="fas fa-rupee-sign fa-3x text-primary mb-3"></i>
                   <Card.Title>Cost Effective</Card.Title>
