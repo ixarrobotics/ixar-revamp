@@ -1,0 +1,71 @@
+.navbar {
+  padding: 1rem 0;
+  background-color: var(--white-color);
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+}
+
+.navbar.scrolled {
+  background-color: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+.navbar-brand img {
+  transition: transform 0.3s ease;
+}
+
+.navbar-brand img:hover {
+  transform: scale(1.05);
+}
+
+.nav-link {
+  color: var(--dark-color);
+  font-weight: 600;
+  text-transform: uppercase;
+  margin: 0 10px;
+  padding: 10px;
+  border-bottom: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover, .nav-link.active {
+  color: var(--accent-color);
+  border-bottom: 2px solid var(--accent-color);
+}
+
+.dropdown-menu {
+  border: none;
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+}
+
+.dropdown-item {
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.dropdown-item:hover {
+  background-color: var(--light-gray-color);
+  color: var(--accent-color);
+}
+
+.partner-btn {
+  background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+  color: var(--white-color) !important;
+  font-weight: 600;
+  padding: 12px 25px;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.partner-btn:hover {
+  background: linear-gradient(45deg, var(--accent-color), var(--primary-color));
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}

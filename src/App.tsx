@@ -11,6 +11,7 @@ import Home from './pages/Home';
 import Services from './pages/Services';
 import Products from './pages/Products';
 import RovPro from './pages/RovPro';
+import Rov2 from './pages/Rov2';
 import Team from './pages/Team';
 import Contact from './pages/Contact';
 import Partner from './pages/Partner';
@@ -28,6 +29,7 @@ function App() {
             <Route path="/services" element={<Services />} />
             <Route path="/product" element={<Products />} />
             <Route path="/rovpro" element={<RovPro />} />
+            <Route path="/rov2" element={<Rov2 />} />
             <Route path="/team" element={<Team />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/partner" element={<Partner />} />

@@ -1,5 +1,7 @@
 import React from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
+import { Helmet } from 'react-helmet';
+import './Team.css';
 
 const Team: React.FC = () => {
   const founder = {
@@ -59,57 +61,64 @@ const Team: React.FC = () => {
 
   return (
     <div>
-      {/* Hero Section */}
-      <section className="bg-primary text-white text-center py-5">
-        <Container>
-          <h1 className="display-3 fw-bold">Team</h1>
-        </Container>
-      </section>
+      <Helmet>
+        <title>IXAR Robotic Solutions | Our Team</title>
+        <meta name="description" content="Meet the talented team and experienced mentors behind IXAR Robotic Solutions." />
+      </Helmet>
 
-      {/* Founder Section */}
-      <section className="py-5">
+      
+
+      <section className="section founder-section">
         <Container>
-          <h2 className="display-4 fw-bold text-primary text-center mb-4">Founder</h2>
-          <hr className="w-25 mx-auto border-primary border-2 mb-5" />
-          
-          <Row className="justify-content-center">
-            <Col lg={4} md={6}>
-              <Card className="text-center border-0 shadow">
-                <Card.Img 
-                  variant="top" 
-                  src={founder.image} 
-                  style={{ height: '300px', objectFit: 'cover' }}
-                />
-                <Card.Body>
-                  <Card.Title className="text-primary fs-4">{founder.name}</Card.Title>
-                  <Card.Subtitle className="mb-2 text-muted">{founder.title}</Card.Subtitle>
-                  <Card.Text>{founder.qualification}</Card.Text>
-                </Card.Body>
-              </Card>
+          <h2 className="section-title text-center">Founder</h2>
+          <Row className="justify-content-center align-items-center">
+            <Col lg={4} md={6} className="text-center mb-4 mb-lg-0">
+              <img src={founder.image} alt={founder.name} className="founder-image rounded-circle img-fluid" />
+            </Col>
+            <Col lg={6} md={8} className="text-center text-lg-start">
+              <h3 className="founder-name">{founder.name}</h3>
+              <p className="founder-title">{founder.title}</p>
+              <p className="founder-qualification">{founder.qualification}</p>
+              <div className="social-icons mt-3">
+                {/* Add social media icons here */}
+              </div>
             </Col>
           </Row>
         </Container>
       </section>
 
-      {/* Team Section */}
-      <section className="py-5 bg-light">
+      <section className="section">
         <Container>
-          <h2 className="display-4 fw-bold text-primary text-center mb-4">Team</h2>
-          <hr className="w-25 mx-auto border-primary border-2 mb-5" />
-          
-          <Row className="g-4">
-            {teamMembers.map((member, index) => (
-              <Col lg={4} md={6} key={index}>
-                <Card className="text-center border-0 shadow h-100">
-                  <Card.Img 
-                    variant="top" 
-                    src={member.image} 
-                    style={{ height: '300px', objectFit: 'cover' }}
-                  />
+          <h2 className="section-title text-center">Meet the Team</h2>
+          <Row>
+            {teamMembers.slice(0, 3).map((member, index) => (
+              <Col lg={4} md={6} key={index} className="mb-4">
+                <Card className="team-card h-100">
+                  <Card.Img variant="top" src={member.image} className="rounded-circle mb-3" />
                   <Card.Body>
-                    <Card.Title className="text-primary fs-5">{member.name}</Card.Title>
+                    <Card.Title>{member.name}</Card.Title>
                     <Card.Subtitle className="mb-2 text-muted">{member.title}</Card.Subtitle>
-                    <Card.Text className="small">{member.qualification}</Card.Text>
+                    <Card.Text>{member.qualification}</Card.Text>
+                    <div className="social-icons mt-3">
+                      {/* Add social media icons here */}
+                    </div>
+                  </Card.Body>
+                </Card>
+              </Col>
+            ))}
+          </Row>
+          <Row className="justify-content-center">
+            {teamMembers.slice(3, 5).map((member, index) => (
+              <Col lg={4} md={6} key={index} className="mb-4">
+                <Card className="team-card h-100">
+                  <Card.Img variant="top" src={member.image} className="rounded-circle mb-3" />
+                  <Card.Body>
+                    <Card.Title>{member.name}</Card.Title>
+                    <Card.Subtitle className="mb-2 text-muted">{member.title}</Card.Subtitle>
+                    <Card.Text>{member.qualification}</Card.Text>
+                    <div className="social-icons mt-3">
+                      {/* Add social media icons here */}
+                    </div>
                   </Card.Body>
                 </Card>
               </Col>
@@ -118,25 +127,21 @@ const Team: React.FC = () => {
         </Container>
       </section>
 
-      {/* Mentors Section */}
-      <section className="py-5">
+      <section className="section bg-alt">
         <Container>
-          <h2 className="display-4 fw-bold text-primary text-center mb-4">Our Mentors</h2>
-          <hr className="w-25 mx-auto border-primary border-2 mb-5" />
-          
-          <Row className="g-4 justify-content-center">
+          <h2 className="section-title text-center">Our Mentors</h2>
+          <Row className="justify-content-center">
             {mentors.map((mentor, index) => (
-              <Col lg={4} md={6} key={index}>
-                <Card className="text-center border-0 shadow">
-                  <Card.Img 
-                    variant="top" 
-                    src={mentor.image} 
-                    style={{ height: '300px', objectFit: 'cover' }}
-                  />
+              <Col lg={4} md={6} key={index} className="mb-4">
+                <Card className="team-card h-100">
+                  <Card.Img variant="top" src={mentor.image} className="rounded-circle mb-3" />
                   <Card.Body>
-                    <Card.Title className="text-primary fs-5">{mentor.name}</Card.Title>
+                    <Card.Title>{mentor.name}</Card.Title>
                     <Card.Subtitle className="mb-2 text-muted">{mentor.title}</Card.Subtitle>
-                    <Card.Text className="small">{mentor.qualification}</Card.Text>
+                    <Card.Text>{mentor.qualification}</Card.Text>
+                    <div className="social-icons mt-3">
+                      {/* Add social media icons here */}
+                    </div>
                   </Card.Body>
                 </Card>
               </Col>
