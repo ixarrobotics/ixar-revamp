@@ -8,15 +8,15 @@ import {
 } from 'react-router-dom'
 import Navbar from './Navbar'
 import Footer from './Footer'
+import ProductPage from './ProductPage'
 import HomePage from '../pages/HomePage'
 import ServicesPage from '../pages/ServicesPage'
 import TeamPage from '../pages/TeamPage'
 import ContactPage from '../pages/ContactPage'
 import PartnerPage from '../pages/PartnerPage'
 import OurSolutions from '../pages/OurSolutions'
-import styles from './NavbarWrapper.module.css'
 
-const ScrollToTop = () => {
+const ScrollToTop: React.FC = () => {
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -26,45 +26,27 @@ const ScrollToTop = () => {
   return null;
 };
 
-// Product pages (simplified for now)
-const ProductPage = () => (
-  <div className={styles.pageContainer}>
-    <div className={styles.pageContentWrapper}>
-      <h1 className={styles.pageTitle}>ROV 1.0</h1>
-      <div className={styles.pageCard}>
-        <p className={styles.pageCardText}>
-          Entry-level robotic solution for basic operations.
-        </p>
-      </div>
-    </div>
-  </div>
-)
+// Product page variants
+const ROV1Page: React.FC = () => (
+  <ProductPage
+    title="ROV 1.0"
+    description="Entry-level robotic solution for basic operations."
+  />
+);
 
-const ROVProPage = () => (
-  <div className={styles.pageContainer}>
-    <div className={styles.pageContentWrapper}>
-      <h1 className={styles.pageTitle}>ROV Pro</h1>
-      <div className={styles.pageCard}>
-        <p className={styles.pageCardText}>
-          Professional-grade ROV for advanced operations.
-        </p>
-      </div>
-    </div>
-  </div>
-)
+const ROVProPage: React.FC = () => (
+  <ProductPage
+    title="ROV Pro"
+    description="Professional-grade ROV for advanced operations."
+  />
+);
 
-const ROV2Page = () => (
-  <div className={styles.pageContainer}>
-    <div className={styles.pageContentWrapper}>
-      <h1 className={styles.pageTitle}>ROV2</h1>
-      <div className={styles.pageCard}>
-        <p className={styles.pageCardText}>
-          Advanced autonomous robotic system.
-        </p>
-      </div>
-    </div>
-  </div>
-)
+const ROV2Page: React.FC = () => (
+  <ProductPage
+    title="ROV2"
+    description="Advanced autonomous robotic system."
+  />
+);
 
 const NavbarWrapper: React.FC = () => {
   return (
@@ -75,7 +57,7 @@ const NavbarWrapper: React.FC = () => {
         <Route path="/" element={<Navigate to="/home" replace />} />
         <Route path="/home" element={<HomePage />} />
         <Route path="/services" element={<ServicesPage />} />
-        <Route path="/product" element={<ProductPage />} />
+        <Route path="/product" element={<ROV1Page />} />
         <Route path="/rovpro" element={<ROVProPage />} />
         <Route path="/rov2" element={<ROV2Page />} />
         <Route path="/solutions" element={<OurSolutions />} />

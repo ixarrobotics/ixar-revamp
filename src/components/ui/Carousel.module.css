@@ -1,0 +1,93 @@
+/* Carousel component styles */
+.carouselContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.carouselWrapper {
+  flex: 1;
+  overflow: hidden;
+  border-radius: 0.75rem;
+}
+
+.carouselTrack {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carouselItem {
+  flex-shrink: 0;
+  padding: 0 0.75rem;
+}
+
+.navButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.navButton:hover {
+  background: #f9fafb;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  transform: translateY(-50%) scale(1.05);
+}
+
+.navButton:focus {
+  outline: none;
+  ring: 2px;
+  ring-color: #e60000;
+  ring-offset: 2px;
+}
+
+.navButtonLeft {
+  left: -1.5rem;
+}
+
+.navButtonRight {
+  right: -1.5rem;
+}
+
+.navIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #6b7280;
+}
+
+.navButton:hover .navIcon {
+  color: #e60000;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .navButtonLeft {
+    left: -0.75rem;
+  }
+  
+  .navButtonRight {
+    right: -0.75rem;
+  }
+  
+  .navButton {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+  
+  .navIcon {
+    width: 1rem;
+    height: 1rem;
+  }
+}
