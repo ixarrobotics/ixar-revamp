@@ -1,0 +1,62 @@
+/* src/components/Home.module.css */
+
+.heroSection {
+  /* Styles for hero-section */
+}
+
+.heroVideo {
+  /* Styles for hero-video */
+}
+
+.heroOverlay {
+  /* Styles for hero-overlay */
+}
+
+.heroContent {
+  /* Styles for hero-content */
+}
+
+.heroTitle {
+  /* Styles for hero-title */
+}
+
+.heroSubtitle {
+  /* Styles for hero-subtitle */
+}
+
+.section {
+  /* Styles for section */
+}
+
+.sectionTitle {
+  /* Styles for section-title */
+}
+
+.sectionSubtitle {
+  /* Styles for section-subtitle */
+}
+
+.imgFluid {
+  max-width: 100%;
+  height: auto;
+}
+
+.rounded {
+  border-radius: 0.25rem; /* Example: Bootstrap's default rounded */
+}
+
+.shadow {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15); /* Example: Bootstrap's default shadow */
+}
+
+.homeFeatureCard {
+  /* Styles for home-feature-card */
+}
+
+.supporterLogo {
+  /* Styles for supporter-logo */
+}
+
+.bgLight {
+  /* Styles for bg-light */
+}

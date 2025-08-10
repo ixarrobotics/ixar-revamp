@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Camera, Ruler, Layers, Radar, Settings, Waves, Anchor, Zap, Mountain, Fuel, Grid as Bridge, Ship, CheckCircle, ArrowRight, Play } from 'lucide-react';
+import styles from './ServicesPage.module.css';
 
 const ServicesPage: React.FC = () => {
   const [activeService, setActiveService] = useState(0);
@@ -101,86 +102,86 @@ const ServicesPage: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className={styles.minHeightScreen}>
       {/* Hero Section */}
-      <section className="relative py-32 bg-gradient-to-r from-blue-900 via-purple-900 to-indigo-900 overflow-hidden">
-        <div className="absolute inset-0">
+      <section className={styles.heroSection}>
+        <div className={styles.heroImageOverlay}>
           <img
             src="https://images.pexels.com/photos/8566473/pexels-photo-8566473.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop"
             alt="Underwater ROV"
-            className="w-full h-full object-cover opacity-20"
+            className={styles.heroImage}
           />
         </div>
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
+        <div className={styles.heroContentContainer}>
+          <h1 className={styles.heroTitle}>
             Comprehensive ROV Services
           </h1>
-          <p className="text-xl md:text-2xl text-gray-200 mb-8 max-w-4xl mx-auto">
+          <p className={styles.heroSubtitle}>
             Advanced underwater inspection, surveying, and maintenance solutions powered by cutting-edge robotics technology
           </p>
-          <button className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105">
-            <Play className="mr-2 w-5 h-5" />
+          <button className={styles.heroButton}>
+            <Play className={styles.heroButtonIcon} />
             Watch Our Services in Action
           </button>
         </div>
       </section>
 
       {/* ROV Services Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+      <section className={styles.rovServicesSection}>
+        <div className={styles.rovServicesInnerContainer}>
+          <div className={styles.rovServicesHeader}>
+            <h2 className={styles.rovServicesTitle}>
               Advanced ROV Capabilities
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className={styles.rovServicesSubtitle}>
               Our state-of-the-art ROV systems deliver precision, reliability, and comprehensive data collection
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
-            <div className="space-y-4">
+          <div className={styles.rovServicesContentGrid}>
+            <div className={styles.rovServiceList}>
               {rovServices.map((service, index) => (
                 <div
                   key={index}
-                  className={`p-6 rounded-xl cursor-pointer transition-all duration-300 ${
+                  className={`${styles.rovServiceItem} ${
                     activeService === index
-                      ? 'bg-white shadow-lg scale-105'
-                      : 'bg-white/50 hover:bg-white hover:shadow-md'
+                      ? styles.rovServiceItemActive
+                      : styles.rovServiceItemInactive
                   }`}
                   onClick={() => setActiveService(index)}
                 >
-                  <div className="flex items-center space-x-4">
-                    <div className={`w-12 h-12 rounded-lg bg-gradient-to-r ${service.color} flex items-center justify-center text-white`}>
+                  <div className={styles.rovServiceItemFlex}>
+                    <div className={`${styles.rovServiceIconContainer} bg-gradient-to-r ${service.color}`}>
                       {service.icon}
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-xl font-bold text-gray-900">{service.title}</h3>
-                      <p className="text-gray-600">{service.description}</p>
+                      <h3 className={styles.rovServiceTitle}>{service.title}</h3>
+                      <p className={styles.rovServiceDescription}>{service.description}</p>
                     </div>
-                    <ArrowRight className={`w-5 h-5 text-gray-400 transition-transform duration-300 ${
-                      activeService === index ? 'rotate-90' : ''
+                    <ArrowRight className={`${styles.rovServiceArrowIcon} ${
+                      activeService === index ? styles.rovServiceArrowIconRotate : ''
                     }`} />
                   </div>
                 </div>
               ))}
             </div>
 
-            <div className="relative">
-              <div className="relative overflow-hidden rounded-2xl shadow-2xl">
+            <div className={styles.rovServiceImageContainer}>
+              <div className={styles.rovServiceImageWrapper}>
                 <img
                   src={rovServices[activeService].image}
                   alt={rovServices[activeService].title}
-                  className="w-full h-96 object-cover"
+                  className={styles.rovServiceImage}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                <div className="absolute bottom-6 left-6 right-6">
-                  <h3 className="text-2xl font-bold text-white mb-4">
+                <div className={styles.rovServiceImageGradient} />
+                <div className={styles.rovServiceImageTextContent}>
+                  <h3 className={styles.rovServiceImageTitle}>
                     {rovServices[activeService].title}
                   </h3>
-                  <div className="grid grid-cols-2 gap-2">
+                  <div className={styles.rovServiceFeaturesGrid}>
                     {rovServices[activeService].features.map((feature, index) => (
-                      <div key={index} className="flex items-center text-white text-sm">
-                        <CheckCircle className="w-4 h-4 mr-2 text-green-400" />
+                      <div key={index} className={styles.rovServiceFeatureItem}>
+                        <CheckCircle className={styles.rovServiceFeatureIcon} />
                         {feature}
                       </div>
                     ))}
@@ -193,46 +194,46 @@ const ServicesPage: React.FC = () => {
       </section>
 
       {/* Industries Section */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+      <section className={styles.industriesSection}>
+        <div className={styles.industriesInnerContainer}>
+          <div className={styles.industriesHeader}>
+            <h2 className={styles.industriesTitle}>
               Industries We Serve
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className={styles.industriesSubtitle}>
               Delivering specialized underwater solutions across diverse sectors with proven expertise
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className={styles.industriesGrid}>
             {industries.map((industry, index) => (
               <div
                 key={index}
-                className="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
+                className={`${styles.industryCard} group`}
               >
-                <div className="relative h-64 overflow-hidden">
+                <div className={styles.industryImageContainer}>
                   <img
                     src={industry.image}
                     alt={industry.name}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    className={`${styles.industryImage} group-hover:scale-110`}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                  <div className="absolute top-6 left-6">
-                    <div className={`w-16 h-16 rounded-xl bg-gradient-to-r ${industry.color} flex items-center justify-center text-white shadow-lg`}>
+                  <div className={styles.industryImageGradient} />
+                  <div className={styles.industryIconContainer}>
+                    <div className={`${styles.rovServiceIconContainer} bg-gradient-to-r ${industry.color}`}>
                       {industry.icon}
                     </div>
                   </div>
-                  <div className="absolute bottom-6 left-6 right-6">
-                    <h3 className="text-2xl font-bold text-white mb-2">{industry.name}</h3>
+                  <div className={styles.industryTitleCard}>
+                    <h3 className={styles.industryTitleCard}>{industry.name}</h3>
                   </div>
                 </div>
 
-                <div className="p-6">
-                  <div className="space-y-3">
+                <div className={styles.industryCardContent}>
+                  <div className={styles.industryServicesList}>
                     {industry.services.map((service, serviceIndex) => (
-                      <div key={serviceIndex} className="flex items-center text-gray-600">
-                        <CheckCircle className="w-4 h-4 mr-3 text-green-500" />
-                        <span className="text-sm">{service}</span>
+                      <div key={serviceIndex} className={styles.industryServiceItem}>
+                        <CheckCircle className={styles.industryServiceIcon} />
+                        <span className={styles.industryServiceText}>{service}</span>
                       </div>
                     ))}
                   </div>
@@ -244,20 +245,20 @@ const ServicesPage: React.FC = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-purple-600">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+      <section className={styles.ctaSection}>
+        <div className={styles.ctaInnerContainer}>
+          <h2 className={styles.ctaTitle}>
             Ready to Explore the Depths?
           </h2>
-          <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
+          <p className={styles.ctaSubtitle}>
             Contact our experts to discuss your underwater inspection and surveying needs
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="inline-flex items-center px-8 py-4 bg-white text-blue-600 font-semibold rounded-lg hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105">
+          <div className={styles.ctaButtonsContainer}>
+            <button className={styles.requestQuoteButton}>
               Request Quote
-              <ArrowRight className="ml-2 w-5 h-5" />
+              <ArrowRight className={styles.requestQuoteIcon} />
             </button>
-            <button className="inline-flex items-center px-8 py-4 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-blue-600 transition-all duration-300">
+            <button className={styles.scheduleConsultationButton}>
               Schedule Consultation
             </button>
           </div>

@@ -9,6 +9,7 @@ import {
   Star,
   ChevronRight
 } from 'lucide-react';
+import styles from './TeamPage.module.css';
 
 const TeamPage: React.FC = () => {
   const [activeTab, setActiveTab] = useState('team');
@@ -107,30 +108,30 @@ const TeamPage: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className={styles.minHeightScreen}>
       {/* Hero Section */}
-      <section className="relative py-32 bg-gradient-to-r from-blue-900 via-purple-900 to-indigo-900 overflow-hidden">
-        <div className="absolute inset-0">
+      <section className={styles.heroSection}>
+        <div className={styles.heroImageOverlay}>
           <img
             src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop"
             alt="Team collaboration"
-            className="w-full h-full object-cover opacity-20"
+            className={styles.heroImage}
           />
         </div>
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
+        <div className={styles.heroContentContainer}>
+          <h1 className={styles.heroTitle}>
             Meet Our Team
           </h1>
-          <p className="text-xl md:text-2xl text-gray-200 mb-8 max-w-4xl mx-auto">
+          <p className={styles.heroSubtitle}>
             The brilliant minds behind IXAR's revolutionary underwater robotics solutions
           </p>
         </div>
       </section>
 
       {/* Navigation Tabs */}
-      <section className="py-8 bg-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-center space-x-8">
+      <section className={styles.navTabsSection}>
+        <div className={styles.navTabsInnerContainer}>
+          <div className={styles.navTabsContainer}>
             {[
               { id: 'team', label: 'Core Team' },
               { id: 'mentors', label: 'Mentors' },
@@ -139,10 +140,10 @@ const TeamPage: React.FC = () => {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`px-6 py-3 font-semibold rounded-lg transition-all duration-300 ${
+                className={`${styles.navTabButton} ${
                   activeTab === tab.id
-                    ? 'bg-blue-600 text-white shadow-lg'
-                    : 'text-gray-600 hover:text-blue-600 hover:bg-blue-50'
+                    ? styles.navTabButtonActive
+                    : styles.navTabButtonInactive
                 }`}
               >
                 {tab.label}
@@ -153,53 +154,53 @@ const TeamPage: React.FC = () => {
       </section>
 
       {/* Founder Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Founder</h2>
-            <p className="text-xl text-gray-600">Visionary leadership driving underwater robotics innovation</p>
+      <section className={styles.founderSection}>
+        <div className={styles.founderInnerContainer}>
+          <div className={styles.founderHeader}>
+            <h2 className={styles.founderTitle}>Our Founder</h2>
+            <p className={styles.founderSubtitle}>Visionary leadership driving underwater robotics innovation</p>
           </div>
 
-          <div className="max-w-4xl mx-auto">
-            <div className="bg-white rounded-3xl shadow-2xl overflow-hidden">
-              <div className="md:flex">
-                <div className="md:w-1/2">
+          <div className={styles.founderCardWrapper}>
+            <div className={styles.founderCard}>
+              <div className={styles.founderCardContent}>
+                <div className={styles.founderImageContainer}>
                   <img
                     src={founder.image}
                     alt={founder.name}
-                    className="w-full h-96 md:h-full object-cover"
+                    className={styles.founderImage}
                   />
                 </div>
-                <div className="md:w-1/2 p-8 md:p-12">
-                  <h3 className="text-3xl font-bold text-gray-900 mb-2">{founder.name}</h3>
-                  <p className="text-xl text-blue-600 font-semibold mb-4">{founder.title}</p>
-                  <p className="text-gray-600 mb-6">{founder.qualification}</p>
-                  <p className="text-gray-700 leading-relaxed mb-8">{founder.bio}</p>
+                <div className={styles.founderDetailsContainer}>
+                  <h3 className={styles.founderName}>{founder.name}</h3>
+                  <p className={styles.founderTitleDetail}>{founder.title}</p>
+                  <p className={styles.founderQualification}>{founder.qualification}</p>
+                  <p className={styles.founderBio}>{founder.bio}</p>
                   
-                  <div className="mb-8">
-                    <h4 className="font-semibold text-gray-900 mb-4">Key Achievements</h4>
-                    <div className="space-y-2">
+                  <div className={styles.achievementsContainer}>
+                    <h4 className={styles.achievementsTitle}>Key Achievements</h4>
+                    <div className={styles.achievementsList}>
                       {founder.achievements.map((achievement, index) => (
-                        <div key={index} className="flex items-center">
-                          <Star className="w-4 h-4 text-yellow-500 mr-2" />
-                          <span className="text-gray-600">{achievement}</span>
+                        <div key={index} className={styles.achievementItem}>
+                          <Star className={styles.achievementIcon} />
+                          <span className={styles.achievementText}>{achievement}</span>
                         </div>
                       ))}
                     </div>
                   </div>
 
-                  <div className="flex space-x-4">
+                  <div className={styles.socialLinksContainer}>
                     <a
                       href={founder.social.linkedin}
-                      className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center text-white hover:bg-blue-700 transition-colors"
+                      className={styles.socialLinkButton}
                     >
-                      <Linkedin className="w-5 h-5" />
+                      <Linkedin className={styles.socialLinkIcon} />
                     </a>
                     <a
                       href={`mailto:${founder.social.email}`}
-                      className="w-12 h-12 bg-gray-600 rounded-lg flex items-center justify-center text-white hover:bg-gray-700 transition-colors"
+                      className={`${styles.socialLinkButton} ${styles.emailSocialLinkButton}`}
                     >
-                      <Mail className="w-5 h-5" />
+                      <Mail className={styles.socialLinkIcon} />
                     </a>
                   </div>
                 </div>
@@ -211,43 +212,45 @@ const TeamPage: React.FC = () => {
 
       {/* Dynamic Content Based on Active Tab */}
       {activeTab === 'team' && (
-        <section className="py-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">Core Team Members</h2>
-              <p className="text-xl text-gray-600">Diverse expertise united by a common vision</p>
+        <section className={styles.dynamicContentSection}>
+          <div className={styles.dynamicContentInnerContainer}>
+            <div className={styles.dynamicContentHeader}>
+              <h2 className={styles.dynamicContentTitle}>Core Team Members</h2>
+              <p className={styles.dynamicContentSubtitle}>Diverse expertise united by a common vision</p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className={styles.teamMembersGrid}>
               {teamMembers.map((member, index) => (
                 <div
                   key={index}
-                  className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 overflow-hidden"
+                  className={styles.teamMemberCard}
                 >
-                  <div className="relative">
+                  <div className={styles.teamMemberImageContainer}>
                     <img
                       src={member.image}
                       alt={member.name}
-                      className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                      className={`${styles.teamMemberImage} group-hover:scale-110`}
                     />
-                    <div className={`absolute top-4 right-4 w-12 h-12 bg-gradient-to-r ${member.color} rounded-lg flex items-center justify-center`}>
-                      <GraduationCap className="w-6 h-6 text-white" />
+                    <div className={`${styles.teamMemberIconBadge} bg-gradient-to-r ${member.color}`}>
+                      <GraduationCap className={styles.teamMemberIcon} />
                     </div>
                   </div>
                   
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold text-gray-900 mb-1">{member.name}</h3>
-                    <p className="text-blue-600 font-semibold mb-3">{member.title}</p>
-                    <p className="text-sm text-gray-600 mb-4">{member.qualification}</p>
+                  <div className={styles.teamMemberContent}>
+                    <h3 className={styles.teamMemberName}>{member.name}</h3>
+                    <p className={styles.teamMemberTitle}>{member.title}</p>
+                    <p className={styles.teamMemberQualification}>{member.qualification}</p>
                     
-                    <div className="space-y-2">
-                      <h4 className="font-semibold text-gray-900 text-sm">Expertise</h4>
-                      {member.expertise.map((skill, skillIndex) => (
-                        <div key={skillIndex} className="flex items-center">
-                          <ChevronRight className="w-3 h-3 text-blue-500 mr-2" />
-                          <span className="text-xs text-gray-600">{skill}</span>
-                        </div>
-                      ))}
+                    <div className={styles.expertiseContainer}>
+                      <h4 className={styles.expertiseTitle}>Expertise</h4>
+                      <div className={styles.achievementsList}>
+                        {member.expertise.map((skill, skillIndex) => (
+                          <div key={skillIndex} className={styles.expertiseItem}>
+                            <ChevronRight className={styles.expertiseIcon} />
+                            <span className={styles.expertiseText}>{skill}</span>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -258,43 +261,45 @@ const TeamPage: React.FC = () => {
       )}
 
       {activeTab === 'mentors' && (
-        <section className="py-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Mentors</h2>
-              <p className="text-xl text-gray-600">Guiding wisdom from industry leaders</p>
+        <section className={styles.dynamicContentSection}>
+          <div className={styles.dynamicContentInnerContainer}>
+            <div className={styles.dynamicContentHeader}>
+              <h2 className={styles.dynamicContentTitle}>Our Mentors</h2>
+              <p className={styles.dynamicContentSubtitle}>Guiding wisdom from industry leaders</p>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <div className={styles.mentorsGrid}>
               {mentors.map((mentor, index) => (
                 <div
                   key={index}
-                  className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 overflow-hidden"
+                  className={styles.mentorCard}
                 >
-                  <div className="relative">
+                  <div className={styles.mentorImageContainer}>
                     <img
                       src={mentor.image}
                       alt={mentor.name}
-                      className="w-full h-64 object-cover"
+                      className={styles.mentorImage}
                     />
-                    <div className={`absolute top-4 right-4 w-12 h-12 bg-gradient-to-r ${mentor.color} rounded-lg flex items-center justify-center`}>
-                      <Award className="w-6 h-6 text-white" />
+                    <div className={`${styles.mentorIconBadge} bg-gradient-to-r ${mentor.color}`}>
+                      <Award className={styles.mentorIcon} />
                     </div>
                   </div>
                   
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold text-gray-900 mb-1">{mentor.name}</h3>
-                    <p className="text-purple-600 font-semibold mb-3">{mentor.title}</p>
-                    <p className="text-sm text-gray-600 mb-4">{mentor.qualification}</p>
+                  <div className={styles.mentorContent}>
+                    <h3 className={styles.mentorName}>{mentor.name}</h3>
+                    <p className={styles.mentorTitleDetail}>{mentor.title}</p>
+                    <p className={styles.mentorQualification}>{mentor.qualification}</p>
                     
-                    <div className="space-y-2">
-                      <h4 className="font-semibold text-gray-900 text-sm">Expertise</h4>
-                      {mentor.expertise.map((skill, skillIndex) => (
-                        <div key={skillIndex} className="flex items-center">
-                          <ChevronRight className="w-3 h-3 text-purple-500 mr-2" />
-                          <span className="text-xs text-gray-600">{skill}</span>
-                        </div>
-                      ))}
+                    <div className={styles.expertiseContainer}>
+                      <h4 className={styles.expertiseTitle}>Expertise</h4>
+                      <div className={styles.achievementsList}>
+                        {mentor.expertise.map((skill, skillIndex) => (
+                          <div key={skillIndex} className={styles.expertiseItem}>
+                            <ChevronRight className={styles.mentorExpertiseIcon} />
+                            <span className={styles.expertiseText}>{skill}</span>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -305,24 +310,24 @@ const TeamPage: React.FC = () => {
       )}
 
       {activeTab === 'values' && (
-        <section className="py-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Core Values</h2>
-              <p className="text-xl text-gray-600">The principles that drive our success</p>
+        <section className={styles.dynamicContentSection}>
+          <div className={styles.dynamicContentInnerContainer}>
+            <div className={styles.dynamicContentHeader}>
+              <h2 className={styles.dynamicContentTitle}>Our Core Values</h2>
+              <p className={styles.dynamicContentSubtitle}>The principles that drive our success</p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className={styles.valuesGridTeamPage}>
               {companyValues.map((value, index) => (
                 <div
                   key={index}
-                  className="text-center p-8 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
+                  className={styles.valueCardTeamPage}
                 >
-                  <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center text-white mx-auto mb-6">
+                  <div className={styles.valueIconContainerTeamPage}>
                     {value.icon}
                   </div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4">{value.title}</h3>
-                  <p className="text-gray-600 leading-relaxed">{value.description}</p>
+                  <h3 className={styles.valueTitleTeamPage}>{value.title}</h3>
+                  <p className={styles.valueDescriptionTeamPage}>{value.description}</p>
                 </div>
               ))}
             </div>

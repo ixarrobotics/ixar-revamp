@@ -17,6 +17,7 @@ import {
   Gauge,
   Settings
 } from 'lucide-react';
+import styles from './HomePage.module.css';
 
 const HomePage: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -81,41 +82,41 @@ const HomePage: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className={styles.minHeightScreen}>
       {/* Hero Section */}
-      <section className="relative h-screen overflow-hidden">
+      <section className={styles.heroSection}>
         <video 
-          className="absolute inset-0 w-full h-full object-cover"
+          className={styles.heroVideo}
           src={homeVideo}
           autoPlay
           loop
           muted
           playsInline
         />
-        <div className="absolute inset-0 bg-black/60" />
+        <div className={styles.heroOverlay} />
 
-        <div className="relative z-10 h-full flex items-center">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-3xl">
-              <div className={`transform transition-all duration-1000 ${
-                isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+        <div className={styles.heroContentContainer}>
+          <div className={styles.heroInnerContainer}>
+            <div className={styles.heroTextContainer}>
+              <div className={`${styles.heroTextAnimation} ${
+                isVisible ? styles.heroTextVisible : styles.heroTextHidden
               }`}>
-                <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+                <h1 className={styles.heroTitle}>
                   Pioneering Underwater Robotics
                 </h1>
-                <p className="text-xl md:text-2xl text-gray-200 mb-8 leading-relaxed">
+                <p className={styles.heroSubtitle}>
                   Advanced ROV solutions for marine exploration and industrial inspections
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4">
+                <div className={styles.heroButtonsContainer}>
                   <Link
                     to="/services"
-                    className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+                    className={styles.exploreSolutionsButton}
                   >
                     Explore Solutions
-                    <ArrowRight className="ml-2 w-5 h-5" />
+                    <ArrowRight className={styles.exploreSolutionsIcon} />
                   </Link>
-                  <button className="inline-flex items-center px-8 py-4 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-gray-900 transition-all duration-300">
-                    <Play className="mr-2 w-5 h-5" />
+                  <button className={styles.watchDemoButton}>
+                    <Play className={styles.watchDemoIcon} />
                     Watch Demo
                   </button>
                 </div>
@@ -145,28 +146,28 @@ const HomePage: React.FC = () => {
       </section> */}
 
       {/* Features Section */}
-      <section className="py-20 bg-[#FFEBEB]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+      <section className={styles.featuresSection}>
+        <div className={styles.featuresInnerContainer}>
+          <div className={styles.featuresHeader}>
+            <h2 className={styles.featuresTitle}>
               About Us?
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className={styles.featuresSubtitle}>
               Experience the perfect blend of innovation, reliability, and performance in underwater robotics
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className={styles.featuresGrid}>
             {features.map((feature, index) => (
               <div
                 key={index}
-                className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
+                className={styles.featureCard}
               >
-                <div className={`w-16 h-16 bg-gradient-to-r ${feature.color} rounded-xl flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                <div className={`${styles.featureIconContainer} bg-gradient-to-r ${feature.color}`}>
                   {feature.icon}
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">{feature.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{feature.description}</p>
+                <h3 className={styles.featureTitleCard}>{feature.title}</h3>
+                <p className={styles.featureDescription}>{feature.description}</p>
               </div>
             ))}
           </div>
@@ -174,42 +175,42 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Products Showcase */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Our ROV Solutions
+      <section className={styles.productsShowcaseSection}>
+        <div className={styles.productsShowcaseInnerContainer}>
+          <div className={styles.productsShowcaseHeader}>
+            <h2 className={styles.productsShowcaseTitle}>
+              Vision and Mission
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className={styles.productsShowcaseSubtitle}>
               From entry-level to advanced autonomous systems, we have the perfect ROV for your needs
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-3 gap-8">
+          <div className={styles.productsGrid}>
             {products.map((product, index) => (
               <div
                 key={index}
-                className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
+                className={styles.productCard}
               >
-                <div className="relative overflow-hidden">
+                <div className={styles.productImageContainer}>
                   <img
                     src={product.image}
                     alt={product.name}
-                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                    className={styles.productImage}
                   />
-                  <div className={`absolute top-4 left-4 px-3 py-1 bg-gradient-to-r ${product.color} text-white text-sm font-semibold rounded-full`}>
+                  <div className={`${styles.productNameBadge} bg-gradient-to-r ${product.color}`}>
                     {product.name}
                   </div>
                 </div>
                 
-                <div className="p-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4">{product.name}</h3>
-                  <p className="text-gray-600 mb-6">{product.description}</p>
+                <div className={styles.productCardContent}>
+                  <h3 className={styles.productCardTitle}>{product.name}</h3>
+                  <p className={styles.productCardDescription}>{product.description}</p>
                   
-                  <div className="space-y-2 mb-6">
+                  <div className={styles.productSpecsContainer}>
                     {product.specs.map((spec, specIndex) => (
-                      <div key={specIndex} className="flex items-center text-sm text-gray-500">
-                        <CheckCircle className="w-4 h-4 text-green-500 mr-2" />
+                      <div key={specIndex} className={styles.productSpecItem}>
+                        <CheckCircle className={styles.productSpecIcon} />
                         {spec}
                       </div>
                     ))}
@@ -217,10 +218,10 @@ const HomePage: React.FC = () => {
 
                   <Link
                     to={product.link}
-                    className="inline-flex items-center text-blue-600 font-semibold hover:text-blue-700 transition-colors"
+                    className={styles.learnMoreLink}
                   >
                     Learn More
-                    <ChevronRight className="ml-1 w-4 h-4" />
+                    <ChevronRight className={styles.learnMoreIcon} />
                   </Link>
                 </div>
               </div>
@@ -230,25 +231,25 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-gray-900 to-blue-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+      <section className={styles.ctaSection}>
+        <div className={styles.ctaInnerContainer}>
+          <h2 className={styles.ctaTitle}>
             Ready to Dive Deeper?
           </h2>
-          <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
+          <p className={styles.ctaSubtitle}>
             Partner with IXAR for cutting-edge underwater robotics solutions that deliver results
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className={styles.ctaButtonsContainer}>
             <Link
               to="/contact"
-              className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+              className={styles.getStartedButton}
             >
               Get Started Today
-              <ArrowRight className="ml-2 w-5 h-5" />
+              <ArrowRight className={styles.getStartedIcon} />
             </Link>
             <Link
               to="/services"
-              className="inline-flex items-center px-8 py-4 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-gray-900 transition-all duration-300"
+              className={styles.viewServicesButton}
             >
               View All Services
             </Link>

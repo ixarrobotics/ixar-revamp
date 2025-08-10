@@ -16,6 +16,7 @@ import {
   Briefcase,
   MessageSquare
 } from 'lucide-react';
+import styles from './PartnerPage.module.css';
 
 const PartnerPage: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -117,34 +118,34 @@ const PartnerPage: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className={styles.minHeightScreen}>
       {/* Hero Section */}
-      <section className="relative py-32 bg-gradient-to-r from-blue-900 via-purple-900 to-indigo-900 overflow-hidden">
-        <div className="absolute inset-0">
+      <section className={styles.heroSection}>
+        <div className={styles.heroImageOverlay}>
           <img
             src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop"
             alt="Partnership collaboration"
-            className="w-full h-full object-cover opacity-20"
+            className={styles.heroImage}
           />
         </div>
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
+        <div className={styles.heroContentContainer}>
+          <h1 className={styles.heroTitle}>
             Partner With Us
           </h1>
-          <p className="text-xl md:text-2xl text-gray-200 mb-8 max-w-4xl mx-auto">
+          <p className={styles.heroSubtitle}>
             Join forces with IXAR and unlock new opportunities in the rapidly evolving underwater robotics industry
           </p>
-          <div className="flex justify-center space-x-8">
-            <div className="flex items-center text-white">
-              <Globe className="w-6 h-6 mr-2" />
+          <div className={styles.heroStatsContainer}>
+            <div className={styles.heroStatItem}>
+              <Globe className={styles.heroStatIcon} />
               <span>Global Reach</span>
             </div>
-            <div className="flex items-center text-white">
-              <Target className="w-6 h-6 mr-2" />
+            <div className={styles.heroStatItem}>
+              <Target className={styles.heroStatIcon} />
               <span>Strategic Growth</span>
             </div>
-            <div className="flex items-center text-white">
-              <Zap className="w-6 h-6 mr-2" />
+            <div className={styles.heroStatItem}>
+              <Zap className={styles.heroStatIcon} />
               <span>Innovation Focus</span>
             </div>
           </div>
@@ -152,28 +153,28 @@ const PartnerPage: React.FC = () => {
       </section>
 
       {/* Why Partner With Us Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+      <section className={styles.whyPartnerSection}>
+        <div className={styles.whyPartnerInnerContainer}>
+          <div className={styles.whyPartnerHeader}>
+            <h2 className={styles.whyPartnerTitle}>
               Why Partner With IXAR?
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className={styles.whyPartnerSubtitle}>
               Experience the advantages of partnering with India's leading underwater robotics company
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className={styles.partnerBenefitsGrid}>
             {partnerBenefits.map((benefit, index) => (
               <div
                 key={index}
-                className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
+                className={styles.benefitCard}
               >
-                <div className={`w-16 h-16 bg-gradient-to-r ${benefit.color} rounded-xl flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                <div className={`${styles.benefitIconContainer} bg-gradient-to-r ${benefit.color}`}>
                   {benefit.icon}
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-4">{benefit.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{benefit.description}</p>
+                <h3 className={styles.benefitTitle}>{benefit.title}</h3>
+                <p className={styles.benefitDescription}>{benefit.description}</p>
               </div>
             ))}
           </div>
@@ -181,32 +182,32 @@ const PartnerPage: React.FC = () => {
       </section>
 
       {/* Partnership Types */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+      <section className={styles.partnershipTypesSection}>
+        <div className={styles.partnershipTypesInnerContainer}>
+          <div className={styles.partnershipTypesHeader}>
+            <h2 className={styles.partnershipTypesTitle}>
               Partnership Opportunities
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className={styles.partnershipTypesSubtitle}>
               Choose the partnership model that aligns with your business goals
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-3 gap-8">
+          <div className={styles.partnershipTypesGrid}>
             {partnershipTypes.map((type, index) => (
               <div
                 key={index}
-                className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
+                className={styles.partnershipTypeCard}
               >
-                <div className={`h-2 bg-gradient-to-r ${type.color}`} />
-                <div className="p-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4">{type.title}</h3>
-                  <p className="text-gray-600 mb-6">{type.description}</p>
-                  <div className="space-y-3">
+                <div className={`${styles.partnershipTypeCardHeader} bg-gradient-to-r ${type.color}`} />
+                <div className={styles.partnershipTypeCardContent}>
+                  <h3 className={styles.partnershipTypeTitle}>{type.title}</h3>
+                  <p className={styles.partnershipTypeDescription}>{type.description}</p>
+                  <div className={styles.partnershipFeaturesList}>
                     {type.features.map((feature, featureIndex) => (
-                      <div key={featureIndex} className="flex items-center">
-                        <CheckCircle className="w-5 h-5 text-green-500 mr-3" />
-                        <span className="text-gray-700">{feature}</span>
+                      <div key={featureIndex} className={styles.partnershipFeatureItem}>
+                        <CheckCircle className={styles.partnershipFeatureIcon} />
+                        <span className={styles.partnershipFeatureText}>{feature}</span>
                       </div>
                     ))}
                   </div>
@@ -218,34 +219,34 @@ const PartnerPage: React.FC = () => {
       </section>
 
       {/* Partnership Form Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-purple-600">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+      <section className={styles.partnershipFormSection}>
+        <div className={styles.partnershipFormInnerContainer}>
+          <div className={styles.partnershipFormHeader}>
+            <h2 className={styles.partnershipFormTitle}>
               Become a Valued Partner
             </h2>
-            <p className="text-xl text-blue-100 max-w-3xl mx-auto">
+            <p className={styles.partnershipFormSubtitle}>
               Submit your partnership inquiry and let's explore how we can grow together
             </p>
           </div>
 
-          <div className="max-w-4xl mx-auto">
-            <div className="bg-white rounded-3xl shadow-2xl p-8 lg:p-12">
+          <div className={styles.partnershipFormWrapper}>
+            <div className={styles.partnershipFormCard}>
               {isSubmitted && (
-                <div className="mb-8 p-6 bg-green-50 border border-green-200 rounded-2xl flex items-center justify-center">
-                  <CheckCircle className="w-8 h-8 text-green-500 mr-3" />
+                <div className={styles.submissionSuccessMessage}>
+                  <CheckCircle className={styles.submissionSuccessIcon} />
                   <div>
-                    <h3 className="text-lg font-semibold text-green-800">Partnership Inquiry Sent!</h3>
-                    <p className="text-green-600">We'll contact you within 24 hours to discuss opportunities.</p>
+                    <h3 className={styles.submissionSuccessTitle}>Partnership Inquiry Sent!</h3>
+                    <p className={styles.submissionSuccessText}>We'll contact you within 24 hours to discuss opportunities.</p>
                   </div>
                 </div>
               )}
 
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-6">
+              <form onSubmit={handleSubmit} className={styles.formSpaceY6}>
+                <div className={styles.formGridCols2}>
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      <User className="w-4 h-4 inline mr-2" />
+                    <label className={styles.formLabel}>
+                      <User className={styles.formLabelIcon} />
                       Title *
                     </label>
                     <select
@@ -253,7 +254,7 @@ const PartnerPage: React.FC = () => {
                       value={formData.title}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                      className={styles.formInput}
                     >
                       <option value="">Select Title</option>
                       <option value="Mr.">Mr.</option>
@@ -263,8 +264,8 @@ const PartnerPage: React.FC = () => {
                     </select>
                   </div>
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      <User className="w-4 h-4 inline mr-2" />
+                    <label className={styles.formLabel}>
+                      <User className={styles.formLabelIcon} />
                       Full Name *
                     </label>
                     <input
@@ -273,16 +274,16 @@ const PartnerPage: React.FC = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                      className={styles.formInput}
                       placeholder="Your full name"
                     />
                   </div>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-6">
+                <div className={styles.formGridCols2}>
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      <Mail className="w-4 h-4 inline mr-2" />
+                    <label className={styles.formLabel}>
+                      <Mail className={styles.formLabelIcon} />
                       Email Address *
                     </label>
                     <input
@@ -291,13 +292,13 @@ const PartnerPage: React.FC = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                      className={styles.formInput}
                       placeholder="your.email@company.com"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      <Phone className="w-4 h-4 inline mr-2" />
+                    <label className={styles.formLabel}>
+                      <Phone className={styles.formLabelIcon} />
                       Phone Number *
                     </label>
                     <input
@@ -306,16 +307,16 @@ const PartnerPage: React.FC = () => {
                       value={formData.phone}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                      className={styles.formInput}
                       placeholder="+91 9876543210"
                     />
                   </div>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-6">
+                <div className={styles.formGridCols2}>
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      <Briefcase className="w-4 h-4 inline mr-2" />
+                    <label className={styles.formLabel}>
+                      <Briefcase className={styles.formLabelIcon} />
                       Designation *
                     </label>
                     <input
@@ -324,13 +325,13 @@ const PartnerPage: React.FC = () => {
                       value={formData.designation}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                      className={styles.formInput}
                       placeholder="CEO, Director, Manager, etc."
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      <Globe className="w-4 h-4 inline mr-2" />
+                    <label className={styles.formLabel}>
+                      <Globe className={styles.formLabelIcon} />
                       Company Website *
                     </label>
                     <input
@@ -339,15 +340,15 @@ const PartnerPage: React.FC = () => {
                       value={formData.companyWebsite}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                      className={styles.formInput}
                       placeholder="https://www.yourcompany.com"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    <Building className="w-4 h-4 inline mr-2" />
+                  <label className={styles.formLabel}>
+                    <Building className={styles.formLabelIcon} />
                     Company Address *
                   </label>
                   <input
@@ -356,14 +357,14 @@ const PartnerPage: React.FC = () => {
                     value={formData.companyAddress}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                    className={styles.formInput}
                     placeholder="Complete company address"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    <MessageSquare className="w-4 h-4 inline mr-2" />
+                  <label className={styles.formLabel}>
+                    <MessageSquare className={styles.formLabelIcon} />
                     Partnership Message *
                   </label>
                   <textarea
@@ -372,7 +373,7 @@ const PartnerPage: React.FC = () => {
                     onChange={handleChange}
                     required
                     rows={6}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 resize-none"
+                    className={`${styles.formInput} ${styles.formTextarea}`}
                     placeholder="Tell us about your company, partnership interests, market presence, and how you envision collaborating with IXAR..."
                   />
                 </div>
@@ -380,16 +381,16 @@ const PartnerPage: React.FC = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold py-4 px-6 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
+                  className={`${styles.submitButton} ${isSubmitting ? '' : ''}`}
                 >
                   {isSubmitting ? (
                     <>
-                      <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                      <div className={styles.submitButtonSpinner}></div>
                       Sending Inquiry...
                     </>
                   ) : (
                     <>
-                      <Send className="w-5 h-5 mr-2" />
+                      <Send className={styles.submitButtonIcon} />
                       Submit Partnership Inquiry
                     </>
                   )}
@@ -401,29 +402,29 @@ const PartnerPage: React.FC = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gray-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+      <section className={styles.ctaSection}>
+        <div className={styles.ctaInnerContainer}>
+          <h2 className={styles.ctaTitle}>
             Ready to Transform the Industry?
           </h2>
-          <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
+          <p className={styles.ctaSubtitle}>
             Join IXAR in revolutionizing underwater robotics and expanding into new markets worldwide
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className={styles.ctaButtonsContainer}>
             <a
               href="tel:+919930652916"
-              className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+              className={styles.callButton}
             >
-              <Phone className="mr-2 w-5 h-5" />
+              <Phone className={styles.callIcon} />
               Call: +91 9930652916
             </a>
             <a
               href="mailto:info@ixarrobotic.com"
-              className="inline-flex items-center px-8 py-4 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-gray-900 transition-all duration-300"
+              className={styles.emailButton}
             >
-              <Mail className="mr-2 w-5 h-5" />
+              <Mail className={styles.emailIcon} />
               Email Us
-              <ArrowRight className="ml-2 w-5 h-5" />
+              <ArrowRight className={styles.emailArrowIcon} />
             </a>
           </div>
         </div>

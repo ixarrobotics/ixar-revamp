@@ -11,6 +11,7 @@ import {
   Users,
   ArrowRight
 } from 'lucide-react';
+import styles from './ContactPage.module.css';
 
 const ContactPage: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -102,34 +103,34 @@ const ContactPage: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className={styles.minHeightScreen}>
       {/* Hero Section */}
-      <section className="relative py-32 bg-gradient-to-r from-blue-900 via-purple-900 to-indigo-900 overflow-hidden">
-        <div className="absolute inset-0">
+      <section className={styles.heroSection}>
+        <div className={styles.heroImageOverlay}>
           <img
             src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop"
             alt="Contact us"
-            className="w-full h-full object-cover opacity-20"
+            className={styles.heroImage}
           />
         </div>
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
+        <div className={styles.heroContentContainer}>
+          <h1 className={styles.heroTitle}>
             Get In Touch
           </h1>
-          <p className="text-xl md:text-2xl text-gray-200 mb-8 max-w-4xl mx-auto">
+          <p className={styles.heroSubtitle}>
             Ready to explore underwater possibilities? Let's discuss your project requirements
           </p>
-          <div className="flex justify-center space-x-8">
-            <div className="flex items-center text-white">
-              <MessageSquare className="w-6 h-6 mr-2" />
+          <div className={styles.heroStatsContainer}>
+            <div className={styles.heroStatItem}>
+              <MessageSquare className={styles.heroStatIcon} />
               <span>Quick Response</span>
             </div>
-            <div className="flex items-center text-white">
-              <Users className="w-6 h-6 mr-2" />
+            <div className={styles.heroStatItem}>
+              <Users className={styles.heroStatIcon} />
               <span>Expert Consultation</span>
             </div>
-            <div className="flex items-center text-white">
-              <Globe className="w-6 h-6 mr-2" />
+            <div className={styles.heroStatItem}>
+              <Globe className={styles.heroStatIcon} />
               <span>Global Support</span>
             </div>
           </div>
@@ -137,25 +138,25 @@ const ContactPage: React.FC = () => {
       </section>
 
       {/* Contact Form & Info Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16">
+      <section className={styles.contactSection}>
+        <div className={styles.contactInnerContainer}>
+          <div className={styles.contactGrid}>
             
             {/* Contact Form */}
-            <div className="bg-white rounded-3xl shadow-2xl p-8 lg:p-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-8">Send Us a Message</h2>
+            <div className={styles.contactFormCard}>
+              <h2 className={styles.contactFormTitle}>Send Us a Message</h2>
               
               {isSubmitted && (
-                <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg flex items-center">
-                  <CheckCircle className="w-5 h-5 text-green-500 mr-2" />
-                  <span className="text-green-700">Message sent successfully! We'll get back to you soon.</span>
+                <div className={styles.submissionSuccessMessage}>
+                  <CheckCircle className={styles.submissionSuccessIcon} />
+                  <span className={styles.submissionSuccessText}>Message sent successfully! We'll get back to you soon.</span>
                 </div>
               )}
 
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-6">
+              <form onSubmit={handleSubmit} className={styles.formSpaceY6}>
+                <div className={styles.formGridCols2}>
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                    <label className={styles.formLabel}>
                       Full Name *
                     </label>
                     <input
@@ -164,12 +165,12 @@ const ContactPage: React.FC = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                      className={styles.formInput}
                       placeholder="Your full name"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                    <label className={styles.formLabel}>
                       Email Address *
                     </label>
                     <input
@@ -178,14 +179,14 @@ const ContactPage: React.FC = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                      className={styles.formInput}
                       placeholder="your.email@company.com"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label className={styles.formLabel}>
                     Company/Organization
                   </label>
                   <input
@@ -193,20 +194,20 @@ const ContactPage: React.FC = () => {
                     name="company"
                     value={formData.company}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                    className={styles.formInput}
                     placeholder="Your company name"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label className={styles.formLabel}>
                     Service Interest
                   </label>
                   <select
                     name="service"
                     value={formData.service}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                    className={styles.formInput}
                   >
                     <option value="">Select a service</option>
                     {services.map((service, index) => (
@@ -216,7 +217,7 @@ const ContactPage: React.FC = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label className={styles.formLabel}>
                     Message *
                   </label>
                   <textarea
@@ -225,44 +226,44 @@ const ContactPage: React.FC = () => {
                     onChange={handleChange}
                     required
                     rows={6}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 resize-none"
+                    className={`${styles.formInput} ${styles.formTextarea}`}
                     placeholder="Tell us about your project requirements, timeline, and any specific needs..."
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold py-4 px-6 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 flex items-center justify-center"
+                  className={styles.submitButton}
                 >
-                  <Send className="w-5 h-5 mr-2" />
+                  <Send className={styles.submitButtonIcon} />
                   Send Message
                 </button>
               </form>
             </div>
 
             {/* Contact Information */}
-            <div className="space-y-8">
+            <div className={styles.contactInfoSpaceY8}>
               <div>
-                <h2 className="text-3xl font-bold text-gray-900 mb-8">Contact Information</h2>
-                <p className="text-lg text-gray-600 mb-8">
+                <h2 className={styles.contactInfoTitle}>Contact Information</h2>
+                <p className={styles.contactInfoSubtitle}>
                   We're here to help you with all your underwater robotics needs. Reach out through any of these channels.
                 </p>
               </div>
 
-              <div className="grid gap-6">
+              <div className={styles.contactInfoGrid}>
                 {contactInfo.map((info, index) => (
                   <div
                     key={index}
-                    className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300"
+                    className={styles.contactInfoCard}
                   >
-                    <div className="flex items-start space-x-4">
-                      <div className={`w-12 h-12 bg-gradient-to-r ${info.color} rounded-lg flex items-center justify-center text-white flex-shrink-0`}>
+                    <div className={styles.contactInfoFlex}>
+                      <div className={`${styles.contactInfoIconContainer} bg-gradient-to-r ${info.color}`}>
                         {info.icon}
                       </div>
                       <div>
-                        <h3 className="text-lg font-semibold text-gray-900 mb-2">{info.title}</h3>
+                        <h3 className={styles.contactInfoCardTitle}>{info.title}</h3>
                         {info.details.map((detail, detailIndex) => (
-                          <p key={detailIndex} className="text-gray-600 text-sm leading-relaxed">
+                          <p key={detailIndex} className={styles.contactInfoDetailText}>
                             {detail}
                           </p>
                         ))}
@@ -273,16 +274,16 @@ const ContactPage: React.FC = () => {
               </div>
 
               {/* Social Media Links */}
-              <div className="bg-white rounded-2xl p-6 shadow-lg">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Follow Us</h3>
-                <div className="flex flex-wrap gap-3">
+              <div className={styles.socialMediaCard}>
+                <h3 className={styles.socialMediaTitle}>Follow Us</h3>
+                <div className={styles.socialLinksFlex}>
                   {socialLinks.map((social, index) => (
                     <a
                       key={index}
                       href={social.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`px-4 py-2 bg-gradient-to-r ${social.color} text-white text-sm font-medium rounded-lg hover:scale-105 transition-all duration-300 shadow-md hover:shadow-lg`}
+                      className={`${styles.socialLinkButton} bg-gradient-to-r ${social.color}`}
                     >
                       {social.name}
                     </a>
@@ -295,15 +296,15 @@ const ContactPage: React.FC = () => {
       </section>
 
       {/* Map Section */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Visit Our Office</h2>
-            <p className="text-xl text-gray-600">Located in the heart of Mumbai, easily accessible by public transport</p>
+      <section className={styles.mapSection}>
+        <div className={styles.mapInnerContainer}>
+          <div className={styles.mapHeader}>
+            <h2 className={styles.mapTitle}>Visit Our Office</h2>
+            <p className={styles.mapSubtitle}>Located in the heart of Mumbai, easily accessible by public transport</p>
           </div>
           
-          <div className="bg-white rounded-3xl shadow-2xl overflow-hidden">
-            <div className="aspect-w-16 aspect-h-9 h-96">
+          <div className={styles.mapCard}>
+            <div className={styles.mapIframeContainer}>
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3769.4234567890123!2d72.8567890123456!3d19.1234567890123!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDA3JzI0LjQiTiA3MsKwNTEnMjQuNCJF!5e0!3m2!1sen!2sin!4v1234567890123!5m2!1sen!2sin"
                 width="100%"
@@ -312,7 +313,7 @@ const ContactPage: React.FC = () => {
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                className="rounded-3xl"
+                className={styles.mapIframe}
               />
             </div>
           </div>
@@ -320,29 +321,29 @@ const ContactPage: React.FC = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-purple-600">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+      <section className={styles.ctaSection}>
+        <div className={styles.ctaInnerContainer}>
+          <h2 className={styles.ctaTitle}>
             Ready to Start Your Project?
           </h2>
-          <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
+          <p className={styles.ctaSubtitle}>
             Let's discuss how our ROV solutions can meet your underwater inspection and surveying needs
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className={styles.ctaButtonsContainer}>
             <a
               href="tel:+919930652916"
-              className="inline-flex items-center px-8 py-4 bg-white text-blue-600 font-semibold rounded-lg hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+              className={styles.callNowButton}
             >
-              <Phone className="mr-2 w-5 h-5" />
+              <Phone className={styles.callNowIcon} />
               Call Now: +91 9930652916
             </a>
             <a
               href="mailto:info@ixarrobotic.com"
-              className="inline-flex items-center px-8 py-4 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-blue-600 transition-all duration-300"
+              className={styles.emailUsButton}
             >
-              <Mail className="mr-2 w-5 h-5" />
+              <Mail className={styles.emailUsIcon} />
               Email Us
-              <ArrowRight className="ml-2 w-5 h-5" />
+              <ArrowRight className={styles.emailUsArrowIcon} />
             </a>
           </div>
         </div>

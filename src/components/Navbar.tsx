@@ -13,6 +13,7 @@ import {
   Waves
 } from 'lucide-react';
 import ixarLogo from '../assets/ixar_logo.jpg';
+import styles from './Navbar.module.css';
 
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -89,85 +90,77 @@ const Navbar: React.FC = () => {
     <>
       {isMenuOpen && (
         <div 
-          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 lg:hidden"
+          className={styles.mobileMenuOverlay}
           onClick={() => setIsMenuOpen(false)}
         />
       )}
 
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      <nav className={`${styles.navbarContainer} ${
         isScrolled 
-          ? 'bg-[#FFEBEB]/90 backdrop-blur-xl shadow-2xl border-b border-gray-200/50' 
-          : 'bg-[#FFEBEB]/95 backdrop-blur-sm'
+          ? styles.navbarScrolled 
+          : styles.navbarNotScrolled
       }`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20">
+        <div className={styles.navbarInner}>
+          <div className={styles.navbarFlexContainer}>
             
             <Link 
               to="/home" 
-              className="flex items-center space-x-3 group"
+              className={`${styles.logoLink} group`}
               onMouseEnter={() => setActiveHover('logo')}
               onMouseLeave={() => setActiveHover('')}
             >
-              <div className={`relative transition-all duration-500 ${
-                activeHover === 'logo' ? 'scale-110' : 'scale-100'
+              <div className={`${styles.logoImageWrapper} ${
+                activeHover === 'logo' ? styles.logoImageWrapperHover : ''
               }`}>
-                <img src={ixarLogo} alt="IXAR Logo" className="h-12 w-auto" />
+                <img src={ixarLogo} alt="IXAR Logo" className={styles.logoImage} />
               </div>
-              {/* <div className="hidden sm:block">
-                <div className="font-bold text-xl bg-gradient-to-r from-gray-900 via-blue-900 to-gray-900 bg-clip-text text-transparent">
-                  IXAR
-                </div>
-                <div className="text-xs text-gray-500 font-medium tracking-wider">
-                  ROBOTIC SOLUTIONS
-                </div>
-              </div> */}
             </Link>
 
-            <div className="hidden lg:flex items-center space-x-1">
+            <div className={`${styles.navLinksContainer} lg:flex`}>
               <div 
-                className="relative"
+                className={styles.aboutUsDropdownContainer}
                 onMouseEnter={() => setIsAboutUsOpen(true)}
                 onMouseLeave={() => setIsAboutUsOpen(false)}
               >
                 <button
-                  className={`flex items-center px-4 py-2 text-sm font-semibold rounded-lg transition-all duration-300 ${
+                  className={`${styles.aboutUsButton} ${
                     location.pathname.includes('/home') || location.pathname.includes('/vision')
-                      ? 'text-blue-600 bg-[#FFC3C3]'
-                      : 'text-gray-700 hover:text-[#E60000] hover:bg-[#FFC3C3]'
+                      ? styles.aboutUsButtonActive
+                      : styles.aboutUsButtonInactive
                   }`}
                 >
                   <span>About Us</span>
-                  <ChevronDown className={`ml-1 w-4 h-4 transition-transform duration-300 ${
-                    isAboutUsOpen ? 'rotate-180' : 'rotate-0'
+                  <ChevronDown className={`${styles.chevronDown} ${
+                    isAboutUsOpen ? styles.chevronDownRotate : ''
                   }`} />
                 </button>
 
-                <div className={`absolute top-full left-0 mt-2 w-80 bg-[#FFEBEB] rounded-2xl shadow-2xl border border-gray-100 transition-all duration-300 origin-top ${
+                <div className={`${styles.aboutUsDropdownMenu} ${
                   isAboutUsOpen 
-                    ? 'opacity-100 scale-100 translate-y-0' 
-                    : 'opacity-0 scale-95 -translate-y-4 pointer-events-none'
+                    ? styles.aboutUsDropdownMenuVisible 
+                    : styles.aboutUsDropdownMenuHidden
                 }`}>
-                  <div className="p-6">
-                    <div className="text-sm font-semibold text-gray-900 mb-4 flex items-center">
-                      <Waves className="w-4 h-4 mr-2 text-blue-600" />
+                  <div className={styles.dropdownMenuPadding}>
+                    <div className={styles.dropdownMenuTitle}>
+                      <Waves className={styles.dropdownMenuTitleIcon} />
                       About IXAR
                     </div>
-                    <div className="space-y-3">
+                    <div className={styles.dropdownMenuItemsContainer}>
                       {aboutUsItems.map((item) => (
                         <Link
                           key={item.path}
                           to={item.path}
-                          className="flex items-center p-3 rounded-xl hover:bg-gray-50 transition-all duration-300 group"
+                          className={`${styles.dropdownMenuItemLink} group`}
                         >
-                          <div className="flex-1">
-                            <div className="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
+                          <div className={styles.dropdownMenuItemContent}>
+                            <div className={`${styles.dropdownMenuItemTitle} group-hover:text-blue-600`}>
                               {item.name}
                             </div>
-                            <div className="text-sm text-gray-500">
+                            <div className={styles.dropdownMenuItemDescription}>
                               {item.description}
                             </div>
                           </div>
-                          <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all duration-300" />
+                          <ArrowRight className={`${styles.dropdownMenuItemArrow} group-hover:translate-x-1 group-hover:text-blue-600`} />
                         </Link>
                       ))}
                     </div>
@@ -179,76 +172,68 @@ const Navbar: React.FC = () => {
                 <Link
                   key={item.path}
                   to={item.path}
-                  className={`relative px-4 py-2 text-sm font-semibold rounded-lg transition-all duration-300 group ${
+                  className={`${styles.navItemLink} ${
                     isActive(item.path)
-                      ? 'text-blue-600'
-                      : 'text-gray-700 hover:text-[#E60000]'
+                      ? styles.navItemLinkActive
+                      : styles.navItemLinkInactive
                   }`}
                   onMouseEnter={() => setActiveHover(item.path)}
                   onMouseLeave={() => setActiveHover('')}
                 >
-                  <span className="relative z-10">{item.label}</span>
-                  <div className={`absolute inset-0 bg-[#FFC3C3] rounded-lg transition-all duration-300 ${
-                    activeHover === item.path || isActive(item.path)
-                      ? 'scale-100 opacity-100' 
-                      : 'scale-95 opacity-0'
-                  }`} />
-                  {isActive(item.path) && (
-                    <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-blue-600 rounded-full" />
-                  )}
+                  <span>{item.label}</span>
                 </Link>
               ))}
 
               <div 
-                className="relative"
+                className={styles.productsDropdownContainer}
                 onMouseEnter={() => setIsProductsOpen(true)}
                 onMouseLeave={() => setIsProductsOpen(false)}
               >
                 <button
-                  className={`flex items-center px-4 py-2 text-sm font-semibold rounded-lg transition-all duration-300 ${
+                  className={`${styles.productsButton} ${
                     location.pathname.includes('/product') || location.pathname.includes('/rov')
-                      ? 'text-blue-600 bg-[#FFC3C3]'
-                      : 'text-gray-700 hover:text-[#E60000] hover:bg-[#FFC3C3]'
+                      ? styles.productsButtonActive
+                      : styles.productsButtonInactive
                   }`}
                 >
                   <span>Products</span>
-                  <ChevronDown className={`ml-1 w-4 h-4 transition-transform duration-300 ${
-                    isProductsOpen ? 'rotate-180' : 'rotate-0'
+                  <ChevronDown className={`${styles.chevronDown} ${
+                    isProductsOpen ? styles.chevronDownRotate : ''
                   }`} />
                 </button>
 
-                <div className={`absolute top-full left-0 mt-2 w-80 bg-white rounded-2xl shadow-2xl border border-gray-100 transition-all duration-500 origin-top ${
+                <div className={`${styles.productsDropdownMenu} ${
                   isProductsOpen 
-                    ? 'opacity-100 scale-100 translate-y-0' 
-                    : 'opacity-0 scale-95 -translate-y-4 pointer-events-none'
+                    ? styles.productsDropdownMenuVisible 
+                    : styles.productsDropdownMenuHidden
                 }`}>
-                  <div className="p-6">
-                    <div className="text-sm font-semibold text-gray-900 mb-4 flex items-center">
-                      <Waves className="w-4 h-4 mr-2 text-blue-600" />
+                  <div className={styles.dropdownMenuPadding}>
+                    <div className={styles.dropdownMenuTitle}>
+                      <Waves className={styles.dropdownMenuTitleIcon} />
                       Our ROV Solutions
                     </div>
-                    <div className="space-y-3">
+                    <div className={styles.dropdownMenuItemsContainer}>
                       {productItems.map((product) => (
                         <Link
                           key={product.path}
                           to={product.path}
-                          className="flex items-center p-3 rounded-xl hover:bg-gray-50 transition-all duration-300 group"
+                          className={`${styles.productItemLink} group`}
                         >
-                          <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${product.color} flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300`}>
+                          <div className={`${styles.productItemIconContainer} bg-gradient-to-br ${product.color}`}>
                             {product.icon}
                           </div>
-                          <div className="flex-1">
-                            <div className="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
+                          <div className={styles.productItemContent}>
+                            <div className={`${styles.productItemName} group-hover:text-blue-600`}>
                               {product.name}
                             </div>
-                            <div className="text-sm text-gray-500">
+                            <div className={styles.productItemDescription}>
                               {product.description}
                             </div>
-                            <div className="text-xs text-gray-400 mt-1">
+                            <div className={styles.productItemSpecs}>
                               {product.specs}
                             </div>
                           </div>
-                          <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all duration-300" />
+                          <ArrowRight className={`${styles.productItemArrow} group-hover:translate-x-1 group-hover:text-blue-600`} />
                         </Link>
                       ))}
                     </div>
@@ -258,65 +243,65 @@ const Navbar: React.FC = () => {
             </div>
 
             <div className="flex items-center space-x-3">
-              <button className="hidden md:flex items-center justify-center w-10 h-10 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors duration-200">
-                <Search className="w-5 h-5 text-gray-600" />
+              <button className={`${styles.searchButton} md:flex`}>
+                <Search className={styles.searchIcon} />
               </button>
 
               <Link
                 to="/partner"
-                className="hidden md:flex items-center px-4 py-2.5 bg-[#FF6464] text-white text-sm font-semibold rounded-lg hover:bg-[#E65A5A] transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+                className={`${styles.partnerButton} md:flex`}
               >
                 <span>Partner With Us</span>
               </Link>
 
               <Link
                 to="/contact"
-                className="hidden sm:flex items-center px-4 py-2.5 bg-[#FFC3C3] text-[#E60000] text-sm font-semibold rounded-lg transition-all duration-300"
+                className={`${styles.contactButton} sm:flex`}
               >
-                <Phone className="w-4 h-4 mr-2" />
+                <Phone className={styles.contactIcon} />
                 <span>Contact</span>
               </Link>
 
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="lg:hidden flex items-center justify-center w-10 h-10 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors duration-200"
+                className={`${styles.mobileMenuButton} lg:hidden`}
               >
                 {isMenuOpen ? (
-                  <X className="w-5 h-5 text-gray-600" />
+                  <X className={styles.mobileMenuIcon} />
                 ) : (
-                  <Menu className="w-5 h-5 text-gray-600" />
+                  <Menu className={styles.mobileMenuIcon} />
                 )}
               </button>
             </div>
           </div>
         </div>
 
-        <div className={`lg:hidden transition-all duration-500 ease-out ${
+        <div className={`${styles.mobileMenuContainer} ${
           isMenuOpen 
-            ? 'max-h-screen opacity-100' 
-            : 'max-h-0 opacity-0 overflow-hidden'
+            ? styles.mobileMenuContainerOpen 
+            : styles.mobileMenuContainerClosed
         }`}>
-          <div className="bg-[#FFEBEB] border-t border-gray-200 px-4 py-6">
+          <div className={styles.mobileMenuContent}>
             
-            <div className="space-y-2 mb-6">
+            <div className={`${styles.mobileMenuSpaceY2} mb-6`}>
               <div className="relative">
                 <button
                   onClick={() => setIsAboutUsOpen(!isAboutUsOpen)}
-                  className={`flex items-center justify-between w-full px-4 py-3 text-base font-semibold rounded-lg transition-all duration-300 ${
+                  className={`${styles.mobileMenuAboutUsButton} ${
                     isActive('/home') || isActive('/vision')
-                      ? 'text-blue-600 bg-[#FFC3C3]'
-                      : 'text-gray-700 hover:text-[#E60000] hover:bg-[#FFC3C3]'
+                      ? styles.mobileMenuAboutUsButtonActive
+                      : styles.mobileMenuAboutUsButtonInactive
                   }`}>
                   <span>About Us</span>
-                  <ChevronDown className={`w-5 h-5 transition-transform duration-300 ${isAboutUsOpen ? 'rotate-180' : ''}`} />
+                  <ChevronDown className={`${styles.mobileMenuChevronDown} ${isAboutUsOpen ? styles.mobileMenuChevronDownRotate : ''}`} />
                 </button>
-                <div className={`transition-all duration-300 ease-in-out overflow-hidden ${isAboutUsOpen ? 'max-h-40' : 'max-h-0'}`}>
-                  <div className="pt-2 pl-4">
+                <div className={`${styles.mobileMenuAboutUsDropdown} ${isAboutUsOpen ? styles.mobileMenuAboutUsDropdownOpen : styles.mobileMenuAboutUsDropdownClosed}`}>
+                  <div className={styles.mobileMenuAboutUsDropdownPadding}>
                     {aboutUsItems.map((item) => (
                       <Link
                         key={item.path}
                         to={item.path}
-                        className="flex items-center px-4 py-3 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-lg transition-colors duration-200"
+                        className={styles.mobileMenuAboutUsItemLink}
                       >
                         {item.name}
                       </Link>
@@ -328,10 +313,10 @@ const Navbar: React.FC = () => {
                 <Link
                   key={item.path}
                   to={item.path}
-                  className={`flex items-center px-4 py-3 text-base font-semibold rounded-lg transition-all duration-300 ${
+                  className={`${styles.mobileMenuNavItemLink} ${
                     isActive(item.path)
-                      ? 'text-blue-600 bg-[#FFC3C3]'
-                      : 'text-gray-700 hover:text-[#E60000] hover:bg-[#FFC3C3]'
+                      ? styles.mobileMenuNavItemLinkActive
+                      : styles.mobileMenuNavItemLinkInactive
                   }`}
                   style={{ animationDelay: `${index * 50}ms` }}
                 >
@@ -341,41 +326,41 @@ const Navbar: React.FC = () => {
             </div>
 
             <div className="mb-6">
-              <div className="text-sm font-semibold text-gray-900 mb-3 px-4 flex items-center">
-                <Waves className="w-4 h-4 mr-2 text-blue-600" />
+              <div className={styles.mobileMenuProductsTitle}>
+                <Waves className={styles.mobileMenuProductsTitleIcon} />
                 Products
               </div>
-              <div className="space-y-2">
+              <div className={styles.mobileMenuSpaceY2}>
                 {productItems.map((product) => (
                   <Link
                     key={product.path}
                     to={product.path}
-                    className="flex items-center px-4 py-3 text-base font-medium text-gray-700 hover:text-[#E60000] hover:bg-[#FFC3C3] rounded-lg transition-colors duration-200"
+                    className={styles.mobileMenuProductItemLink}
                   >
-                    <div className={`w-8 h-8 rounded-lg bg-gradient-to-br ${product.color} flex items-center justify-center mr-3`}>
-                      {React.cloneElement(product.icon, { className: 'w-4 h-4 text-white' })}
+                    <div className={`${styles.mobileMenuProductItemIconContainer} bg-gradient-to-br ${product.color}`}>
+                      {React.cloneElement(product.icon, { className: styles.mobileMenuProductItemIcon })}
                     </div>
                     <div>
                       <div>{product.name}</div>
-                      <div className="text-xs text-gray-500">{product.specs}</div>
+                      <div className={styles.mobileMenuProductItemSpecs}>{product.specs}</div>
                     </div>
                   </Link>
                 ))}
               </div>
             </div>
 
-            <div className="space-y-3 border-t border-gray-200 pt-6">
+            <div className={`${styles.mobileMenuSpaceY3} ${styles.mobileMenuBorderTop}`}>
               <Link
                 to="/partner"
-                className="flex items-center justify-center w-full px-4 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-base font-semibold rounded-lg"
+                className={styles.mobileMenuPartnerButton}
               >
                 Partner With Us
               </Link>
               <Link
                 to="/contact"
-                className="flex items-center justify-center w-full px-4 py-3 border border-gray-300 text-gray-700 text-base font-semibold rounded-lg"
+                className={styles.mobileMenuContactButton}
               >
-                <Phone className="w-4 h-4 mr-2" />
+                <Phone className={styles.mobileMenuContactIcon} />
                 Contact Us
               </Link>
             </div>

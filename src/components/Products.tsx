@@ -3,7 +3,7 @@ import { Container, Row, Col, Table, Card, Carousel } from 'react-bootstrap';
 import SoftwareSection from '../components/SoftwareSection';
 import SpecificationsSection from '../components/SpecificationsSection';
 import { Helmet } from 'react-helmet';
-import './Products.css';
+import styles from './Products.module.css';
 
 const Products: React.FC = () => {
   const specifications = [
@@ -29,21 +29,21 @@ const Products: React.FC = () => {
         <meta name="description" content="Detailed specifications and features of the ROV 1.0, a portable and stable underwater drone by IXAR Robotic Solutions." />
       </Helmet>
 
-      <header className="page-header">
+      <header className={styles.pageHeader}>
         <Container>
-          <h1 className="page-title">ROV 1.0</h1>
-          <p className="page-subtitle">Portable, Stable, and Adventurous Underwater Drone</p>
+          <h1 className={styles.pageTitle}>ROV 1.0</h1>
+          <p className={styles.pageSubtitle}>Portable, Stable, and Adventurous Underwater Drone</p>
         </Container>
       </header>
 
-      <section className="section">
+      <section className={styles.section}>
         <Container>
           <Row className="align-items-center">
             <Col lg={6} className="mb-4">
-              <img src="/assets/ROV.2c6c4490.png" alt="ROV 1.0" className="img-fluid rounded shadow" />
+              <img src="/assets/ROV.2c6c4490.png" alt="ROV 1.0" className={`${styles.imgFluid} ${styles.rounded} ${styles.shadow}`} />
             </Col>
             <Col lg={6}>
-              <h2 className="section-title">Product Overview</h2>
+              <h2 className={styles.sectionTitle}>Product Overview</h2>
               <p>ROV is a portable, stable, adventurous underwater drone that can conquer the waters and is easily operated through Intuitive flight controls. With Eight-Thruster configurations, number of available accessories, compatible software which adds to its High level of Performance, Flexibility, and Expandability. Making it One of the optimised underwater sensing solutions for assessing and monitoring underwater systems in the market!</p>
               <p>The ROV chassis is lightweight and sturdy constructed by using HDPE material. Simple design with open frame construction and generous payload offers the possibility of adding a wide range of tools and sensors as well as interchangeable tool skids, adding to it versatility and expandability, for different applications.</p>
             </Col>
