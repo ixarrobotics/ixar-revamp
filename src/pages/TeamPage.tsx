@@ -14,18 +14,32 @@ import styles from './TeamPage.module.css';
 const TeamPage: React.FC = () => {
   const [activeTab, setActiveTab] = useState('team');
 
-  const founder = {
-    name: 'Rishi Jain',
-    title: 'Founder & CEO',
-    qualification: 'B.Tech Metallurgy and Material Science, IIT Bombay 2019',
-    image: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop',
-    bio: 'Visionary leader with expertise in materials science and underwater robotics. Passionate about revolutionizing marine exploration through innovative technology.',
-    achievements: ['IIT Bombay Alumni', 'SINE Incubation Program', 'MeitY Startup Recognition'],
-    social: {
-      linkedin: '#',
-      email: 'rishi@ixarrobotic.com'
+  const founders = [
+    {
+      name: 'Rishi Jain',
+      title: 'Founder & CEO',
+      qualification: 'B.Tech Metallurgy and Material Science, IIT Bombay 2019',
+      image: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop',
+      bio: 'Visionary leader with expertise in materials science and underwater robotics. Passionate about revolutionizing marine exploration through innovative technology.',
+      achievements: ['IIT Bombay Alumni', 'SINE Incubation Program', 'MeitY Startup Recognition'],
+      social: {
+        linkedin: '#',
+        email: 'rishi@ixarrobotic.com'
+      }
+    },
+    {
+      name: 'Pushpa',
+      title: 'Co-Founder',
+      qualification: 'B.Tech Computer Science, XYZ University 2018',
+      image: 'https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop',
+      bio: 'Experienced technologist with a strong background in software development and AI. Driving the technological advancements at IXAR.',
+      achievements: ['Published research in AI', 'Led multiple successful tech projects'],
+      social: {
+        linkedin: '#',
+        email: 'pushpa@ixarrobotic.com'
+      }
     }
-  };
+  ];
 
   const teamMembers = [
     {
@@ -70,24 +84,7 @@ const TeamPage: React.FC = () => {
     }
   ];
 
-  const mentors = [
-    {
-      name: 'Anil Jain',
-      title: 'Strategic Mentor',
-      qualification: 'Managing Director IXAR',
-      image: 'https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop',
-      expertise: ['Business Strategy', 'Industry Relations', 'Market Development'],
-      color: 'from-gray-600 to-gray-800'
-    },
-    {
-      name: 'Rohit Jain',
-      title: 'Technical Mentor',
-      qualification: 'PhD Candidate, University of Houston, USA',
-      image: 'https://images.pexels.com/photos/2182969/pexels-photo-2182969.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop',
-      expertise: ['Advanced Research', 'Technology Innovation', 'Academic Collaboration'],
-      color: 'from-teal-500 to-cyan-500'
-    }
-  ];
+  
 
   const companyValues = [
     {
@@ -129,13 +126,11 @@ const TeamPage: React.FC = () => {
       </section>
 
       {/* Navigation Tabs */}
-      <section className={styles.navTabsSection}>
+      {/* <section className={styles.navTabsSection}>
         <div className={styles.navTabsInnerContainer}>
           <div className={styles.navTabsContainer}>
             {[
               { id: 'team', label: 'Core Team' },
-              { id: 'mentors', label: 'Mentors' },
-              { id: 'values', label: 'Our Values' }
             ].map((tab) => (
               <button
                 key={tab.id}
@@ -151,61 +146,63 @@ const TeamPage: React.FC = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Founder Section */}
       <section className={styles.founderSection}>
         <div className={styles.founderInnerContainer}>
           <div className={styles.founderHeader}>
-            <h2 className={styles.founderTitle}>Our Founder</h2>
+            <h2 className={styles.founderTitle}>Our Founders</h2>
             <p className={styles.founderSubtitle}>Visionary leadership driving underwater robotics innovation</p>
           </div>
 
-          <div className={styles.founderCardWrapper}>
-            <div className={styles.founderCard}>
-              <div className={styles.founderCardContent}>
-                <div className={styles.founderImageContainer}>
-                  <img
-                    src={founder.image}
-                    alt={founder.name}
-                    className={styles.founderImage}
-                  />
-                </div>
-                <div className={styles.founderDetailsContainer}>
-                  <h3 className={styles.founderName}>{founder.name}</h3>
-                  <p className={styles.founderTitleDetail}>{founder.title}</p>
-                  <p className={styles.founderQualification}>{founder.qualification}</p>
-                  <p className={styles.founderBio}>{founder.bio}</p>
-                  
-                  <div className={styles.achievementsContainer}>
-                    <h4 className={styles.achievementsTitle}>Key Achievements</h4>
-                    <div className={styles.achievementsList}>
-                      {founder.achievements.map((achievement, index) => (
-                        <div key={index} className={styles.achievementItem}>
-                          <Star className={styles.achievementIcon} />
-                          <span className={styles.achievementText}>{achievement}</span>
-                        </div>
-                      ))}
-                    </div>
+          <div className={styles.foundersGrid}>
+            {founders.map((founder, index) => (
+              <div key={index} className={styles.founderCard}>
+                <div className={styles.founderCardContent}>
+                  <div className={styles.founderImageContainer}>
+                    <img
+                      src={founder.image}
+                      alt={founder.name}
+                      className={styles.founderImage}
+                    />
                   </div>
+                  <div className={styles.founderDetailsContainer}>
+                    <h3 className={styles.founderName}>{founder.name}</h3>
+                    <p className={styles.founderTitleDetail}>{founder.title}</p>
+                    <p className={styles.founderQualification}>{founder.qualification}</p>
+                    <p className={styles.founderBio}>{founder.bio}</p>
+                    
+                    <div className={styles.achievementsContainer}>
+                      <h4 className={styles.achievementsTitle}>Key Achievements</h4>
+                      <div className={styles.achievementsList}>
+                        {founder.achievements.map((achievement, achievementIndex) => (
+                          <div key={achievementIndex} className={styles.achievementItem}>
+                            <Star className={styles.achievementIcon} />
+                            <span className={styles.achievementText}>{achievement}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
 
-                  <div className={styles.socialLinksContainer}>
-                    <a
-                      href={founder.social.linkedin}
-                      className={styles.socialLinkButton}
-                    >
-                      <Linkedin className={styles.socialLinkIcon} />
-                    </a>
-                    <a
-                      href={`mailto:${founder.social.email}`}
-                      className={`${styles.socialLinkButton} ${styles.emailSocialLinkButton}`}
-                    >
-                      <Mail className={styles.socialLinkIcon} />
-                    </a>
+                    <div className={styles.socialLinksContainer}>
+                      <a
+                        href={founder.social.linkedin}
+                        className={styles.socialLinkButton}
+                      >
+                        <Linkedin className={styles.socialLinkIcon} />
+                      </a>
+                      <a
+                        href={`mailto:${founder.social.email}`}
+                        className={`${styles.socialLinkButton} ${styles.emailSocialLinkButton}`}
+                      >
+                        <Mail className={styles.socialLinkIcon} />
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
@@ -247,55 +244,6 @@ const TeamPage: React.FC = () => {
                         {member.expertise.map((skill, skillIndex) => (
                           <div key={skillIndex} className={styles.expertiseItem}>
                             <ChevronRight className={styles.expertiseIcon} />
-                            <span className={styles.expertiseText}>{skill}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {activeTab === 'mentors' && (
-        <section className={styles.dynamicContentSection}>
-          <div className={styles.dynamicContentInnerContainer}>
-            <div className={styles.dynamicContentHeader}>
-              <h2 className={styles.dynamicContentTitle}>Our Mentors</h2>
-              <p className={styles.dynamicContentSubtitle}>Guiding wisdom from industry leaders</p>
-            </div>
-
-            <div className={styles.mentorsGrid}>
-              {mentors.map((mentor, index) => (
-                <div
-                  key={index}
-                  className={styles.mentorCard}
-                >
-                  <div className={styles.mentorImageContainer}>
-                    <img
-                      src={mentor.image}
-                      alt={mentor.name}
-                      className={styles.mentorImage}
-                    />
-                    <div className={`${styles.mentorIconBadge} bg-gradient-to-r ${mentor.color}`}>
-                      <Award className={styles.mentorIcon} />
-                    </div>
-                  </div>
-                  
-                  <div className={styles.mentorContent}>
-                    <h3 className={styles.mentorName}>{mentor.name}</h3>
-                    <p className={styles.mentorTitleDetail}>{mentor.title}</p>
-                    <p className={styles.mentorQualification}>{mentor.qualification}</p>
-                    
-                    <div className={styles.expertiseContainer}>
-                      <h4 className={styles.expertiseTitle}>Expertise</h4>
-                      <div className={styles.achievementsList}>
-                        {mentor.expertise.map((skill, skillIndex) => (
-                          <div key={skillIndex} className={styles.expertiseItem}>
-                            <ChevronRight className={styles.mentorExpertiseIcon} />
                             <span className={styles.expertiseText}>{skill}</span>
                           </div>
                         ))}

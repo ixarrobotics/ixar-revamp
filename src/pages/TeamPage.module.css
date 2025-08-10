@@ -153,10 +153,21 @@
   color: #4b5563; /* text-gray-600 */
 }
 
+.foundersGrid {
+  display: grid;
+  gap: 2rem; /* gap-8 */
+}
+
+@media (min-width: 768px) { /* md */
+  .foundersGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)); /* md:grid-cols-2 */
+  }
+}
+
 .founderCardWrapper {
-  max-width: 64rem; /* max-w-4xl */
-  margin-left: auto;
-  margin-right: auto;
+  /* max-width: 64rem; */ /* max-w-4xl */
+  /* margin-left: auto; */
+  /* margin-right: auto; */
 }
 
 .founderCard {
@@ -171,32 +182,20 @@
   flex-direction: column;
 }
 
-@media (min-width: 768px) { /* md */
-  .founderCardContent {
-    flex-direction: row;
-  }
-}
-
 .founderImageContainer {
   width: 100%;
 }
 
 @media (min-width: 768px) { /* md */
   .founderImageContainer {
-    width: 50%; /* md:w-1/2 */
+    width: 100%;
   }
 }
 
 .founderImage {
   width: 100%;
-  height: 24rem; /* h-96 */
+  height: 16rem; /* h-64, consistent height for all cards */
   object-fit: cover;
-}
-
-@media (min-width: 768px) { /* md */
-  .founderImage {
-    height: 100%; /* md:h-full */
-  }
 }
 
 .founderDetailsContainer {
@@ -206,8 +205,8 @@
 
 @media (min-width: 768px) { /* md */
   .founderDetailsContainer {
-    width: 50%; /* md:w-1/2 */
-    padding: 3rem; /* md:p-12 */
+    width: 100%;
+    padding: 2rem; /* p-8 */
   }
 }
 

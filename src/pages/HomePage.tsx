@@ -15,16 +15,58 @@ import {
   Waves,
   Camera,
   Gauge,
-  Settings
+  Settings,
+  Target,
+  ChevronLeft,
+  ChevronRight as ChevronRightIcon
 } from 'lucide-react';
 import styles from './HomePage.module.css';
 
+import iitLogo from '../assets/iit.ef6ee85c.png';
+import mitgLogo from '../assets/mitg.1a413d64.jpeg';
+import msmeLogo from '../assets/mitg.1a413d64.jpeg';
+import sineLogo from '../assets/sine.558e30bd.jpeg';
+
 const HomePage: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [currentClientIndex, setCurrentClientIndex] = useState(0);
+
+  const clientLogos = [
+    { src: iitLogo, alt: 'IIT Bombay' },
+    { src: mitgLogo, alt: 'MITG' },
+    { src: msmeLogo, alt: 'MSME' },
+    { src: sineLogo, alt: 'SINE' },
+    { src: iitLogo, alt: 'IIT Bombay' }, // Duplicate for seamless loop
+    { src: mitgLogo, alt: 'MITG' },
+    { src: msmeLogo, alt: 'MSME' },
+    { src: sineLogo, alt: 'SINE' },
+  ];
+
+  const visibleClients = 3; // Number of clients to show at once
 
   useEffect(() => {
     setIsVisible(true);
+
+    const interval = setInterval(() => {
+      setCurrentClientIndex((prevIndex) => 
+        (prevIndex + 1) % (clientLogos.length - visibleClients + 1)
+      );
+    }, 3000); // Auto-scroll every 3 seconds
+
+    return () => clearInterval(interval);
   }, []);
+
+  const handlePrevClient = () => {
+    setCurrentClientIndex((prevIndex) => 
+      prevIndex === 0 ? clientLogos.length - visibleClients : prevIndex - 1
+    );
+  };
+
+  const handleNextClient = () => {
+    setCurrentClientIndex((prevIndex) => 
+      (prevIndex + 1) % (clientLogos.length - visibleClients + 1)
+    );
+  };
 
   const features = [
     {
@@ -78,6 +120,24 @@ const HomePage: React.FC = () => {
       image: "https://images.pexels.com/photos/1001682/pexels-photo-1001682.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
       color: "from-emerald-500 to-teal-500",
       link: "/rov2"
+    }
+  ];
+
+  const companyValues = [
+    {
+      icon: <Target className="w-8 h-8" />,
+      title: 'Innovation First',
+      description: 'Pushing boundaries in underwater robotics technology'
+    },
+    {
+      icon: <Users className="w-8 h-8" />,
+      title: 'Team Excellence',
+      description: 'Collaborative approach with diverse expertise'
+    },
+    {
+      icon: <Award className="w-8 h-8" />,
+      title: 'Quality Commitment',
+      description: 'Delivering reliable solutions that exceed expectations'
     }
   ];
 
@@ -145,12 +205,12 @@ const HomePage: React.FC = () => {
         </div>
       </section> */}
 
-      {/* Features Section */}
-      <section className={styles.featuresSection}>
+      {/* About Us Section */}
+      <section id="about-us" className={styles.featuresSection}>
         <div className={styles.featuresInnerContainer}>
           <div className={styles.featuresHeader}>
             <h2 className={styles.featuresTitle}>
-              About Us?
+              About Us
             </h2>
             <p className={styles.featuresSubtitle}>
               Experience the perfect blend of innovation, reliability, and performance in underwater robotics
@@ -174,15 +234,91 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* Products Showcase */}
-      <section className={styles.productsShowcaseSection}>
+      {/* Vision and Mission Section */}
+      <section id="vision-mission" className={styles.productsShowcaseSection}>
         <div className={styles.productsShowcaseInnerContainer}>
           <div className={styles.productsShowcaseHeader}>
             <h2 className={styles.productsShowcaseTitle}>
               Vision and Mission
             </h2>
             <p className={styles.productsShowcaseSubtitle}>
-              From entry-level to advanced autonomous systems, we have the perfect ROV for your needs
+              To be the global leader in underwater robotics, pioneering solutions that drive progress and sustainability.
+            </p>
+          </div>
+
+          <div className={styles.productsGrid}>
+            {companyValues.map((value, index) => (
+              <div
+                key={index}
+                className={styles.productCard}
+              >
+                <div className={styles.productImageContainer}>
+                  {/* Placeholder for image, or remove if not needed */}
+                  <div className={`${styles.productNameBadge} bg-gradient-to-r from-blue-500 to-cyan-500`}>
+                    {value.title}
+                  </div>
+                </div>
+                
+                <div className={styles.productCardContent}>
+                  <h3 className={styles.productCardTitle}>{value.title}</h3>
+                  <p className={styles.productCardDescription}>{value.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Our Clients Section */}
+      <section id="our-clients" className={styles.featuresSection}>
+        <div className={styles.featuresInnerContainer}>
+          <div className={styles.featuresHeader}>
+            <h2 className={styles.featuresTitle}>
+              Our Clients
+            </h2>
+            <p className={styles.featuresSubtitle}>
+              Trusted by leading organizations worldwide for their critical underwater operations.
+            </p>
+          </div>
+
+          <div className={styles.clientCarouselContainer}>
+            <button 
+              className={`${styles.carouselNavButton} ${styles.carouselNavButtonLeft}`}
+              onClick={handlePrevClient}
+            >
+              <ChevronLeft className={styles.carouselNavIcon} />
+            </button>
+            <div className={styles.clientCarouselTrackWrapper}>
+              <div 
+                className={styles.clientCarouselTrack}
+                style={{ transform: `translateX(-${currentClientIndex * (100 / visibleClients)}%)` }}
+              >
+                {clientLogos.map((logo, index) => (
+                  <div key={index} className={styles.clientLogoItem}>
+                    <img src={logo.src} alt={logo.alt} className={styles.clientLogoImage} />
+                  </div>
+                ))}
+              </div>
+            </div>
+            <button 
+              className={`${styles.carouselNavButton} ${styles.carouselNavButtonRight}`}
+              onClick={handleNextClient}
+            >
+              <ChevronRightIcon className={styles.carouselNavIcon} />
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Product Features Section */}
+      <section id="product-features" className={styles.productsShowcaseSection}>
+        <div className={styles.productsShowcaseInnerContainer}>
+          <div className={styles.productsShowcaseHeader}>
+            <h2 className={styles.productsShowcaseTitle}>
+              Product Features
+            </h2>
+            <p className={styles.productsShowcaseSubtitle}>
+              Highlighting the key capabilities and innovations of our ROV systems.
             </p>
           </div>
 
@@ -227,6 +363,21 @@ const HomePage: React.FC = () => {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section id="testimonials" className={styles.featuresSection}>
+        <div className={styles.featuresInnerContainer}>
+          <div className={styles.featuresHeader}>
+            <h2 className={styles.featuresTitle}>
+              Testimonials
+            </h2>
+            <p className={styles.featuresSubtitle}>
+              Hear what our clients have to say about IXAR and our solutions.
+            </p>
+          </div>
+          {/* Testimonial cards can go here */}
         </div>
       </section>
 

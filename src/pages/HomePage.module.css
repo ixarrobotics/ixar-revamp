@@ -145,12 +145,6 @@
   color: #111827; /* hover:text-gray-900 */
 }
 
-.watchDemoIcon {
-  margin-right: 0.5rem; /* mr-2 */
-  width: 1.25rem; /* w-5 */
-  height: 1.25rem; /* h-5 */
-}
-
 /* Features Section */
 .featuresSection {
   padding-top: 5rem; /* py-20 */
@@ -496,6 +490,82 @@
 }
 
 .viewServicesButton:hover {
-  background-color: #ffffff; /* hover:bg-white */
-  color: #111827; /* hover:text-gray-900 */
+  background-color: #E60000; /* Red background on hover */
+  color: #ffffff; /* White text on hover */
+}
+
+/* Client Carousel */
+.clientCarouselContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem; /* mt-8 */
+  overflow: hidden;
+}
+
+.clientCarouselTrackWrapper {
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+.clientCarouselTrack {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.clientLogoItem {
+  flex-shrink: 0;
+  width: calc(100% / 3); /* Show 3 items at a time */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem; /* p-4 */
+}
+
+.clientLogoImage {
+  max-width: 100%;
+  height: 6rem; /* h-24 */
+  object-fit: contain;
+  filter: grayscale(100%);
+  opacity: 0.6;
+  transition: all 0.3s ease;
+}
+
+.clientLogoImage:hover {
+  filter: grayscale(0%);
+  opacity: 1;
+}
+
+.carouselNavButton {
+  background-color: rgba(255, 255, 255, 0.8); /* bg-white/80 */
+  border-radius: 50%;
+  width: 3rem; /* w-12 */
+  height: 3rem; /* h-12 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.carouselNavButton:hover {
+  background-color: #ffffff; /* bg-white */
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.carouselNavButtonLeft {
+  margin-right: 1rem; /* mr-4 */
+}
+
+.carouselNavButtonRight {
+  margin-left: 1rem; /* ml-4 */
+}
+
+.carouselNavIcon {
+  width: 1.5rem; /* w-6 */
+  height: 1.5rem; /* h-6 */
+  color: #E60000; /* text-[#E60000] */
 }

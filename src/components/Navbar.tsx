@@ -4,7 +4,6 @@ import {
   Menu, 
   X, 
   ChevronDown, 
-  Search, 
   Phone,
   ArrowRight,
   Zap,
@@ -18,8 +17,8 @@ import styles from './Navbar.module.css';
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isProductsOpen, setIsProductsOpen] = useState(false);
   const [isAboutUsOpen, setIsAboutUsOpen] = useState(false);
+  const [aboutUsTimeoutId, setAboutUsTimeoutId] = useState<NodeJS.Timeout | null>(null);
   const [activeHover, setActiveHover] = useState('');
   const location = useLocation();
 
@@ -36,55 +35,64 @@ const Navbar: React.FC = () => {
 
   useEffect(() => {
     setIsMenuOpen(false);
-    setIsProductsOpen(false);
     setIsAboutUsOpen(false);
+    if (aboutUsTimeoutId) {
+      clearTimeout(aboutUsTimeoutId);
+      setAboutUsTimeoutId(null);
+    }
   }, [location]);
+
+  const handleAboutUsMouseEnter = () => {
+    if (aboutUsTimeoutId) {
+      clearTimeout(aboutUsTimeoutId);
+      setAboutUsTimeoutId(null);
+    }
+    setIsAboutUsOpen(true);
+  };
+
+  const handleAboutUsMouseLeave = () => {
+    const id = setTimeout(() => {
+      setIsAboutUsOpen(false);
+      setAboutUsTimeoutId(null);
+    }, 200); // 200ms delay
+    setAboutUsTimeoutId(id);
+  };
 
   const navItems = [
     { label: 'Services', path: '/services' },
-    { label: 'Team', path: '/team' },
-    { label: 'Contact', path: '/contact' }
+    { label: 'Our Solutions', path: '/solutions' },
+    { label: 'Team', path: '/team' }
   ];
 
   const aboutUsItems = [
     {
       name: 'About Us',
-      path: '/home',
+      path: '#about-us',
       description: 'Learn more about our company'
     },
     {
-      name: 'Vision',
-      path: '/vision',
+      name: 'Vision and Mission',
+      path: '#vision-mission',
       description: 'Our vision for the future'
+    },
+    {
+      name: 'Our Clients',
+      path: '#our-clients',
+      description: 'Who we work with'
+    },
+    {
+      name: 'Product Features',
+      path: '#product-features',
+      description: 'Key features of our products'
+    },
+    {
+      name: 'Testimonials',
+      path: '#testimonials',
+      description: 'What our clients say'
     }
   ];
 
-  const productItems = [
-    {
-      name: 'ROV 1.0',
-      path: '/product',
-      icon: <Settings className="w-5 h-5 text-white" />,
-      description: 'Entry-level robotic solution',
-      color: 'from-blue-500 to-cyan-500',
-      specs: '200m depth • 6000 lumen'
-    },
-    {
-      name: 'ROV Pro',
-      path: '/rovpro',
-      icon: <Zap className="w-5 h-5 text-white" />,
-      description: 'Professional-grade ROV',
-      color: 'from-purple-500 to-pink-500',
-      specs: '500m depth • Advanced sensors'
-    },
-    {
-      name: 'ROV2',
-      path: '/rov2',
-      icon: <Cpu className="w-5 h-5 text-white" />,
-      description: 'Advanced autonomous system',
-      color: 'from-emerald-500 to-teal-500',
-      specs: '1000m depth • AI-powered'
-    }
-  ];
+  
 
   return (
     <>
@@ -119,12 +127,13 @@ const Navbar: React.FC = () => {
             <div className={`${styles.navLinksContainer} lg:flex`}>
               <div 
                 className={styles.aboutUsDropdownContainer}
-                onMouseEnter={() => setIsAboutUsOpen(true)}
-                onMouseLeave={() => setIsAboutUsOpen(false)}
+                onMouseEnter={handleAboutUsMouseEnter}
+                onMouseLeave={handleAboutUsMouseLeave}
               >
-                <button
+                <Link
+                  to="/home"
                   className={`${styles.aboutUsButton} ${
-                    location.pathname.includes('/home') || location.pathname.includes('/vision')
+                    location.pathname === '/home'
                       ? styles.aboutUsButtonActive
                       : styles.aboutUsButtonInactive
                   }`}
@@ -133,13 +142,17 @@ const Navbar: React.FC = () => {
                   <ChevronDown className={`${styles.chevronDown} ${
                     isAboutUsOpen ? styles.chevronDownRotate : ''
                   }`} />
-                </button>
+                </Link>
 
-                <div className={`${styles.aboutUsDropdownMenu} ${
-                  isAboutUsOpen 
-                    ? styles.aboutUsDropdownMenuVisible 
-                    : styles.aboutUsDropdownMenuHidden
-                }`}>
+                <div 
+                  className={`${styles.aboutUsDropdownMenu} ${
+                    isAboutUsOpen 
+                      ? styles.aboutUsDropdownMenuVisible 
+                      : styles.aboutUsDropdownMenuHidden
+                  }`}
+                  onMouseEnter={handleAboutUsMouseEnter}
+                  onMouseLeave={handleAboutUsMouseLeave}
+                >
                   <div className={styles.dropdownMenuPadding}>
                     <div className={styles.dropdownMenuTitle}>
                       <Waves className={styles.dropdownMenuTitleIcon} />
@@ -147,21 +160,30 @@ const Navbar: React.FC = () => {
                     </div>
                     <div className={styles.dropdownMenuItemsContainer}>
                       {aboutUsItems.map((item) => (
-                        <Link
+                        <a
                           key={item.path}
-                          to={item.path}
+                          href={item.path}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            setIsAboutUsOpen(false);
+                            if (location.pathname !== '/home') {
+                              window.location.href = '/home' + item.path;
+                            } else {
+                              document.querySelector(item.path)?.scrollIntoView({ behavior: 'smooth' });
+                            }
+                          }}
                           className={`${styles.dropdownMenuItemLink} group`}
                         >
                           <div className={styles.dropdownMenuItemContent}>
-                            <div className={`${styles.dropdownMenuItemTitle} group-hover:text-blue-600`}>
+                            <div className={`${styles.dropdownMenuItemTitle} group-hover:text-[#E60000]`}>
                               {item.name}
                             </div>
                             <div className={styles.dropdownMenuItemDescription}>
                               {item.description}
                             </div>
                           </div>
-                          <ArrowRight className={`${styles.dropdownMenuItemArrow} group-hover:translate-x-1 group-hover:text-blue-600`} />
-                        </Link>
+                          <ArrowRight className={`${styles.dropdownMenuItemArrow} group-hover:translate-x-1 group-hover:text-[#E60000]`} />
+                        </a>
                       ))}
                     </div>
                   </div>
@@ -184,68 +206,11 @@ const Navbar: React.FC = () => {
                 </Link>
               ))}
 
-              <div 
-                className={styles.productsDropdownContainer}
-                onMouseEnter={() => setIsProductsOpen(true)}
-                onMouseLeave={() => setIsProductsOpen(false)}
-              >
-                <button
-                  className={`${styles.productsButton} ${
-                    location.pathname.includes('/product') || location.pathname.includes('/rov')
-                      ? styles.productsButtonActive
-                      : styles.productsButtonInactive
-                  }`}
-                >
-                  <span>Products</span>
-                  <ChevronDown className={`${styles.chevronDown} ${
-                    isProductsOpen ? styles.chevronDownRotate : ''
-                  }`} />
-                </button>
-
-                <div className={`${styles.productsDropdownMenu} ${
-                  isProductsOpen 
-                    ? styles.productsDropdownMenuVisible 
-                    : styles.productsDropdownMenuHidden
-                }`}>
-                  <div className={styles.dropdownMenuPadding}>
-                    <div className={styles.dropdownMenuTitle}>
-                      <Waves className={styles.dropdownMenuTitleIcon} />
-                      Our ROV Solutions
-                    </div>
-                    <div className={styles.dropdownMenuItemsContainer}>
-                      {productItems.map((product) => (
-                        <Link
-                          key={product.path}
-                          to={product.path}
-                          className={`${styles.productItemLink} group`}
-                        >
-                          <div className={`${styles.productItemIconContainer} bg-gradient-to-br ${product.color}`}>
-                            {product.icon}
-                          </div>
-                          <div className={styles.productItemContent}>
-                            <div className={`${styles.productItemName} group-hover:text-blue-600`}>
-                              {product.name}
-                            </div>
-                            <div className={styles.productItemDescription}>
-                              {product.description}
-                            </div>
-                            <div className={styles.productItemSpecs}>
-                              {product.specs}
-                            </div>
-                          </div>
-                          <ArrowRight className={`${styles.productItemArrow} group-hover:translate-x-1 group-hover:text-blue-600`} />
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
+              
             </div>
 
             <div className="flex items-center space-x-3">
-              <button className={`${styles.searchButton} md:flex`}>
-                <Search className={styles.searchIcon} />
-              </button>
+              
 
               <Link
                 to="/partner"
@@ -285,26 +250,37 @@ const Navbar: React.FC = () => {
             
             <div className={`${styles.mobileMenuSpaceY2} mb-6`}>
               <div className="relative">
-                <button
+                <Link
+                  to="/home"
                   onClick={() => setIsAboutUsOpen(!isAboutUsOpen)}
                   className={`${styles.mobileMenuAboutUsButton} ${
-                    isActive('/home') || isActive('/vision')
+                    isActive('/home')
                       ? styles.mobileMenuAboutUsButtonActive
                       : styles.mobileMenuAboutUsButtonInactive
                   }`}>
                   <span>About Us</span>
                   <ChevronDown className={`${styles.mobileMenuChevronDown} ${isAboutUsOpen ? styles.mobileMenuChevronDownRotate : ''}`} />
-                </button>
+                </Link>
                 <div className={`${styles.mobileMenuAboutUsDropdown} ${isAboutUsOpen ? styles.mobileMenuAboutUsDropdownOpen : styles.mobileMenuAboutUsDropdownClosed}`}>
                   <div className={styles.mobileMenuAboutUsDropdownPadding}>
                     {aboutUsItems.map((item) => (
-                      <Link
+                      <a
                         key={item.path}
-                        to={item.path}
+                        href={item.path}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setIsAboutUsOpen(false);
+                          setIsMenuOpen(false);
+                          if (location.pathname !== '/home') {
+                            window.location.href = '/home' + item.path;
+                          } else {
+                            document.querySelector(item.path)?.scrollIntoView({ behavior: 'smooth' });
+                          }
+                        }}
                         className={styles.mobileMenuAboutUsItemLink}
                       >
                         {item.name}
-                      </Link>
+                      </a>
                     ))}
                   </div>
                 </div>
@@ -325,29 +301,7 @@ const Navbar: React.FC = () => {
               ))}
             </div>
 
-            <div className="mb-6">
-              <div className={styles.mobileMenuProductsTitle}>
-                <Waves className={styles.mobileMenuProductsTitleIcon} />
-                Products
-              </div>
-              <div className={styles.mobileMenuSpaceY2}>
-                {productItems.map((product) => (
-                  <Link
-                    key={product.path}
-                    to={product.path}
-                    className={styles.mobileMenuProductItemLink}
-                  >
-                    <div className={`${styles.mobileMenuProductItemIconContainer} bg-gradient-to-br ${product.color}`}>
-                      {React.cloneElement(product.icon, { className: styles.mobileMenuProductItemIcon })}
-                    </div>
-                    <div>
-                      <div>{product.name}</div>
-                      <div className={styles.mobileMenuProductItemSpecs}>{product.specs}</div>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            </div>
+            
 
             <div className={`${styles.mobileMenuSpaceY3} ${styles.mobileMenuBorderTop}`}>
               <Link
@@ -361,7 +315,7 @@ const Navbar: React.FC = () => {
                 className={styles.mobileMenuContactButton}
               >
                 <Phone className={styles.mobileMenuContactIcon} />
-                Contact Us
+                <span>Contact Us</span>
               </Link>
             </div>
           </div>

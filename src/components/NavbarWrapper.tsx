@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   Navigate,
+  useLocation,
 } from 'react-router-dom'
 import Navbar from './Navbar'
 import Footer from './Footer'
@@ -12,7 +13,18 @@ import ServicesPage from '../pages/ServicesPage'
 import TeamPage from '../pages/TeamPage'
 import ContactPage from '../pages/ContactPage'
 import PartnerPage from '../pages/PartnerPage'
+import OurSolutions from '../pages/OurSolutions'
 import styles from './NavbarWrapper.module.css'
+
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+};
 
 // Product pages (simplified for now)
 const ProductPage = () => (
@@ -57,6 +69,7 @@ const ROV2Page = () => (
 const NavbarWrapper: React.FC = () => {
   return (
     <Router>
+      <ScrollToTop />
       <Navbar />
       <Routes>
         <Route path="/" element={<Navigate to="/home" replace />} />
@@ -65,6 +78,7 @@ const NavbarWrapper: React.FC = () => {
         <Route path="/product" element={<ProductPage />} />
         <Route path="/rovpro" element={<ROVProPage />} />
         <Route path="/rov2" element={<ROV2Page />} />
+        <Route path="/solutions" element={<OurSolutions />} />
         <Route path="/team" element={<TeamPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/partner" element={<PartnerPage />} />

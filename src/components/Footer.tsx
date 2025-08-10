@@ -4,11 +4,6 @@ import {
   MapPin, 
   Phone, 
   Mail, 
-  Facebook, 
-  Twitter, 
-  Linkedin, 
-  Youtube, 
-  Instagram,
   Waves,
   ArrowRight
 } from 'lucide-react';
@@ -22,39 +17,6 @@ const Footer: React.FC = () => {
     { name: 'Team', path: '/team' },
     { name: 'Contact', path: '/contact' },
     { name: 'Partner With Us', path: '/partner' }
-  ];
-
-  const socialLinks = [
-    {
-      name: 'Facebook',
-      icon: <Facebook className="w-5 h-5" />,
-      url: 'https://www.facebook.com/IXAR-Robotics-Solutions-123677916277647',
-      color: 'hover:bg-blue-600'
-    },
-    {
-      name: 'Twitter',
-      icon: <Twitter className="w-5 h-5" />,
-      url: 'https://twitter.com/IxarRobotics?s=08',
-      color: 'hover:bg-sky-500'
-    },
-    {
-      name: 'LinkedIn',
-      icon: <Linkedin className="w-5 h-5" />,
-      url: 'https://www.linkedin.com/in/ixar-robotic-solution-209004212',
-      color: 'hover:bg-blue-700'
-    },
-    {
-      name: 'YouTube',
-      icon: <Youtube className="w-5 h-5" />,
-      url: 'https://youtube.com/channel/UC8aWp3FRu_p-UzpAsHX8jXg',
-      color: 'hover:bg-red-600'
-    },
-    {
-      name: 'Instagram',
-      icon: <Instagram className="w-5 h-5" />,
-      url: 'https://www.instagram.com/ixar_robotic_solutions/',
-      color: 'hover:bg-pink-600'
-    }
   ];
 
   return (
@@ -137,41 +99,7 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
-        {/* Social Media Section */}
-        <div className={styles.socialMediaSection}>
-          <div className={`${styles.socialMediaContent} md:flex-row`}>
-            <div className={`${styles.socialMediaHeader} md:mb-0`}>
-              <h3 className={styles.socialMediaTitle}>Follow Our Journey</h3>
-              <div className={styles.socialIconsContainer}>
-                {socialLinks.map((social, index) => (
-                  <a
-                    key={index}
-                    href={social.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`${styles.socialIconLink} ${social.color}`}
-                    aria-label={social.name}
-                  >
-                    {social.icon}
-                  </a>
-                ))}
-              </div>
-            </div>
-            
-            <div className={`${styles.supportedByContainer} md:text-right`}>
-              <div className={styles.supportedByText}>
-                Supported by
-              </div>
-              <div className={styles.supportedByLogos}>
-                <span>IIT Bombay SINE</span>
-                <span>•</span>
-                <span>MeitY</span>
-                <span>•</span>
-                <span>MSME</span>
-              </div>
-            </div>
-          </div>
-        </div>
+        
       </div>
 
       {/* Bottom Bar */}
