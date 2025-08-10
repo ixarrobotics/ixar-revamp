@@ -569,3 +569,37 @@
   height: 1.5rem; /* h-6 */
   color: #E60000; /* text-[#E60000] */
 }
+
+/* Homepage-specific section backgrounds - Alternating pattern */
+.sectionBgAlternate1 {
+  background-color: #FFEBEB !important; /* R:255 G:235 B:235 */
+}
+
+.sectionBgAlternate2 {
+  background-color: #FFD7D7 !important; /* R:255 G:215 B:215 */
+}
+
+/* Homepage-specific animation delay utilities */
+.animationDelay1 {
+  animation-delay: 150ms;
+}
+
+.animationDelay2 {
+  animation-delay: 300ms;
+}
+
+.animationDelay3 {
+  animation-delay: 450ms;
+}
+
+.animationDelay4 {
+  animation-delay: 600ms;
+}
+
+.animationDelay5 {
+  animation-delay: 750ms;
+}
+
+.animationDelay6 {
+  animation-delay: 900ms;
+}

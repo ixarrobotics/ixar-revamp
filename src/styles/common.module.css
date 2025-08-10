@@ -37,6 +37,19 @@
   min-height: 100vh;
 }
 
+/* Section background colors */
+.sectionBgGradient {
+  background-image: linear-gradient(to right, #111827, #1e3a8a); /* Original CTA section gradient */
+}
+
+.sectionBgAlt1 {
+  background-color: #FFC3C3;
+}
+
+.sectionBgAlt2 {
+  background-color: #FFA5A5;
+}
+
 /* Grid layouts */
 .gridCols1 {
   display: grid;
@@ -163,15 +176,16 @@
 }
 
 .buttonPrimary {
-  background: linear-gradient(to right, #e60000, #b91c1c); /* Custom red gradient */
+  background: linear-gradient(to right, #2563eb, #9333ea); /* bg-gradient-to-r from-blue-600 to-purple-600 */
   color: white;
-  padding: 0.75rem 1.5rem; /* px-6 py-3 */
+  padding: 1rem 2rem; /* px-8 py-4 */
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-lg */
 }
 
 .buttonPrimary:hover {
-  background: linear-gradient(to right, #dc2626, #991b1b);
-  transform: translateY(-1px);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(to right, #1d4ed8, #7e22ce); /* hover:from-blue-700 hover:to-purple-700 */
+  transform: scale(1.05); /* hover:scale-105 */
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1); /* hover:shadow-xl */
 }
 
 .buttonSecondary {
@@ -188,14 +202,28 @@
 
 .buttonOutline {
   background: transparent;
-  color: #e60000;
-  border: 2px solid #e60000;
-  padding: 0.75rem 1.5rem; /* px-6 py-3 */
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  padding: 1rem 2rem; /* px-8 py-4 */
 }
 
 .buttonOutline:hover {
-  background: #e60000;
-  color: white;
+  background: #ffffff;
+  color: #111827;
+}
+
+/* Special CTA button variant for specific sections */
+.buttonCta {
+  background: transparent;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  padding: 1rem 2rem; /* px-8 py-4 */
+}
+
+.buttonCta:hover {
+  background: #E60000; /* Red background on hover as in original */
+  color: #ffffff;
+  border-color: #E60000;
 }
 
 .buttonSmall {

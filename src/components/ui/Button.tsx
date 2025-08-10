@@ -21,6 +21,8 @@ const Button: React.FC<ButtonProps> = ({
         return styles.buttonSecondary;
       case 'outline':
         return styles.buttonOutline;
+      case 'cta':
+        return styles.buttonCta;
       default:
         return styles.buttonPrimary;
     }

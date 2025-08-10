@@ -1,414 +1,299 @@
-import React, { useState, useEffect } from 'react';
+import React, { Suspense, memo, useMemo } from 'react';
 import { Link } from 'react-router-dom';
+import { ArrowRight, Play, CheckCircle } from 'lucide-react';
+import { Button, Section, FeatureCard, Carousel, Hero, LazyImage } from '../components/ui';
+import ErrorBoundary from '../components/ErrorBoundary';
+import { useHomePageData, useIntersectionObserver } from '../hooks';
+import { ClientLogo } from '../types';
 import homeVideo from '../assets/home_video.mp4';
-import { 
-  ArrowRight, 
-  Play, 
-  Shield, 
-  Zap, 
-  Award, 
-  Users, 
-  Globe,
-  ChevronRight,
-  Star,
-  CheckCircle,
-  Waves,
-  Camera,
-  Gauge,
-  Settings,
-  Target,
-  ChevronLeft,
-  ChevronRight as ChevronRightIcon
-} from 'lucide-react';
 import styles from './HomePage.module.css';
+import commonStyles from '../styles/common.module.css';
 
-import iitLogo from '../assets/iit.ef6ee85c.png';
-import mitgLogo from '../assets/mitg.1a413d64.jpeg';
-import msmeLogo from '../assets/mitg.1a413d64.jpeg';
-import sineLogo from '../assets/sine.558e30bd.jpeg';
+// Memoized sub-components for performance
+const HeroSection = memo(() => (
+  <Hero backgroundVideo={homeVideo} overlay>
+    <Hero.Content>
+      <Hero.Title>
+        Pioneering Underwater Robotics
+      </Hero.Title>
+      <Hero.Subtitle>
+        Advanced ROV solutions for marine exploration and industrial inspections
+      </Hero.Subtitle>
+      <Hero.Actions>
+        <Button variant="primary" size="lg">
+          <Link to="/services" className="flex items-center gap-2 text-white no-underline">
+            Explore Solutions
+            <ArrowRight className="w-5 h-5" />
+          </Link>
+        </Button>
+        <Button variant="outline" size="lg">
+          <Play className="w-5 h-5" />
+          Watch Demo
+        </Button>
+      </Hero.Actions>
+    </Hero.Content>
+  </Hero>
+));
 
-const HomePage: React.FC = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [currentClientIndex, setCurrentClientIndex] = useState(0);
-
-  const clientLogos = [
-    { src: iitLogo, alt: 'IIT Bombay' },
-    { src: mitgLogo, alt: 'MITG' },
-    { src: msmeLogo, alt: 'MSME' },
-    { src: sineLogo, alt: 'SINE' },
-    { src: iitLogo, alt: 'IIT Bombay' }, // Duplicate for seamless loop
-    { src: mitgLogo, alt: 'MITG' },
-    { src: msmeLogo, alt: 'MSME' },
-    { src: sineLogo, alt: 'SINE' },
-  ];
-
-  const visibleClients = 3; // Number of clients to show at once
-
-  useEffect(() => {
-    setIsVisible(true);
-
-    const interval = setInterval(() => {
-      setCurrentClientIndex((prevIndex) => 
-        (prevIndex + 1) % (clientLogos.length - visibleClients + 1)
-      );
-    }, 3000); // Auto-scroll every 3 seconds
-
-    return () => clearInterval(interval);
-  }, []);
-
-  const handlePrevClient = () => {
-    setCurrentClientIndex((prevIndex) => 
-      prevIndex === 0 ? clientLogos.length - visibleClients : prevIndex - 1
-    );
-  };
-
-  const handleNextClient = () => {
-    setCurrentClientIndex((prevIndex) => 
-      (prevIndex + 1) % (clientLogos.length - visibleClients + 1)
-    );
-  };
-
-  const features = [
-    {
-      icon: <Zap className="w-8 h-8" />,
-      title: "Rapid Deployment",
-      description: "Get operational within hours with our portable ROV systems",
-      color: "from-yellow-400 to-orange-500"
-    },
-    {
-      icon: <Shield className="w-8 h-8" />,
-      title: "24/7 Operations",
-      description: "Continuous underwater monitoring and inspection capabilities",
-      color: "from-green-400 to-emerald-500"
-    },
-    {
-      icon: <Award className="w-8 h-8" />,
-      title: "Cost Effective",
-      description: "Indigenous technology delivering premium results at competitive rates",
-      color: "from-blue-400 to-cyan-500"
-    }
-  ];
-
-  const stats = [
-    { number: "200+", label: "Projects Completed", icon: <CheckCircle className="w-6 h-6" /> },
-    { number: "50+", label: "Industry Partners", icon: <Users className="w-6 h-6" /> },
-    { number: "1000m", label: "Max Depth Rating", icon: <Gauge className="w-6 h-6" /> },
-    { number: "99.9%", label: "Mission Success", icon: <Star className="w-6 h-6" /> }
-  ];
-
-  const products = [
-    {
-      name: "ROV 1.0",
-      description: "Entry-level solution perfect for basic inspections and surveys",
-      specs: ["200m depth rating", "6000 lumen illumination", "1080p HD camera"],
-      image: "https://images.pexels.com/photos/8566473/pexels-photo-8566473.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
-      color: "from-blue-500 to-cyan-500",
-      link: "/product"
-    },
-    {
-      name: "ROV Pro",
-      description: "Professional-grade system for advanced underwater operations",
-      specs: ["500m depth rating", "Advanced sensor suite", "4K recording"],
-      image: "https://images.pexels.com/photos/2599244/pexels-photo-2599244.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
-      color: "from-purple-500 to-pink-500",
-      link: "/rovpro"
-    },
-    {
-      name: "ROV2",
-      description: "Next-generation autonomous underwater vehicle",
-      specs: ["1000m depth rating", "AI-powered navigation", "Multi-sensor array"],
-      image: "https://images.pexels.com/photos/1001682/pexels-photo-1001682.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
-      color: "from-emerald-500 to-teal-500",
-      link: "/rov2"
-    }
-  ];
-
-  const companyValues = [
-    {
-      icon: <Target className="w-8 h-8" />,
-      title: 'Innovation First',
-      description: 'Pushing boundaries in underwater robotics technology'
-    },
-    {
-      icon: <Users className="w-8 h-8" />,
-      title: 'Team Excellence',
-      description: 'Collaborative approach with diverse expertise'
-    },
-    {
-      icon: <Award className="w-8 h-8" />,
-      title: 'Quality Commitment',
-      description: 'Delivering reliable solutions that exceed expectations'
-    }
-  ];
+const AboutSection = memo(() => {
+  const { features } = useHomePageData();
+  const [setRef, isIntersecting] = useIntersectionObserver(0.2);
 
   return (
-    <div className={styles.minHeightScreen}>
-      {/* Hero Section */}
-      <section className={styles.heroSection}>
-        <video 
-          className={styles.heroVideo}
-          src={homeVideo}
-          autoPlay
-          loop
-          muted
-          playsInline
-        />
-        <div className={styles.heroOverlay} />
+    <Section id="about-us" className={styles.sectionBgAlternate1} ref={setRef}>
+      <div className={commonStyles.textCenter}>
+        <h2 className={`${commonStyles.sectionTitle} ${isIntersecting ? commonStyles.fadeIn : ''}`}>
+          About Us
+        </h2>
+        <p className={`${commonStyles.sectionSubtitle} ${isIntersecting ? commonStyles.fadeIn : ''}`}>
+          Experience the perfect blend of innovation, reliability, and performance in underwater robotics
+        </p>
+      </div>
+      <div className={commonStyles.gridCols3}>
+        {features.map((feature, index) => (
+          <div
+            key={feature.title}
+            className={`${isIntersecting ? commonStyles.fadeIn : ''} ${
+              index === 0 ? styles.animationDelay1 :
+              index === 1 ? styles.animationDelay2 :
+              index === 2 ? styles.animationDelay3 : ''
+            }`}
+          >
+            <FeatureCard feature={feature} />
+          </div>
+        ))}
+      </div>
+    </Section>
+  );
+});
 
-        <div className={styles.heroContentContainer}>
-          <div className={styles.heroInnerContainer}>
-            <div className={styles.heroTextContainer}>
-              <div className={`${styles.heroTextAnimation} ${
-                isVisible ? styles.heroTextVisible : styles.heroTextHidden
-              }`}>
-                <h1 className={styles.heroTitle}>
-                  Pioneering Underwater Robotics
-                </h1>
-                <p className={styles.heroSubtitle}>
-                  Advanced ROV solutions for marine exploration and industrial inspections
-                </p>
-                <div className={styles.heroButtonsContainer}>
-                  <Link
-                    to="/services"
-                    className={styles.exploreSolutionsButton}
-                  >
-                    Explore Solutions
-                    <ArrowRight className={styles.exploreSolutionsIcon} />
-                  </Link>
-                  <button className={styles.watchDemoButton}>
-                    <Play className={styles.watchDemoIcon} />
-                    Watch Demo
-                  </button>
-                </div>
+const VisionSection = memo(() => {
+  const { companyValues } = useHomePageData();
+  const [setRef, isIntersecting] = useIntersectionObserver(0.2);
+
+  return (
+    <Section id="vision-mission" className={styles.sectionBgAlternate2} ref={setRef}>
+      <div className={commonStyles.textCenter}>
+        <h2 className={`${commonStyles.sectionTitle} ${isIntersecting ? commonStyles.fadeIn : ''}`}>
+          Vision and Mission
+        </h2>
+        <p className={`${commonStyles.sectionSubtitle} ${isIntersecting ? commonStyles.fadeIn : ''}`}>
+          To be the global leader in underwater robotics, pioneering solutions that drive progress and sustainability.
+        </p>
+      </div>
+      <div className={commonStyles.gridCols3}>
+        {companyValues.map((value, index) => (
+          <div
+            key={value.title}
+            className={`${isIntersecting ? commonStyles.slideIn : ''} ${
+              index === 0 ? styles.animationDelay1 :
+              index === 1 ? styles.animationDelay2 :
+              index === 2 ? styles.animationDelay3 : ''
+            }`}
+          >
+            <FeatureCard 
+              feature={{
+                ...value,
+                color: 'from-blue-500 to-cyan-500'
+              }} 
+            />
+          </div>
+        ))}
+      </div>
+    </Section>
+  );
+});
+
+const ClientsSection = memo(() => {
+  const { clientLogos } = useHomePageData();
+  const [setRef, isIntersecting] = useIntersectionObserver(0.2);
+
+  const renderClientLogo = useMemo(() => (logo: ClientLogo, index: number) => (
+    <div key={`${logo.alt}-${index}`} className="flex items-center justify-center p-4">
+      <LazyImage 
+        src={logo.src} 
+        alt={logo.alt} 
+        className="h-16 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300"
+        width={120}
+        height={64}
+      />
+    </div>
+  ), []);
+
+  return (
+    <Section id="our-clients" className={styles.sectionBgAlternate1} ref={setRef}>
+      <div className={commonStyles.textCenter}>
+        <h2 className={`${commonStyles.sectionTitle} ${isIntersecting ? commonStyles.fadeIn : ''}`}>
+          Our Clients
+        </h2>
+        <p className={`${commonStyles.sectionSubtitle} ${isIntersecting ? commonStyles.fadeIn : ''}`}>
+          Trusted by leading organizations worldwide for their critical underwater operations.
+        </p>
+      </div>
+      <div className={isIntersecting ? commonStyles.fadeIn : ''}>
+        <Carousel
+          items={clientLogos}
+          visibleItems={3}
+          autoScroll={true}
+          autoScrollInterval={3000}
+          renderItem={renderClientLogo}
+        />
+      </div>
+    </Section>
+  );
+});
+
+const ProductFeaturesSection = memo(() => {
+  const { products } = useHomePageData();
+  const [setRef, isIntersecting] = useIntersectionObserver(0.2);
+
+  return (
+    <Section id="product-features" className={styles.sectionBgAlternate2} ref={setRef}>
+      <div className={commonStyles.textCenter}>
+        <h2 className={`${commonStyles.sectionTitle} ${isIntersecting ? commonStyles.fadeIn : ''}`}>
+          Product Features
+        </h2>
+        <p className={`${commonStyles.sectionSubtitle} ${isIntersecting ? commonStyles.fadeIn : ''}`}>
+          Highlighting the key capabilities and innovations of our ROV systems.
+        </p>
+      </div>
+      <div className={commonStyles.gridCols3}>
+        {products.map((product, index) => (
+          <article
+            key={product.name}
+            className={`${commonStyles.cardBase} ${commonStyles.cardHover} ${
+              isIntersecting ? commonStyles.fadeIn : ''
+            } ${
+              index === 0 ? styles.animationDelay1 :
+              index === 1 ? styles.animationDelay2 :
+              index === 2 ? styles.animationDelay3 : ''
+            }`}
+          >
+            <div className="relative mb-4">
+              <LazyImage
+                src={product.image}
+                alt={product.name}
+                className="w-full h-48 object-cover rounded-lg"
+                width={400}
+                height={192}
+              />
+              <div className={`absolute top-4 left-4 px-3 py-1 rounded-full text-white text-sm font-semibold ${commonStyles.gradientBlueCyan}`}>
+                {product.name}
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Stats Section */}
-      {/* <section className="py-20 bg-gradient-to-r from-blue-600 to-purple-600">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
-              <div key={index} className="text-center text-white">
-                <div className="flex justify-center mb-4">
-                  <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center">
-                    {stat.icon}
-                  </div>
-                </div>
-                <div className="text-3xl md:text-4xl font-bold mb-2">{stat.number}</div>
-                <div className="text-blue-100">{stat.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section> */}
-
-      {/* About Us Section */}
-      <section id="about-us" className={styles.featuresSection}>
-        <div className={styles.featuresInnerContainer}>
-          <div className={styles.featuresHeader}>
-            <h2 className={styles.featuresTitle}>
-              About Us
-            </h2>
-            <p className={styles.featuresSubtitle}>
-              Experience the perfect blend of innovation, reliability, and performance in underwater robotics
-            </p>
-          </div>
-
-          <div className={styles.featuresGrid}>
-            {features.map((feature, index) => (
-              <div
-                key={index}
-                className={styles.featureCard}
-              >
-                <div className={`${styles.featureIconContainer} bg-gradient-to-r ${feature.color}`}>
-                  {feature.icon}
-                </div>
-                <h3 className={styles.featureTitleCard}>{feature.title}</h3>
-                <p className={styles.featureDescription}>{feature.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Vision and Mission Section */}
-      <section id="vision-mission" className={styles.productsShowcaseSection}>
-        <div className={styles.productsShowcaseInnerContainer}>
-          <div className={styles.productsShowcaseHeader}>
-            <h2 className={styles.productsShowcaseTitle}>
-              Vision and Mission
-            </h2>
-            <p className={styles.productsShowcaseSubtitle}>
-              To be the global leader in underwater robotics, pioneering solutions that drive progress and sustainability.
-            </p>
-          </div>
-
-          <div className={styles.productsGrid}>
-            {companyValues.map((value, index) => (
-              <div
-                key={index}
-                className={styles.productCard}
-              >
-                <div className={styles.productImageContainer}>
-                  {/* Placeholder for image, or remove if not needed */}
-                  <div className={`${styles.productNameBadge} bg-gradient-to-r from-blue-500 to-cyan-500`}>
-                    {value.title}
-                  </div>
-                </div>
-                
-                <div className={styles.productCardContent}>
-                  <h3 className={styles.productCardTitle}>{value.title}</h3>
-                  <p className={styles.productCardDescription}>{value.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Our Clients Section */}
-      <section id="our-clients" className={styles.featuresSection}>
-        <div className={styles.featuresInnerContainer}>
-          <div className={styles.featuresHeader}>
-            <h2 className={styles.featuresTitle}>
-              Our Clients
-            </h2>
-            <p className={styles.featuresSubtitle}>
-              Trusted by leading organizations worldwide for their critical underwater operations.
-            </p>
-          </div>
-
-          <div className={styles.clientCarouselContainer}>
-            <button 
-              className={`${styles.carouselNavButton} ${styles.carouselNavButtonLeft}`}
-              onClick={handlePrevClient}
-            >
-              <ChevronLeft className={styles.carouselNavIcon} />
-            </button>
-            <div className={styles.clientCarouselTrackWrapper}>
-              <div 
-                className={styles.clientCarouselTrack}
-                style={{ transform: `translateX(-${currentClientIndex * (100 / visibleClients)}%)` }}
-              >
-                {clientLogos.map((logo, index) => (
-                  <div key={index} className={styles.clientLogoItem}>
-                    <img src={logo.src} alt={logo.alt} className={styles.clientLogoImage} />
+            
+            <div className="p-4">
+              <h3 className="text-xl font-semibold text-gray-800 mb-3">{product.name}</h3>
+              <p className="text-gray-600 mb-4 leading-relaxed">{product.description}</p>
+              
+              <div className="space-y-2 mb-4">
+                {product.specs.map((spec, specIndex) => (
+                  <div key={specIndex} className="flex items-center text-sm text-gray-600">
+                    <CheckCircle className="w-4 h-4 text-green-500 mr-2 flex-shrink-0" />
+                    {spec}
                   </div>
                 ))}
               </div>
+
+              <Button variant="outline" size="sm" className="w-full">
+                <Link to={product.link} className="flex items-center justify-center gap-2 text-inherit no-underline">
+                  Learn More
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </Button>
             </div>
-            <button 
-              className={`${styles.carouselNavButton} ${styles.carouselNavButtonRight}`}
-              onClick={handleNextClient}
-            >
-              <ChevronRightIcon className={styles.carouselNavIcon} />
-            </button>
-          </div>
-        </div>
-      </section>
+          </article>
+        ))}
+      </div>
+    </Section>
+  );
+});
 
-      {/* Product Features Section */}
-      <section id="product-features" className={styles.productsShowcaseSection}>
-        <div className={styles.productsShowcaseInnerContainer}>
-          <div className={styles.productsShowcaseHeader}>
-            <h2 className={styles.productsShowcaseTitle}>
-              Product Features
-            </h2>
-            <p className={styles.productsShowcaseSubtitle}>
-              Highlighting the key capabilities and innovations of our ROV systems.
-            </p>
-          </div>
+const TestimonialsSection = memo(() => {
+  const [setRef, isIntersecting] = useIntersectionObserver(0.2);
 
-          <div className={styles.productsGrid}>
-            {products.map((product, index) => (
-              <div
-                key={index}
-                className={styles.productCard}
-              >
-                <div className={styles.productImageContainer}>
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className={styles.productImage}
-                  />
-                  <div className={`${styles.productNameBadge} bg-gradient-to-r ${product.color}`}>
-                    {product.name}
-                  </div>
-                </div>
-                
-                <div className={styles.productCardContent}>
-                  <h3 className={styles.productCardTitle}>{product.name}</h3>
-                  <p className={styles.productCardDescription}>{product.description}</p>
-                  
-                  <div className={styles.productSpecsContainer}>
-                    {product.specs.map((spec, specIndex) => (
-                      <div key={specIndex} className={styles.productSpecItem}>
-                        <CheckCircle className={styles.productSpecIcon} />
-                        {spec}
-                      </div>
-                    ))}
-                  </div>
+  return (
+    <Section id="testimonials" className={styles.sectionBgAlternate1} ref={setRef}>
+      <div className={commonStyles.textCenter}>
+        <h2 className={`${commonStyles.sectionTitle} ${isIntersecting ? commonStyles.fadeIn : ''}`}>
+          Testimonials
+        </h2>
+        <p className={`${commonStyles.sectionSubtitle} ${isIntersecting ? commonStyles.fadeIn : ''}`}>
+          Hear what our clients have to say about IXAR and our solutions.
+        </p>
+      </div>
+      {/* Testimonial cards would go here */}
+    </Section>
+  );
+});
 
-                  <Link
-                    to={product.link}
-                    className={styles.learnMoreLink}
-                  >
-                    Learn More
-                    <ChevronRight className={styles.learnMoreIcon} />
-                  </Link>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+const CTASection = memo(() => {
+  const [setRef, isIntersecting] = useIntersectionObserver(0.2);
 
-      {/* Testimonials Section */}
-      <section id="testimonials" className={styles.featuresSection}>
-        <div className={styles.featuresInnerContainer}>
-          <div className={styles.featuresHeader}>
-            <h2 className={styles.featuresTitle}>
-              Testimonials
-            </h2>
-            <p className={styles.featuresSubtitle}>
-              Hear what our clients have to say about IXAR and our solutions.
-            </p>
-          </div>
-          {/* Testimonial cards can go here */}
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className={styles.ctaSection}>
-        <div className={styles.ctaInnerContainer}>
-          <h2 className={styles.ctaTitle}>
-            Ready to Dive Deeper?
-          </h2>
-          <p className={styles.ctaSubtitle}>
-            Partner with IXAR for cutting-edge underwater robotics solutions that deliver results
-          </p>
-          <div className={styles.ctaButtonsContainer}>
-            <Link
-              to="/contact"
-              className={styles.getStartedButton}
-            >
+  return (
+    <Section background="gradient" ref={setRef}>
+      <div className={commonStyles.textCenter}>
+        <h2 className={`text-4xl md:text-5xl font-bold text-white mb-4 ${isIntersecting ? commonStyles.fadeIn : ''}`}>
+          Ready to Dive Deeper?
+        </h2>
+        <p className={`text-xl text-blue-100 mb-8 max-w-3xl mx-auto ${isIntersecting ? commonStyles.fadeIn : ''}`}>
+          Partner with IXAR for cutting-edge underwater robotics solutions that deliver results
+        </p>
+        <div className={`${commonStyles.flexCenter} gap-4 flex-col sm:flex-row ${isIntersecting ? commonStyles.fadeIn : ''}`}>
+          <Button variant="primary" size="lg">
+            <Link to="/contact" className="flex items-center gap-2 text-white no-underline">
               Get Started Today
-              <ArrowRight className={styles.getStartedIcon} />
+              <ArrowRight className="w-5 h-5" />
             </Link>
-            <Link
-              to="/services"
-              className={styles.viewServicesButton}
-            >
+          </Button>
+          <Button variant="cta" size="lg">
+            <Link to="/services" className="text-white no-underline">
               View All Services
             </Link>
-          </div>
+          </Button>
         </div>
-      </section>
-    </div>
+      </div>
+    </Section>
   );
-};
+});
+
+// Loading component for Suspense
+const PageLoader = memo(() => (
+  <div className="min-h-screen flex items-center justify-center">
+    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
+  </div>
+));
+
+// Main HomePage component with error boundaries and lazy loading
+const HomePage: React.FC = memo(() => {
+  return (
+    <ErrorBoundary>
+      <div className={styles.minHeightScreen}>
+        <Suspense fallback={<PageLoader />}>
+          <main role="main">
+            <HeroSection />
+            <AboutSection />
+            <VisionSection />
+            <ClientsSection />
+            <ProductFeaturesSection />
+            <TestimonialsSection />
+            <CTASection />
+          </main>
+        </Suspense>
+      </div>
+    </ErrorBoundary>
+  );
+});
+
+// Display names for debugging
+HeroSection.displayName = 'HeroSection';
+AboutSection.displayName = 'AboutSection';
+VisionSection.displayName = 'VisionSection';
+ClientsSection.displayName = 'ClientsSection';
+ProductFeaturesSection.displayName = 'ProductFeaturesSection';
+TestimonialsSection.displayName = 'TestimonialsSection';
+CTASection.displayName = 'CTASection';
+PageLoader.displayName = 'PageLoader';
+HomePage.displayName = 'HomePage';
 
 export default HomePage;

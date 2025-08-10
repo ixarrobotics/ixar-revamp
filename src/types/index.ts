@@ -142,7 +142,7 @@ export interface CompanyValue {
 }
 
 // Button Types
-export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost';
+export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'cta';
 export type ButtonSize = 'sm' | 'md' | 'lg';
 
 export interface ButtonProps extends BaseProps {

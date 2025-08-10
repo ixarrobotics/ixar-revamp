@@ -1,52 +1,51 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Anchor, Zap, Mountain, Fuel, Grid as Bridge, Ship, CheckCircle, ArrowRight, Play } from 'lucide-react';
 import styles from './ServicesPage.module.css';
 
 const ServicesPage: React.FC = () => {
-  const [activeService, setActiveService] = useState(0);
 
   const industries = [
     {
       name: 'Ports & Marine',
-      icon: <Anchor className="w-12 h-12" />,
+      icon: <Anchor className={styles.iconLarge} />,
       image: 'https://images.pexels.com/photos/8566473/pexels-photo-8566473.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
       services: ['Breakwater Inspection', 'Jetty & Wharf Assessment', 'Harbor Maintenance', 'Underwater Structures'],
-      color: 'from-blue-600 to-cyan-600'
+      gradientClass: styles.gradientBlueToTeal
     },
     {
       name: 'Power Generation',
-      icon: <Zap className="w-12 h-12" />,
+      icon: <Zap className={styles.iconLarge} />,
       image: 'https://images.pexels.com/photos/2599244/pexels-photo-2599244.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
       services: ['Intake/Outfall Pipelines', 'Cooling Water Systems', 'Tank Inspections', 'Thermal Monitoring'],
-      color: 'from-yellow-500 to-orange-500'
+      gradientClass: styles.gradientYellowToOrange
     },
     {
       name: 'Dams & Hydropower',
-      icon: <Mountain className="w-12 h-12" />,
+      icon: <Mountain className={styles.iconLarge} />,
       image: 'https://images.pexels.com/photos/1001682/pexels-photo-1001682.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
       services: ['Dam Structure Assessment', 'Tunnel Inspections', 'Spillway Monitoring', 'Sediment Analysis'],
-      color: 'from-green-500 to-emerald-500'
+      gradientClass: styles.gradientGreenToEmerald
     },
     {
       name: 'Oil & Gas',
-      icon: <Fuel className="w-12 h-12" />,
+      icon: <Fuel className={styles.iconLarge} />,
       image: 'https://images.pexels.com/photos/8566473/pexels-photo-8566473.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
       services: ['Pipeline Integrity', 'Platform Inspections', 'Subsea Equipment', 'Environmental Monitoring'],
-      color: 'from-gray-600 to-gray-800'
+      gradientClass: styles.gradientGrayToDark
     },
     {
       name: 'Bridge Infrastructure',
-      icon: <Bridge className="w-12 h-12" />,
+      icon: <Bridge className={styles.iconLarge} />,
       image: 'https://images.pexels.com/photos/2599244/pexels-photo-2599244.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
       services: ['Pier Inspections', 'Foundation Assessment', 'Scour Monitoring', 'Structural Health'],
-      color: 'from-purple-500 to-indigo-500'
+      gradientClass: styles.gradientPurpleToIndigo
     },
     {
       name: 'Maritime Vessels',
-      icon: <Ship className="w-12 h-12" />,
+      icon: <Ship className={styles.iconLarge} />,
       image: 'https://images.pexels.com/photos/1001682/pexels-photo-1001682.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
       services: ['Hull Inspections', 'Propeller Analysis', 'Ballast Tank Survey', 'Coating Assessment'],
-      color: 'from-teal-500 to-cyan-500'
+      gradientClass: styles.gradientTealToCyan
     }
   ];
 
@@ -93,17 +92,17 @@ const ServicesPage: React.FC = () => {
             {industries.map((industry, index) => (
               <div
                 key={index}
-                className={`${styles.industryCard} group`}
+                className={`${styles.industryCard} ${styles.industryCardGroup}`}
               >
                 <div className={styles.industryImageContainer}>
                   <img
                     src={industry.image}
                     alt={industry.name}
-                    className={`${styles.industryImage} group-hover:scale-110`}
+                    className={`${styles.industryImage} ${styles.industryImageHover}`}
                   />
                   <div className={styles.industryImageGradient} />
                   <div className={styles.industryIconContainer}>
-                    <div className={`${styles.rovServiceIconContainer} bg-gradient-to-r ${industry.color}`}>
+                    <div className={`${styles.rovServiceIconContainer} ${industry.gradientClass}`}>
                       {industry.icon}
                     </div>
                   </div>
