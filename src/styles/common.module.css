@@ -1,0 +1,355 @@
+/* src/styles/common.module.css - Common reusable styles */
+
+/* Layout utilities */
+.container {
+  max-width: 84rem; /* max-w-7xl */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem; /* px-4 */
+  padding-right: 1rem; /* px-4 */
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding-left: 1.5rem; /* sm:px-6 */
+    padding-right: 1.5rem; /* sm:px-6 */
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding-left: 2rem; /* lg:px-8 */
+    padding-right: 2rem; /* lg:px-8 */
+  }
+}
+
+.sectionPadding {
+  padding-top: 5rem; /* py-20 */
+  padding-bottom: 5rem; /* py-20 */
+}
+
+.sectionPaddingSmall {
+  padding-top: 3rem; /* py-12 */
+  padding-bottom: 3rem; /* py-12 */
+}
+
+.minHeightScreen {
+  min-height: 100vh;
+}
+
+/* Grid layouts */
+.gridCols1 {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1.5rem; /* gap-6 */
+}
+
+.gridCols2 {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1.5rem; /* gap-6 */
+}
+
+@media (min-width: 768px) {
+  .gridCols2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.gridCols3 {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1.5rem; /* gap-6 */
+}
+
+@media (min-width: 768px) {
+  .gridCols3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .gridCols3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* Text styles */
+.textCenter {
+  text-align: center;
+}
+
+.textLeft {
+  text-align: left;
+}
+
+.textRight {
+  text-align: right;
+}
+
+.sectionTitle {
+  font-size: 2.25rem; /* text-4xl */
+  font-weight: 700; /* font-bold */
+  color: #1f2937; /* text-gray-800 */
+  margin-bottom: 1rem; /* mb-4 */
+}
+
+@media (min-width: 768px) {
+  .sectionTitle {
+    font-size: 3rem; /* md:text-5xl */
+  }
+}
+
+.sectionSubtitle {
+  font-size: 1.125rem; /* text-lg */
+  color: #6b7280; /* text-gray-600 */
+  margin-bottom: 2rem; /* mb-8 */
+  max-width: 48rem; /* max-w-3xl */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (min-width: 768px) {
+  .sectionSubtitle {
+    font-size: 1.25rem; /* md:text-xl */
+  }
+}
+
+/* Gradients */
+.gradientBlueCyan {
+  background: linear-gradient(to right, #3b82f6, #06b6d4); /* from-blue-500 to-cyan-500 */
+}
+
+.gradientPurplePink {
+  background: linear-gradient(to right, #8b5cf6, #ec4899); /* from-purple-500 to-pink-500 */
+}
+
+.gradientEmeraldTeal {
+  background: linear-gradient(to right, #10b981, #14b8a6); /* from-emerald-500 to-teal-500 */
+}
+
+.gradientOrangeRed {
+  background: linear-gradient(to right, #f97316, #ef4444); /* from-orange-500 to-red-500 */
+}
+
+.gradientIndigoPurple {
+  background: linear-gradient(to right, #6366f1, #8b5cf6); /* from-indigo-500 to-purple-500 */
+}
+
+.gradientYellowOrange {
+  background: linear-gradient(to right, #fbbf24, #f97316); /* from-yellow-400 to-orange-500 */
+}
+
+.gradientGreenEmerald {
+  background: linear-gradient(to right, #22c55e, #10b981); /* from-green-400 to-emerald-500 */
+}
+
+.gradientBlueBlue {
+  background: linear-gradient(to right, #60a5fa, #06b6d4); /* from-blue-400 to-cyan-500 */
+}
+
+/* Button base styles */
+.buttonBase {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem; /* rounded-lg */
+  font-weight: 600; /* font-semibold */
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  gap: 0.5rem; /* space-x-2 */
+}
+
+.buttonPrimary {
+  background: linear-gradient(to right, #e60000, #b91c1c); /* Custom red gradient */
+  color: white;
+  padding: 0.75rem 1.5rem; /* px-6 py-3 */
+}
+
+.buttonPrimary:hover {
+  background: linear-gradient(to right, #dc2626, #991b1b);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.buttonSecondary {
+  background: white;
+  color: #374151; /* text-gray-700 */
+  border: 1px solid #d1d5db; /* border-gray-300 */
+  padding: 0.75rem 1.5rem; /* px-6 py-3 */
+}
+
+.buttonSecondary:hover {
+  background: #f9fafb; /* hover:bg-gray-50 */
+  border-color: #9ca3af; /* hover:border-gray-400 */
+}
+
+.buttonOutline {
+  background: transparent;
+  color: #e60000;
+  border: 2px solid #e60000;
+  padding: 0.75rem 1.5rem; /* px-6 py-3 */
+}
+
+.buttonOutline:hover {
+  background: #e60000;
+  color: white;
+}
+
+.buttonSmall {
+  padding: 0.5rem 1rem; /* px-4 py-2 */
+  font-size: 0.875rem; /* text-sm */
+}
+
+.buttonLarge {
+  padding: 1rem 2rem; /* px-8 py-4 */
+  font-size: 1.125rem; /* text-lg */
+}
+
+/* Card styles */
+.cardBase {
+  background: white;
+  border-radius: 0.75rem; /* rounded-xl */
+  padding: 1.5rem; /* p-6 */
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1); /* shadow */
+  transition: all 0.3s ease-in-out;
+}
+
+.cardHover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); /* hover:shadow-xl */
+}
+
+.cardGradient {
+  background: linear-gradient(135deg, white 0%, #f8fafc 100%);
+}
+
+/* Icon containers */
+.iconContainer {
+  width: 3rem; /* w-12 */
+  height: 3rem; /* h-12 */
+  border-radius: 0.75rem; /* rounded-xl */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem; /* mb-4 */
+  color: white;
+}
+
+.iconContainerSmall {
+  width: 2.5rem; /* w-10 */
+  height: 2.5rem; /* h-10 */
+  border-radius: 0.5rem; /* rounded-lg */
+}
+
+.iconContainerLarge {
+  width: 4rem; /* w-16 */
+  height: 4rem; /* h-16 */
+  border-radius: 1rem; /* rounded-2xl */
+}
+
+/* Flex utilities */
+.flexCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flexBetween {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flexCol {
+  display: flex;
+  flex-direction: column;
+}
+
+.flexRow {
+  display: flex;
+  flex-direction: row;
+}
+
+/* Spacing utilities */
+.spaceY2 > * + * {
+  margin-top: 0.5rem;
+}
+
+.spaceY3 > * + * {
+  margin-top: 0.75rem;
+}
+
+.spaceY4 > * + * {
+  margin-top: 1rem;
+}
+
+.spaceY6 > * + * {
+  margin-top: 1.5rem;
+}
+
+.spaceX2 > * + * {
+  margin-left: 0.5rem;
+}
+
+.spaceX3 > * + * {
+  margin-left: 0.75rem;
+}
+
+.spaceX4 > * + * {
+  margin-left: 1rem;
+}
+
+/* Animation utilities */
+.fadeIn {
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slideIn {
+  animation: slideIn 0.6s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Responsive utilities */
+.hiddenMobile {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .hiddenMobile {
+    display: block;
+  }
+}
+
+.hiddenDesktop {
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .hiddenDesktop {
+    display: none;
+  }
+}
