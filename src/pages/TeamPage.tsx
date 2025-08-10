@@ -208,7 +208,7 @@ const TeamPage: React.FC = () => {
       </section>
 
       {/* Dynamic Content Based on Active Tab */}
-      {activeTab === 'team' && (
+      {/* {activeTab === 'team' && (
         <section className={styles.dynamicContentSection}>
           <div className={styles.dynamicContentInnerContainer}>
             <div className={styles.dynamicContentHeader}>
@@ -281,7 +281,7 @@ const TeamPage: React.FC = () => {
             </div>
           </div>
         </section>
-      )}
+      )} */}
     </div>
   );
 };
