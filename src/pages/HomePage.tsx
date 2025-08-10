@@ -109,13 +109,11 @@ const ClientsSection = memo(() => {
   const [setRef, isIntersecting] = useIntersectionObserver(0.2);
 
   const renderClientLogo = useMemo(() => (logo: ClientLogo, index: number) => (
-    <div key={`${logo.alt}-${index}`} className="flex items-center justify-center p-4">
-      <LazyImage 
-        src={logo.src} 
-        alt={logo.alt} 
-        className="h-16 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300"
-        width={120}
-        height={64}
+    <div key={`${logo.alt}-${index}`} className={styles.clientLogoContainer}>
+      <LazyImage
+        src={logo.src}
+        alt={logo.alt}
+        className={styles.clientLogoImage}
       />
     </div>
   ), []);
@@ -133,9 +131,9 @@ const ClientsSection = memo(() => {
       <div className={isIntersecting ? commonStyles.fadeIn : ''}>
         <Carousel
           items={clientLogos}
-          visibleItems={3}
+          visibleItems={4}
           autoScroll={true}
-          autoScrollInterval={3000}
+          autoScrollInterval={4000}
           renderItem={renderClientLogo}
         />
       </div>
@@ -169,33 +167,33 @@ const ProductFeaturesSection = memo(() => {
               index === 2 ? styles.animationDelay3 : ''
             }`}
           >
-            <div className="relative mb-4">
+            <div className={styles.productImageContainer}>
               <LazyImage
                 src={product.image}
                 alt={product.name}
-                className="w-full h-48 object-cover rounded-lg"
+                className={styles.productImage}
                 width={400}
                 height={192}
               />
-              <div className={`absolute top-4 left-4 px-3 py-1 rounded-full text-white text-sm font-semibold ${commonStyles.gradientBlueCyan}`}>
+              <div className={`${styles.productBadge} ${commonStyles.gradientBlueCyan}`}>
                 {product.name}
               </div>
             </div>
             
-            <div className="p-4">
-              <h3 className="text-xl font-semibold text-gray-800 mb-3">{product.name}</h3>
-              <p className="text-gray-600 mb-4 leading-relaxed">{product.description}</p>
+            <div className={styles.productContent}>
+              <h3 className={styles.productTitle}>{product.name}</h3>
+              <p className={styles.productDescription}>{product.description}</p>
               
-              <div className="space-y-2 mb-4">
+              <div className={styles.productSpecsList}>
                 {product.specs.map((spec, specIndex) => (
-                  <div key={specIndex} className="flex items-center text-sm text-gray-600">
-                    <CheckCircle className="w-4 h-4 text-green-500 mr-2 flex-shrink-0" />
+                  <div key={specIndex} className={styles.productSpecItem}>
+                    <CheckCircle className={styles.productSpecIcon} />
                     {spec}
                   </div>
                 ))}
               </div>
 
-              <Button variant="outline" size="sm" className="w-full">
+              <Button variant="outline" size="sm" className={styles.productButton}>
                 <Link to={product.link} className="flex items-center justify-center gap-2 text-inherit no-underline">
                   Learn More
                   <ArrowRight className="w-4 h-4" />

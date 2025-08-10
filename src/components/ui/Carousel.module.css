@@ -10,6 +10,7 @@
   flex: 1;
   overflow: hidden;
   border-radius: 0.75rem;
+  height: 10rem; /* Increased height to prevent cropping */
 }
 
 .carouselTrack {
@@ -20,6 +21,10 @@
 .carouselItem {
   flex-shrink: 0;
   padding: 0 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 }
 
 .navButton {

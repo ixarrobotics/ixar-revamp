@@ -516,25 +516,11 @@
 
 .clientLogoItem {
   flex-shrink: 0;
-  width: calc(100% / 3); /* Show 3 items at a time */
+  width: calc(100% / 4); /* Show 4 items at a time to match carousel config */
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 1rem; /* p-4 */
-}
-
-.clientLogoImage {
-  max-width: 100%;
-  height: 6rem; /* h-24 */
-  object-fit: contain;
-  filter: grayscale(100%);
-  opacity: 0.6;
-  transition: all 0.3s ease;
-}
-
-.clientLogoImage:hover {
-  filter: grayscale(0%);
-  opacity: 1;
 }
 
 .carouselNavButton {
@@ -602,4 +588,96 @@
 
 .animationDelay6 {
   animation-delay: 900ms;
+}
+
+/* Product Features Section Styles */
+.productImageContainer {
+  position: relative;
+  margin-bottom: 1rem; /* mb-4 */
+  overflow: hidden;
+  border-radius: 0.5rem; /* rounded-lg */
+}
+
+.productImage {
+  width: 100%;
+  height: 12rem; /* h-48 */
+  object-fit: cover;
+  border-radius: 0.5rem; /* rounded-lg */
+}
+
+.productBadge {
+  position: absolute;
+  top: 1rem; /* top-4 */
+  left: 1rem; /* left-4 */
+  padding: 0.25rem 0.75rem; /* px-3 py-1 */
+  border-radius: 9999px; /* rounded-full */
+  color: #ffffff; /* text-white */
+  font-size: 0.875rem; /* text-sm */
+  font-weight: 600; /* font-semibold */
+}
+
+.productContent {
+  padding: 1rem; /* p-4 */
+}
+
+.productTitle {
+  font-size: 1.25rem; /* text-xl */
+  font-weight: 600; /* font-semibold */
+  color: #1f2937; /* text-gray-800 */
+  margin-bottom: 0.75rem; /* mb-3 */
+}
+
+.productDescription {
+  color: #4b5563; /* text-gray-600 */
+  margin-bottom: 1rem; /* mb-4 */
+  line-height: 1.625; /* leading-relaxed */
+}
+
+.productSpecsList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem; /* space-y-2 */
+  margin-bottom: 1rem; /* mb-4 */
+}
+
+.productSpecItem {
+  display: flex;
+  align-items: center;
+  font-size: 0.875rem; /* text-sm */
+  color: #4b5563; /* text-gray-600 */
+}
+
+.productSpecIcon {
+  width: 1rem; /* w-4 */
+  height: 1rem; /* h-4 */
+  color: #22c55e; /* text-green-500 */
+  margin-right: 0.5rem; /* mr-2 */
+  flex-shrink: 0;
+}
+
+.productButton {
+  width: 100%; /* w-full */
+}
+
+/* Client Logo Styles */
+.clientLogoContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem; /* Increased padding */
+  height: 10rem; /* Match carousel height */
+}
+
+.clientLogoImage {
+  max-height: 10rem; /* Increased max height */
+  width: auto;
+  object-fit: contain;
+  object-position: center;
+  filter: grayscale(100%);
+  transition: all 0.3s ease;
+  max-width: 70%; /* Prevent edge cropping */
+}
+
+.clientLogoImage:hover {
+  filter: grayscale(0%);
 }
