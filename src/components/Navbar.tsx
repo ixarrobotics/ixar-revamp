@@ -6,9 +6,6 @@ import {
   ChevronDown, 
   Phone,
   ArrowRight,
-  Zap,
-  Settings,
-  Cpu,
   Waves
 } from 'lucide-react';
 import ixarLogo from '../assets/ixar_logo.jpg';
@@ -79,11 +76,6 @@ const Navbar: React.FC = () => {
       name: 'Our Clients',
       path: '#our-clients',
       description: 'Who we work with'
-    },
-    {
-      name: 'Product Features',
-      path: '#product-features',
-      description: 'Key features of our products'
     },
     {
       name: 'Testimonials',

@@ -1,129 +1,168 @@
-import React, { useState } from 'react';
-import { Camera, Ruler, Layers, Radar, Settings, Waves, CheckCircle, ArrowRight } from 'lucide-react';
+import React from 'react';
+import { CheckCircle, Ship, Building2, Shield, ArrowRight } from 'lucide-react';
 import styles from './OurSolutions.module.css';
 
 const OurSolutions: React.FC = () => {
-  const [activeService, setActiveService] = useState(0);
-
-  const rovServices = [
+  const solutions = [
     {
-      title: 'HD Videoscope Inspection',
-      icon: <Camera className="w-8 h-8" />,
-      description: 'Crystal-clear underwater video inspection with 4K recording capabilities',
+      id: 'rov',
+      title: 'Remotely Operated Vehicle (ROV)',
+      icon: <Ship className="w-8 h-8" />,
+      description: 'Advanced underwater robotics for comprehensive inspection and maintenance operations',
       image: 'https://images.pexels.com/photos/8566473/pexels-photo-8566473.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
-      features: ['4K Ultra HD recording', 'Real-time streaming', 'Low-light enhancement', 'Digital zoom capabilities'],
-      color: 'from-blue-500 to-cyan-500'
+      features: [
+        'Underwater 4K Videography',
+        'Underwater Coordination System (USBL)',
+        'Sonar Survey',
+        'Defect Measurement',
+        'Underwater Ultrasonic Testing (UT)',
+        'Water Sampling',
+        'Bathymetric Survey'
+      ],
+      color: 'from-blue-600 to-cyan-600',
+      category: 'Underwater Robotics'
     },
     {
-      title: 'Precision Laser Scaling',
-      icon: <Ruler className="w-8 h-8" />,
-      description: 'Accurate measurement and dimensional analysis using advanced laser technology',
+      id: 'crawler',
+      title: 'Crawler',
+      icon: <Building2 className="w-8 h-8" />,
+      description: 'Specialized crawler systems for confined space inspection and maintenance',
       image: 'https://images.pexels.com/photos/2599244/pexels-photo-2599244.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
-      features: ['±1mm accuracy', 'Real-time measurements', '3D point cloud generation', 'CAD integration'],
-      color: 'from-purple-500 to-pink-500'
+      features: [
+        'Thickness Measurement Through Ultrasonic Testing (UT)',
+        'Visual Inspection'
+      ],
+      color: 'from-purple-600 to-pink-600',
+      category: 'Confined Space Solutions'
     },
     {
-      title: 'Thickness Analysis (UT & PECT)',
-      icon: <Layers className="w-8 h-8" />,
-      description: 'Non-destructive testing for material integrity and corrosion assessment',
+      id: 'magnetic-crawler',
+      title: 'Magnetic Crawler',
+      icon: <Shield className="w-8 h-8" />,
+      description: 'Magnetic adhesion technology for vertical and overhead surface inspection',
       image: 'https://images.pexels.com/photos/1001682/pexels-photo-1001682.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
-      features: ['Ultrasonic testing', 'Pulsed eddy current', 'Corrosion mapping', 'Detailed reporting'],
-      color: 'from-emerald-500 to-teal-500'
-    },
-    {
-      title: 'Advanced Sonar Mapping',
-      icon: <Radar className="w-8 h-8" />,
-      description: 'High-resolution sonar systems for underwater mapping and object detection',
-      image: 'https://images.pexels.com/photos/8566473/pexels-photo-8566473.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
-      features: ['360° scanning', 'Multi-beam sonar', 'Object classification', 'Bathymetric mapping'],
-      color: 'from-orange-500 to-red-500'
-    },
-    {
-      title: 'Custom R&D Solutions',
-      icon: <Settings className="w-8 h-8" />,
-      description: 'Tailored research and development for specialized underwater applications',
-      image: 'https://images.pexels.com/photos/2599244/pexels-photo-2599244.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
-      features: ['Custom sensor integration', 'Prototype development', 'Field testing', 'Technical consultation'],
-      color: 'from-indigo-500 to-purple-500'
-    },
-    {
-      title: 'Bathymetry & Surveying',
-      icon: <Waves className="w-8 h-8" />,
-      description: 'Comprehensive underwater topography mapping and depth measurements',
-      image: 'https://images.pexels.com/photos/1001682/pexels-photo-1001682.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
-      features: ['High-resolution mapping', 'GPS integration', 'Contour generation', 'Volume calculations'],
-      color: 'from-cyan-500 to-blue-500'
+      features: [
+        'Thickness Measurement Through Ultrasonic Testing (UT)',
+        'Visual Inspection',
+        'Vessel Hull Cleaning'
+      ],
+      color: 'from-emerald-600 to-teal-600',
+      category: 'Magnetic Solutions'
     }
   ];
 
   return (
     <div className={styles.minHeightScreen}>
-      {/* ROV Services Section */}
-      <section className={styles.rovServicesSection}>
-        <div className={styles.rovServicesInnerContainer}>
-          <div className={styles.rovServicesHeader}>
-            <h2 className={styles.rovServicesTitle}>
-              Advanced ROV Capabilities
-            </h2>
-            <p className={styles.rovServicesSubtitle}>
+      {/* Hero Section */}
+      <section className={styles.heroSection}>
+        <div className={styles.heroImageOverlay}>
+          <img
+            src="https://images.pexels.com/photos/4484078/pexels-photo-4484078.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop"
+            alt="Underwater ROV Solutions"
+            className={styles.heroImage}
+          />
+        </div>
+        
+        {/* Floating Underwater Elements */}
+        {/* <div className={styles.floatingUnderwaterElements}>
+          <div className={styles.underwaterElement1}>🤖</div>
+          <div className={styles.underwaterElement2}>🌊</div>
+          <div className={styles.underwaterElement3}>🔍</div>
+          <div className={styles.underwaterElement4}>⚡</div>
+        </div> */}
+        
+        {/* Morphing Water Shapes */}
+        {/* <div className={styles.morphingWaterShapes}>
+          <div className={styles.waterShape1}></div>
+          <div className={styles.waterShape2}></div>
+        </div> */}
+        
+        <div className={styles.heroContentContainer}>
+          <h1 className={`${styles.heroTitle} ${styles.heroTitleSpectacular}`}>
+            <span className={styles.titleWordGlow}>Our</span>{" "}
+            <span className={styles.titleWordGlow}>Solutions</span>
+          </h1>
+          <p className={`${styles.heroSubtitle} ${styles.heroSubtitleSpectacular}`}>
             We revolutionize underwater inspection with in-house ROVs and Crawlers powered by robotics, AI, and precision engineering to deliver unmatched clarity, safety, and confidence in asset management
+          </p>
+        </div>
+      </section>
+
+      {/* Solutions Showcase */}
+      <section className={styles.solutionsSection}>
+        <div className={styles.solutionsInnerContainer}>
+          {/* <div className={styles.solutionsHeader}>
+            <h2 className={styles.solutionsTitle}>
+              Comprehensive <span className={styles.solutionsTitleHighlight}>Product Portfolio</span>
+            </h2>
+            <p className={styles.solutionsSubtitle}>
+              From advanced ROV systems to specialized crawlers, we provide the complete toolkit for underwater inspection and maintenance
             </p>
-          </div>
+          </div> */}
 
-          <div className={styles.rovServicesContentGrid}>
-            <div className={styles.rovServiceList}>
-              {rovServices.map((service, index) => (
-                <div
-                  key={index}
-                  className={`${styles.rovServiceItem} ${
-                    activeService === index
-                      ? styles.rovServiceItemActive
-                      : styles.rovServiceItemInactive
-                  }`}
-                  onClick={() => setActiveService(index)}
-                >
-                  <div className={styles.rovServiceItemFlex}>
-                    <div className={`${styles.rovServiceIconContainer} bg-gradient-to-r ${service.color}`}>
-                      {service.icon}
-                    </div>
-                    <div className="flex-1">
-                      <h3 className={styles.rovServiceTitle}>{service.title}</h3>
-                      <p className={styles.rovServiceDescription}>{service.description}</p>
-                    </div>
-                    <ArrowRight className={`${styles.rovServiceArrowIcon} ${
-                      activeService === index ? styles.rovServiceArrowIconRotate : ''
-                    }`} />
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className={styles.rovServiceImageContainer}>
-              <div className={styles.rovServiceImageWrapper}>
-                <img
-                  src={rovServices[activeService].image}
-                  alt={rovServices[activeService].title}
-                  className={styles.rovServiceImage}
-                />
-                <div className={styles.rovServiceImageGradient} />
-                <div className={styles.rovServiceImageTextContent}>
-                  <h3 className={styles.rovServiceImageTitle}>
-                    {rovServices[activeService].title}
-                  </h3>
-                  <div className={styles.rovServiceFeaturesGrid}>
-                    {rovServices[activeService].features.map((feature, index) => (
-                      <div key={index} className={styles.rovServiceFeatureItem}>
-                        <CheckCircle className={styles.rovServiceFeatureIcon} />
-                        {feature}
+          <div className={styles.solutionsGrid}>
+            {solutions.map((solution, index) => (
+              <div 
+                key={solution.id} 
+                className={`${styles.solutionCard} ${index % 2 === 0 ? styles.solutionCardLeft : styles.solutionCardRight}`}
+              >
+                <div className={styles.solutionCardContent}>
+                  {/* Image Section */}
+                  <div className={`${styles.solutionImageContainer} ${
+                    index % 2 === 0 ? styles.solutionImageLeft : styles.solutionImageRight
+                  }`}>
+                    <div className={styles.solutionImageWrapper}>
+                      <img
+                        src={solution.image}
+                        alt={solution.title}
+                        className={styles.solutionImage}
+                      />
+                      <div className={styles.solutionImageOverlay} />
+                      <div className={styles.solutionCategory}>
+                        {solution.category}
                       </div>
-                    ))}
+                    </div>
+                  </div>
+
+                  {/* Content Section */}
+                  <div className={`${styles.solutionContent} ${
+                    index % 2 === 0 ? styles.solutionContentRight : styles.solutionContentLeft
+                  }`}>
+                    <div className={styles.solutionHeader}>
+                      <div className={`${styles.solutionIconContainer} bg-gradient-to-r ${solution.color}`}>
+                        {solution.icon}
+                      </div>
+                      <h3 className={styles.solutionTitle}>{solution.title}</h3>
+                    </div>
+                    
+                    <p className={styles.solutionDescription}>{solution.description}</p>
+                    
+                    <div className={styles.solutionFeatures}>
+                      <h4 className={styles.solutionFeaturesTitle}>Key Capabilities:</h4>
+                      <ul className={styles.solutionFeaturesList}>
+                        {solution.features.map((feature, featureIndex) => (
+                          <li key={featureIndex} className={styles.solutionFeatureItem}>
+                            <CheckCircle className={styles.solutionFeatureIcon} />
+                            <span>{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div className={styles.solutionCTA}>
+                      <button className={`${styles.solutionCTAButton} bg-gradient-to-r ${solution.color}`}>
+                        Learn More
+                        <ArrowRight className={styles.solutionCTAArrow} />
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
+
     </div>
   );
 };

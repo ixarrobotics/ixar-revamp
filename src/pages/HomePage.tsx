@@ -13,24 +13,49 @@ import commonStyles from '../styles/common.module.css';
 const HeroSection = memo(() => (
   <Hero backgroundVideo={homeVideo} overlay>
     <Hero.Content>
-      <Hero.Title>
-        Clarity In Depth
-      </Hero.Title>
-      <Hero.Subtitle>
-        Advanced ROV solutions for marine exploration and industrial inspections.
-      </Hero.Subtitle>
-      <Hero.Actions>
-        <Button variant="primary" size="lg">
-          <Link to="/services" className="flex items-center gap-2 text-white no-underline">
-            Explore Solutions
-            <ArrowRight className="w-5 h-5" />
-          </Link>
-        </Button>
-        <Button variant="outline" size="lg">
-          <Play className="w-5 h-5" />
-          Watch Demo
-        </Button>
-      </Hero.Actions>
+      <div className={styles.heroContentWrapper}>
+        {/* Floating Particles Background */}
+        <div className={styles.floatingParticles}>
+          {[...Array(20)].map((_, i) => (
+            <div key={i} className={styles.particle} style={{ '--delay': `${i * 0.2}s` } as React.CSSProperties} />
+          ))}
+        </div>
+        
+        {/* Morphing Background Shapes */}
+        <div className={styles.morphingShapes}>
+          <div className={styles.morphShape1}></div>
+          <div className={styles.morphShape2}></div>
+          <div className={styles.morphShape3}></div>
+        </div>
+        
+        <h1 className={`${styles.heroTitle} ${styles.heroTitleAnimated}`}>
+          <span className={styles.titleGlow}>Clarity</span>{" "}
+          <span className={styles.titleGlow}>In</span>{" "}
+          <span className={styles.titleGlow}>Depth</span>
+        </h1>
+        <p className={`${styles.heroSubtitle} ${styles.heroSubtitleAnimated}`}>
+          Advanced ROV solutions for marine exploration and industrial inspections.
+        </p>
+        <div className={styles.heroActions}>
+          <Button variant="primary" size="lg" className={styles.heroButtonAnimated}>
+            <Link to="/services" className="flex items-center gap-2 text-white no-underline">
+              <span className={styles.buttonTextGlow}>Explore Solutions</span>
+              <ArrowRight className={`w-5 h-5 ${styles.arrowAnimated}`} />
+            </Link>
+          </Button>
+          <Button variant="outline" size="lg" className={styles.heroButtonAnimated}>
+            <Play className={`w-5 h-5 ${styles.playIconAnimated}`} />
+            <span className={styles.buttonTextGlow}>Watch Demo</span>
+          </Button>
+        </div>
+        
+        {/* Floating ROV Elements */}
+        {/* <div className={styles.floatingROVElements}>
+          <div className={styles.rovElement1}>🤖</div>
+          <div className={styles.rovElement2}>🌊</div>
+          <div className={styles.rovElement3}>🔍</div>
+        </div> */}
+      </div>
     </Hero.Content>
   </Hero>
 ));
@@ -49,17 +74,33 @@ const AboutSection = memo(() => {
           Experience the perfect blend of innovation, reliability, and performance in underwater robotics
         </p>
       </div>
-      <div className={commonStyles.gridCols3}>
+      <div className={`${commonStyles.gridCols3} ${styles.featuresGridAnimated}`}>
+        {/* Floating Background Elements */}
+        <div className={styles.floatingBackgroundElements}>
+          <div className={styles.bgElement1}></div>
+          <div className={styles.bgElement2}></div>
+          <div className={styles.bgElement3}></div>
+        </div>
+        
         {features.map((feature, index) => (
           <div
             key={feature.title}
-            className={`${isIntersecting ? commonStyles.fadeIn : ''} ${
+            className={`${styles.featureCardWrapper} ${styles.featureCardSpectacular} ${isIntersecting ? styles.cardSlideIn : ''} ${
               index === 0 ? styles.animationDelay1 :
               index === 1 ? styles.animationDelay2 :
               index === 2 ? styles.animationDelay3 : ''
             }`}
           >
+            {/* Card Glow Effect */}
+            <div className={styles.cardGlowEffect}></div>
             <FeatureCard feature={feature} />
+            
+            {/* Floating Icons Around Cards */}
+            {/* <div className={styles.floatingCardIcons}>
+              <div className={styles.floatingIcon1}>📖</div>
+              <div className={styles.floatingIcon2}>👥</div>
+              <div className={styles.floatingIcon3}>🎯</div>
+            </div> */}
           </div>
         ))}
       </div>
@@ -81,21 +122,37 @@ const VisionSection = memo(() => {
           To be the global leader in underwater robotics, pioneering solutions that drive progress and sustainability.
         </p>
       </div>
-      <div className={styles.visionMissionGrid}>
+      <div className={`${styles.visionMissionGrid} ${styles.visionGridAnimated}`}>
+        {/* Morphing Vision Background */}
+        <div className={styles.visionMorphingBackground}>
+          <div className={styles.visionMorph1}></div>
+          <div className={styles.visionMorph2}></div>
+        </div>
+        
         {companyValues.map((value, index) => (
           <div
             key={value.title}
-            className={`${isIntersecting ? commonStyles.slideIn : ''} ${
+            className={`${styles.visionCardWrapper} ${styles.visionCardSpectacular} ${isIntersecting ? styles.visionCardFloatIn : ''} ${
               index === 0 ? styles.animationDelay1 :
               index === 1 ? styles.animationDelay2 : ''
             }`}
           >
+            {/* Card Energy Field */}
+            <div className={styles.cardEnergyField}></div>
+            
             <FeatureCard 
               feature={{
                 ...value,
                 color: 'from-blue-500 to-cyan-500'
               }} 
             />
+            
+            {/* Floating Particles Around Vision Cards */}
+            <div className={styles.visionCardParticles}>
+              {[...Array(8)].map((_, i) => (
+                <div key={i} className={styles.visionParticle} style={{ '--particle-delay': `${i * 0.1}s` } as React.CSSProperties} />
+              ))}
+            </div>
           </div>
         ))}
       </div>
@@ -108,26 +165,43 @@ const ClientsSection = memo(() => {
   const [setRef, isIntersecting] = useIntersectionObserver(0.2);
 
   const renderClientLogo = useMemo(() => (logo: ClientLogo, index: number) => (
-    <div key={`${logo.alt}-${index}`} className={styles.clientLogoContainer}>
+    <div key={`${logo.alt}-${index}`} className={`${styles.clientLogoContainer} ${styles.clientLogoAnimated}`}>
       <LazyImage
         src={logo.src}
         alt={logo.alt}
         className={styles.clientLogoImage}
       />
+      {/* Logo Glow Effect */}
+      <div className={styles.logoGlowEffect}></div>
     </div>
   ), []);
 
   return (
     <Section id="our-clients" className={styles.sectionBgAlternate1} ref={setRef}>
+      {/* Floating Client Elements */}
+      {/* <div className={styles.floatingClientElements}>
+        <div className={styles.clientElement1}>🏢</div>
+        <div className={styles.clientElement2}>🌍</div>
+        <div className={styles.clientElement3}>⭐</div>
+        <div className={styles.clientElement4}>🤝</div>
+      </div> */}
+      
+      {/* Morphing Client Background */}
+      <div className={styles.morphingClientBackground}>
+        <div className={styles.clientMorph1}></div>
+        <div className={styles.clientMorph2}></div>
+      </div>
+      
       <div className={commonStyles.textCenter}>
-        <h2 className={`${commonStyles.sectionTitle} ${isIntersecting ? commonStyles.fadeIn : ''}`}>
-          Our Clients
+        <h2 className={`${commonStyles.sectionTitle} ${styles.clientTitleSpectacular} ${isIntersecting ? commonStyles.fadeIn : ''}`}>
+          <span className={styles.clientTitleGlow}>Our</span>{" "}
+          <span className={styles.clientTitleGlow}>Clients</span>
         </h2>
-        <p className={`${commonStyles.sectionSubtitle} ${isIntersecting ? commonStyles.fadeIn : ''}`}>
+        <p className={`${commonStyles.sectionSubtitle} ${styles.clientSubtitleSpectacular} ${isIntersecting ? commonStyles.fadeIn : ''}`}>
           Trusted by leading organizations worldwide for their critical underwater operations.
         </p>
       </div>
-      <div className={isIntersecting ? commonStyles.fadeIn : ''}>
+      <div className={`${isIntersecting ? commonStyles.fadeIn : ''} ${styles.clientsCarouselWrapper}`}>
         <Carousel
           items={clientLogos}
           visibleItems={4}
@@ -264,23 +338,45 @@ const TestimonialsSection = memo(() => {
 
   return (
     <Section id="testimonials" className={styles.sectionBgAlternate2} ref={setRef}>
+      {/* Floating Testimonial Elements */}
+      {/* <div className={styles.floatingTestimonialElements}>
+        <div className={styles.testimonialElement1}>💬</div>
+        <div className={styles.testimonialElement2}>✨</div>
+        <div className={styles.testimonialElement3}>🌟</div>
+        <div className={styles.testimonialElement4}>🎯</div>
+      </div> */}
+      
+      {/* Morphing Testimonial Background */}
+      <div className={styles.morphingTestimonialBackground}>
+        <div className={styles.testimonialMorph1}></div>
+        <div className={styles.testimonialMorph2}></div>
+      </div>
+      
       <div className={commonStyles.textCenter}>
-        <h2 className={`${commonStyles.sectionTitle} ${isIntersecting ? commonStyles.fadeIn : ''}`}>
-          Testimonials
+        <h2 className={`${commonStyles.sectionTitle} ${styles.testimonialTitleSpectacular} ${isIntersecting ? commonStyles.fadeIn : ''}`}>
+          <span className={styles.testimonialTitleGlow}>Client</span>{" "}
+          <span className={styles.testimonialTitleGlow}>Testimonials</span>
         </h2>
-        <p className={`${commonStyles.sectionSubtitle} ${isIntersecting ? commonStyles.fadeIn : ''}`}>
+        <p className={`${commonStyles.sectionSubtitle} ${styles.testimonialSubtitleSpectacular} ${isIntersecting ? commonStyles.fadeIn : ''}`}>
           Hear what our clients have to say about IXAR and our solutions.
         </p>
       </div>
       
       <div className={`${styles.testimonialsWrapper} ${isIntersecting ? commonStyles.fadeIn : ''}`}>
-        <button className={styles.testimonialNavBtn} onClick={prevSlide} aria-label="Previous testimonials">
+        <button className={`${styles.testimonialNavBtn} ${styles.testimonialNavBtnSpectacular}`} onClick={prevSlide} aria-label="Previous testimonials">
           ‹
         </button>
         
-        <div className={styles.testimonialsContainer}>
+        <div className={`${styles.testimonialsContainer} ${styles.testimonialsContainerAnimated}`}>
           {getVisibleTestimonials().map((testimonial, index) => (
-            <div key={currentIndex * testimonalsPerView + index} className={styles.testimonialCard}>
+            <div 
+              key={currentIndex * testimonalsPerView + index} 
+              className={`${styles.testimonialCard} ${styles.testimonialCardAnimated} ${styles.testimonialCardSpectacular}`}
+              style={{ animationDelay: `${index * 0.2}s` }}
+            >
+              {/* Testimonial Glow Effect */}
+              <div className={styles.testimonialGlowEffect}></div>
+              
               <div className={styles.testimonialContent}>
                 <p className={styles.testimonialText}>
                   "{testimonial.text}"
@@ -289,11 +385,17 @@ const TestimonialsSection = memo(() => {
                   {testimonial.company}
                 </div>
               </div>
+              
+              {/* Floating Quote Marks */}
+              <div className={styles.floatingQuoteMarks}>
+                <div className={styles.quoteMark1}>"</div>
+                <div className={styles.quoteMark2}>"</div>
+              </div>
             </div>
           ))}
         </div>
         
-        <button className={styles.testimonialNavBtn} onClick={nextSlide} aria-label="Next testimonials">
+        <button className={`${styles.testimonialNavBtn} ${styles.testimonialNavBtnSpectacular}`} onClick={nextSlide} aria-label="Next testimonials">
           ›
         </button>
       </div>

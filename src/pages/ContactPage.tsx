@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { 
   Mail, 
   Phone, 
@@ -9,11 +9,13 @@ import {
   Globe,
   MessageSquare,
   Users,
-  ArrowRight
+  ArrowRight,
+  Loader
 } from 'lucide-react';
 import styles from './ContactPage.module.css';
 
 const ContactPage: React.FC = () => {
+  const formRef = useRef<HTMLFormElement>(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -22,12 +24,145 @@ const ContactPage: React.FC = () => {
     message: ''
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    setIsSubmitted(true);
-    setTimeout(() => setIsSubmitted(false), 3000);
+    setIsLoading(true);
+    setErrorMessage('');
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: 'e5a781f3-d123-4f5a-ad12-3960e4ed8702',
+          from_name: formData.name,
+          from_email: formData.email,
+          name: formData.name,
+          email: formData.email,
+          company: formData.company,
+          service: formData.service,
+          message: formData.message,
+          subject: `New Contact Form Submission from ${formData.name}`,
+          // Professional HTML email template with better compatibility
+          html: `
+            <!DOCTYPE html>
+            <html>
+            <head>
+              <meta charset="utf-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <title>New Contact Form Submission</title>
+            </head>
+            <body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f8f9fa;">
+              <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #f8f9fa;">
+                <tr>
+                  <td style="padding: 20px;">
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                      <!-- Header -->
+                      <tr>
+                        <td style="padding: 30px; text-align: center; border-bottom: 3px solid #2563eb;">
+                          <h1 style="color: #2563eb; margin: 0; font-size: 28px; font-weight: bold;">IXAR Robotic Solutions</h1>
+                          <p style="color: #6b7280; margin: 10px 0 0 0; font-size: 18px;">🤝 New Contact Form Submission</p>
+                        </td>
+                      </tr>
+                      
+                      <!-- Contact Details -->
+                      <tr>
+                        <td style="padding: 25px;">
+                          <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #f1f5f9; border-radius: 8px; margin-bottom: 20px;">
+                            <tr>
+                              <td style="padding: 20px;">
+                                <h2 style="color: #1e293b; margin: 0 0 15px 0; font-size: 20px;">📋 Contact Details</h2>
+                                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                                  <tr>
+                                    <td style="padding: 8px 0; color: #374151; font-weight: 600; width: 140px;">Name:</td>
+                                    <td style="padding: 8px 0; color: #1f2937;">${formData.name}</td>
+                                  </tr>
+                                  <tr>
+                                    <td style="padding: 8px 0; color: #374151; font-weight: 600;">Email:</td>
+                                    <td style="padding: 8px 0; color: #1f2937;">
+                                      <a href="mailto:${formData.email}" style="color: #2563eb; text-decoration: none;">${formData.email}</a>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td style="padding: 8px 0; color: #374151; font-weight: 600;">Company:</td>
+                                    <td style="padding: 8px 0; color: #1f2937;">${formData.company || 'Not specified'}</td>
+                                  </tr>
+                                  <tr>
+                                    <td style="padding: 8px 0; color: #374151; font-weight: 600;">Service Interest:</td>
+                                    <td style="padding: 8px 0; color: #1f2937;">${formData.service || 'Not specified'}</td>
+                                  </tr>
+                                </table>
+                              </td>
+                            </tr>
+                          </table>
+                          
+                          <!-- Message -->
+                          <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #f0fdf4; border-radius: 8px; margin-bottom: 20px;">
+                            <tr>
+                              <td style="padding: 20px;">
+                                <h2 style="color: #1e293b; margin: 0 0 15px 0; font-size: 20px;">💬 Message</h2>
+                                <div style="color: #1f2937; line-height: 1.6; background-color: #ffffff; padding: 15px; border-radius: 6px; border-left: 4px solid #10b981;">
+                                  ${formData.message.replace(/\n/g, '<br>')}
+                                </div>
+                              </td>
+                            </tr>
+                          </table>
+                          
+                          <!-- Footer -->
+                          <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                            <tr>
+                              <td style="padding: 20px 0; border-top: 1px solid #e5e7eb; text-align: center;">
+                                <p style="color: #6b7280; margin: 0; font-size: 14px;">
+                                  This email was sent from your website contact form
+                                </p>
+                                <p style="color: #6b7280; margin: 5px 0 0 0; font-size: 14px;">
+                                  📧 Reply directly to: <a href="mailto:${formData.email}" style="color: #2563eb; text-decoration: none;">${formData.email}</a>
+                                </p>
+                                <p style="color: #2563eb; margin: 10px 0 0 0; font-size: 16px; font-weight: 600;">
+                                  ⏰ Respond within 24 hours for best customer service!
+                                </p>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </body>
+            </html>
+          `,
+        }),
+      });
+
+      const result = await response.json();
+      
+      if (result.success) {
+        console.log('SUCCESS!', result);
+        setIsSubmitted(true);
+        setFormData({
+          name: '',
+          email: '',
+          company: '',
+          service: '',
+          message: ''
+        });
+        setTimeout(() => setIsSubmitted(false), 5000);
+      } else {
+        throw new Error('Submission failed');
+      }
+    } catch (error) {
+      console.log('FAILED...', error);
+      setErrorMessage('Failed to send message. Please try again or contact us directly.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -153,7 +288,13 @@ const ContactPage: React.FC = () => {
                 </div>
               )}
 
-              <form onSubmit={handleSubmit} className={styles.formSpaceY6}>
+              {errorMessage && (
+                <div className={styles.submissionErrorMessage}>
+                  <span className={styles.submissionErrorText}>{errorMessage}</span>
+                </div>
+              )}
+
+              <form ref={formRef} onSubmit={handleSubmit} className={styles.formSpaceY6}>
                 <div className={styles.formGridCols2}>
                   <div>
                     <label className={styles.formLabel}>
@@ -234,9 +375,19 @@ const ContactPage: React.FC = () => {
                 <button
                   type="submit"
                   className={styles.submitButton}
+                  disabled={isLoading}
                 >
-                  <Send className={styles.submitButtonIcon} />
-                  Send Message
+                  {isLoading ? (
+                    <>
+                      <Loader className={`${styles.submitButtonIcon} ${styles.spinning}`} />
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      <Send className={styles.submitButtonIcon} />
+                      Send Message
+                    </>
+                  )}
                 </button>
               </form>
             </div>

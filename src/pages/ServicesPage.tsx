@@ -1,7 +1,6 @@
 import React from 'react'
 import {
   CheckCircle,
-  ArrowRight,
   Play,
   Flame,
   Ship,
@@ -77,36 +76,84 @@ const ServicesPage: React.FC = () => {
             className={styles.heroImage}
           />
         </div>
+        
+        {/* Floating Underwater Elements */}
+        {/* <div className={styles.floatingUnderwaterElements}>
+          <div className={styles.underwaterElement1}>🐠</div>
+          <div className={styles.underwaterElement2}>🌊</div>
+          <div className={styles.underwaterElement3}>🤖</div>
+          <div className={styles.underwaterElement4}>🔍</div>
+        </div> */}
+        
+        {/* Morphing Water Shapes */}
+        <div className={styles.morphingWaterShapes}>
+          <div className={styles.waterShape1}></div>
+          <div className={styles.waterShape2}></div>
+        </div>
+        
         <div className={styles.heroContentContainer}>
-          <h1 className={styles.heroTitle}>Comprehensive ROV Services</h1>
-          <p className={styles.heroSubtitle}>
+          <h1 className={`${styles.heroTitle} ${styles.heroTitleSpectacular}`}>
+            <span className={styles.titleWordGlow}>Comprehensive</span>{" "}
+            <span className={styles.titleWordGlow}>ROV</span>{" "}
+            <span className={styles.titleWordGlow}>Services</span>
+          </h1>
+          <p className={`${styles.heroSubtitle} ${styles.heroSubtitleSpectacular}`}>
             Advanced underwater inspection, surveying, and maintenance solutions
             powered by cutting-edge robotics technology
           </p>
-          <button className={styles.heroButton}>
-            <Play className={styles.heroButtonIcon} />
-            Watch Our Services in Action
+          <button className={`${styles.heroButton} ${styles.heroButtonSpectacular}`}>
+            <Play className={`${styles.heroButtonIcon} ${styles.heroButtonIconSpectacular}`} />
+            <span className={styles.buttonTextSpectacular}>Watch Our Services in Action</span>
           </button>
         </div>
       </section>
 
       {/* Industries Section */}
-      <section className={styles.industriesSection}>
+      <section className={`${styles.industriesSection} ${styles.sectionBgAlternate1}`}>
+        {/* Floating Industry Elements */}
+        {/* <div className={styles.floatingIndustryElements}>
+          <div className={styles.industryElement1}>🏭</div>
+          <div className={styles.industryElement2}>🚢</div>
+          <div className={styles.industryElement3}>🏗️</div>
+          <div className={styles.industryElement4}>🔍</div>
+          <div className={styles.industryElement5}>⚡</div>
+          <div className={styles.industryElement6}>🌊</div>
+        </div> */}
+        
+        {/* Morphing Industry Background */}
+        <div className={styles.morphingIndustryBackground}>
+          <div className={styles.industryMorph1}></div>
+          <div className={styles.industryMorph2}></div>
+          <div className={styles.industryMorph3}></div>
+        </div>
+        
         <div className={styles.industriesInnerContainer}>
           <div className={styles.industriesHeader}>
-            <h2 className={styles.industriesTitle}>Industries We Serve</h2>
-            <p className={styles.industriesSubtitle}>
+            <h2 className={`${styles.industriesTitle} ${styles.industriesTitleSpectacular}`}>
+              <span className={styles.industryTitleGlow}>Industries</span>{" "}
+              <span className={styles.industryTitleGlow}>We</span>{" "}
+              <span className={styles.industryTitleGlow}>Serve</span>
+            </h2>
+            <p className={`${styles.industriesSubtitle} ${styles.industriesSubtitleSpectacular}`}>
               Delivering specialized underwater solutions across diverse sectors
               with proven expertise
             </p>
           </div>
 
-          <div className={styles.industriesGrid}>
+          <div className={`${styles.industriesGrid} ${styles.industriesGridAnimated}`}>
             {industries.map((industry, index) => (
               <div
                 key={index}
-                className={`${styles.industryCard} ${styles.industryCardGroup}`}
+                className={`${styles.industryCard} ${styles.industryCardGroup} ${styles.industryCardAnimated} ${styles.industryCardSpectacular}`}
+                style={{ animationDelay: `${index * 0.2}s` }}
               >
+                {/* Floating Industry Particles */}
+                <div className={styles.industryCardParticles}>
+                  {[...Array(6)].map((_, i) => (
+                    <div key={i} className={styles.industryParticle} style={{ '--particle-delay': `${i * 0.1}s` } as React.CSSProperties} />
+                  ))}
+                </div>
+                
                 <div className={styles.industryImageContainer}>
                   <img
                     src={industry.image}
@@ -116,13 +163,15 @@ const ServicesPage: React.FC = () => {
                   <div className={styles.industryImageGradient} />
                   <div className={styles.industryIconContainer}>
                     <div
-                      className={`${styles.rovServiceIconContainer} ${industry.gradientClass}`}
+                      className={`${styles.rovServiceIconContainer} ${industry.gradientClass} ${styles.industryIconSpectacular}`}
                     >
                       {industry.icon}
                     </div>
+                    {/* Icon Glow Effect */}
+                    <div className={styles.industryIconGlow}></div>
                   </div>
                   <div className={styles.industryTitleCard}>
-                    <h3 className={styles.industryTitleCard}>
+                    <h3 className={`${styles.industryTitleCard} ${styles.industryTitleCardSpectacular}`}>
                       {industry.name}
                     </h3>
                   </div>
@@ -133,10 +182,11 @@ const ServicesPage: React.FC = () => {
                     {industry.services.map((service, serviceIndex) => (
                       <div
                         key={serviceIndex}
-                        className={styles.industryServiceItem}
+                        className={`${styles.industryServiceItem} ${styles.industryServiceItemSpectacular}`}
+                        style={{ animationDelay: `${serviceIndex * 0.1}s` }}
                       >
-                        <CheckCircle className={styles.industryServiceIcon} />
-                        <span className={styles.industryServiceText}>
+                        <CheckCircle className={`${styles.industryServiceIcon} ${styles.industryServiceIconSpectacular}`} />
+                        <span className={`${styles.industryServiceText} ${styles.industryServiceTextSpectacular}`}>
                           {service}
                         </span>
                       </div>
@@ -149,25 +199,6 @@ const ServicesPage: React.FC = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className={styles.ctaSection}>
-        <div className={styles.ctaInnerContainer}>
-          <h2 className={styles.ctaTitle}>Ready to Explore the Depths?</h2>
-          <p className={styles.ctaSubtitle}>
-            Contact our experts to discuss your underwater inspection and
-            surveying needs
-          </p>
-          <div className={styles.ctaButtonsContainer}>
-            <button className={styles.requestQuoteButton}>
-              Request Quote
-              <ArrowRight className={styles.requestQuoteIcon} />
-            </button>
-            <button className={styles.scheduleConsultationButton}>
-              Schedule Consultation
-            </button>
-          </div>
-        </div>
-      </section>
     </div>
   )
 }

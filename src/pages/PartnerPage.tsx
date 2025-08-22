@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { 
   Send, 
   CheckCircle, 
@@ -14,11 +14,13 @@ import {
   Phone,
   User,
   Briefcase,
-  MessageSquare
+  MessageSquare,
+  Loader
 } from 'lucide-react';
 import styles from './PartnerPage.module.css';
 
 const PartnerPage: React.FC = () => {
+  const formRef = useRef<HTMLFormElement>(null);
   const [formData, setFormData] = useState({
     title: '',
     name: '',
@@ -31,18 +33,116 @@ const PartnerPage: React.FC = () => {
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setErrorMessage('');
 
     try {
-      // Simulate form submission
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      setIsSubmitted(true);
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: 'e5a781f3-d123-4f5a-ad12-3960e4ed8702',
+          from_name: formData.name,
+          from_email: formData.email,
+          title: formData.title,
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          designation: formData.designation,
+          companyWebsite: formData.companyWebsite,
+          companyAddress: formData.companyAddress,
+          message: formData.message,
+          subject: `New Partnership Inquiry from ${formData.name} - ${formData.designation}`,
+          // Professional partnership email template
+          html: `
+            <div style="font-family: Arial, sans-serif; max-width: 700px; margin: 0 auto; padding: 20px; background-color: #f8f9fa;">
+              <div style="background-color: #ffffff; padding: 30px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                <div style="text-align: center; margin-bottom: 30px; border-bottom: 3px solid #2563eb; padding-bottom: 20px;">
+                  <h1 style="color: #2563eb; margin: 0; font-size: 28px; font-weight: bold;">IXAR Robotic Solutions</h1>
+                  <p style="color: #6b7280; margin: 10px 0 0 0; font-size: 18px;">🤝 New Partnership Inquiry</p>
+                </div>
+                
+                <div style="background-color: #f1f5f9; padding: 20px; border-radius: 8px; margin-bottom: 25px;">
+                  <h2 style="color: #1e293b; margin: 0 0 15px 0; font-size: 20px;">👤 Contact Information</h2>
+                  <table style="width: 100%; border-collapse: collapse;">
+                    <tr>
+                      <td style="padding: 8px 0; color: #374151; font-weight: 600; width: 140px;">Title & Name:</td>
+                      <td style="padding: 8px 0; color: #1f2937;">${formData.title} ${formData.name}</td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 8px 0; color: #374151; font-weight: 600;">Email:</td>
+                      <td style="padding: 8px 0; color: #1f2937;">${formData.email}</td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 8px 0; color: #374151; font-weight: 600;">Phone:</td>
+                      <td style="padding: 8px 0; color: #1f2937;">${formData.phone}</td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 8px 0; color: #374151; font-weight: 600;">Designation:</td>
+                      <td style="padding: 8px 0; color: #1f2937;">${formData.designation}</td>
+                    </tr>
+                  </table>
+                </div>
+                
+                <div style="background-color: #f0fdf4; padding: 20px; border-radius: 8px; margin-bottom: 25px;">
+                  <h2 style="color: #1e293b; margin: 0 0 15px 0; font-size: 20px;">🏢 Company Details</h2>
+                  <table style="width: 100%; border-collapse: collapse;">
+                    <tr>
+                      <td style="padding: 8px 0; color: #374151; font-weight: 600; width: 140px;">Website:</td>
+                      <td style="padding: 8px 0; color: #1f2937;">
+                        <a href="${formData.companyWebsite}" style="color: #2563eb; text-decoration: none;">${formData.companyWebsite}</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 8px 0; color: #374151; font-weight: 600;">Address:</td>
+                      <td style="padding: 8px 0; color: #1f2937;">${formData.companyAddress}</td>
+                    </tr>
+                  </table>
+                </div>
+                
+                <div style="background-color: #fef3c7; padding: 20px; border-radius: 8px; margin-bottom: 25px;">
+                  <h2 style="color: #1e293b; margin: 0 0 15px 0; font-size: 20px;">💬 Partnership Message</h2>
+                  <p style="color: #1f2937; line-height: 1.6; margin: 0; white-space: pre-wrap; background-color: #ffffff; padding: 15px; border-radius: 6px; border-left: 4px solid #f59e0b;">${formData.message}</p>
+                </div>
+                
+                <div style="background-color: #dbeafe; padding: 20px; border-radius: 8px; margin-bottom: 25px;">
+                  <h3 style="color: #1e40af; margin: 0 0 10px 0; font-size: 16px;">🚀 Next Steps</h3>
+                  <ul style="color: #1e293b; margin: 0; padding-left: 20px;">
+                    <li>Review partnership proposal</li>
+                    <li>Schedule initial discussion call</li>
+                    <li>Explore collaboration opportunities</li>
+                    <li>Discuss market expansion strategies</li>
+                  </ul>
+                </div>
+                
+                <div style="text-align: center; padding-top: 20px; border-top: 1px solid #e5e7eb;">
+                  <p style="color: #6b7280; margin: 0; font-size: 14px;">
+                    This partnership inquiry was submitted from your website at ${window.location.origin}
+                  </p>
+                  <p style="color: #6b7280; margin: 5px 0 0 0; font-size: 14px;">
+                    📧 Reply directly to: ${formData.email} | 📞 Call: ${formData.phone}
+                  </p>
+                  <p style="color: #2563eb; margin: 10px 0 0 0; font-size: 16px; font-weight: 600;">
+                    ⏰ Respond within 24 hours for best partnership opportunities!
+                  </p>
+                </div>
+              </div>
+            </div>
+          `,
+        }),
+      });
+
+      const result = await response.json();
       
-      // Reset form after success
-      setTimeout(() => {
+      if (result.success) {
+        console.log('SUCCESS!', result);
+        setIsSubmitted(true);
         setFormData({
           title: '',
           name: '',
@@ -53,10 +153,13 @@ const PartnerPage: React.FC = () => {
           companyAddress: '',
           message: ''
         });
-        setIsSubmitted(false);
-      }, 3000);
+        setTimeout(() => setIsSubmitted(false), 5000);
+      } else {
+        throw new Error('Submission failed');
+      }
     } catch (error) {
-      console.error('Form submission error:', error);
+      console.log('FAILED...', error);
+      setErrorMessage('Failed to send partnership inquiry. Please try again or contact us directly.');
     } finally {
       setIsSubmitting(false);
     }
@@ -242,7 +345,13 @@ const PartnerPage: React.FC = () => {
                 </div>
               )}
 
-              <form onSubmit={handleSubmit} className={styles.formSpaceY6}>
+              {errorMessage && (
+                <div className={styles.submissionErrorMessage}>
+                  <span className={styles.submissionErrorText}>{errorMessage}</span>
+                </div>
+              )}
+
+              <form ref={formRef} onSubmit={handleSubmit} className={styles.formSpaceY6}>
                 <div className={styles.formGridCols2}>
                   <div>
                     <label className={styles.formLabel}>
@@ -381,11 +490,11 @@ const PartnerPage: React.FC = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className={`${styles.submitButton} ${isSubmitting ? '' : ''}`}
+                  className={styles.submitButton}
                 >
                   {isSubmitting ? (
                     <>
-                      <div className={styles.submitButtonSpinner}></div>
+                      <Loader className={`${styles.submitButtonIcon} ${styles.spinning}`} />
                       Sending Inquiry...
                     </>
                   ) : (

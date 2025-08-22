@@ -2,16 +2,346 @@
 
 .minHeightScreen {
   min-height: 100vh;
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
 }
 
-/* ROV Services Section */
-.rovServicesSection {
-  padding-top: 5rem; /* py-20 */
-  padding-bottom: 5rem; /* py-20 */
-  background-color: #f9fafb; /* bg-gray-50 */
+/* Hero Section */
+.heroSection {
+  position: relative;
+  padding-top: 8rem; /* py-32 */
+  padding-bottom: 6rem; /* py-24 */
+  background-image: linear-gradient(to right, #1e3a8a, #581c87, #3730a3); /* bg-gradient-to-r from-blue-900 via-purple-900 to-indigo-900 */
+  color: #ffffff; /* text-white */
+  overflow: hidden;
 }
 
-.rovServicesInnerContainer {
+.heroImageOverlay {
+  position: absolute;
+  inset: 0;
+}
+
+.heroImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.2;
+}
+
+.heroContentContainer {
+  position: relative;
+  z-index: 10;
+  max-width: 84rem; /* max-w-7xl */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem; /* px-4 */
+  padding-right: 1rem; /* px-4 */
+  padding-left: 1.5rem; /* sm:px-6 */
+  padding-right: 1.5rem; /* sm:px-6 */
+  padding-left: 2rem; /* lg:px-8 */
+  padding-right: 2rem; /* lg:px-8 */
+  text-align: center;
+}
+
+/* Mobile Responsiveness for Hero Section */
+@media (max-width: 768px) {
+  .heroSection {
+    padding-top: 4rem; /* py-16 */
+    padding-bottom: 3rem; /* py-12 */
+  }
+  
+  .heroImageOverlay {
+    opacity: 0.3;
+  }
+  
+  .floatingUnderwaterElements {
+    display: none; /* Hide floating elements on mobile */
+  }
+  
+  .heroContentContainer {
+    padding-left: 1rem; /* px-4 */
+    padding-right: 1rem; /* px-4 */
+  }
+}
+
+/* Floating Underwater Elements */
+.floatingUnderwaterElements {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.underwaterElement1, .underwaterElement2, .underwaterElement3, .underwaterElement4 {
+  position: absolute;
+  font-size: 3rem;
+  animation: underwaterElementFloat 8s ease-in-out infinite;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+}
+
+.underwaterElement1 {
+  top: 25%;
+  left: 15%;
+  animation-delay: 0s;
+}
+
+.underwaterElement2 {
+  top: 45%;
+  right: 20%;
+  animation-delay: 2s;
+}
+
+.underwaterElement3 {
+  top: 65%;
+  left: 25%;
+  animation-delay: 4s;
+}
+
+.underwaterElement4 {
+  top: 35%;
+  right: 10%;
+  animation-delay: 6s;
+}
+
+@keyframes underwaterElementFloat {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg) scale(1);
+    opacity: 0.7;
+  }
+  25% {
+    transform: translateY(-20px) rotate(90deg) scale(1.1);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-40px) rotate(180deg) scale(0.9);
+    opacity: 0.8;
+  }
+  75% {
+    transform: translateY(-20px) rotate(270deg) scale(1.05);
+    opacity: 0.9;
+  }
+}
+
+/* Morphing Water Shapes - Commented out */
+/* .morphingWaterShapes {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.waterShape1, .waterShape2 {
+  position: absolute;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(147, 51, 234, 0.1));
+  animation: morphWater 12s ease-in-out infinite;
+}
+
+.waterShape1 {
+  width: 300px;
+  height: 300px;
+  top: 10%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.waterShape2 {
+  width: 200px;
+  height: 200px;
+  top: 60%;
+  right: 15%;
+  animation-delay: 6s;
+}
+
+@keyframes morphWater {
+  0%, 100% {
+    border-radius: 50%;
+    transform: scale(1) rotate(0deg);
+    opacity: 0.3;
+  }
+  25% {
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    transform: scale(1.2) rotate(90deg);
+    opacity: 0.5;
+  }
+  50% {
+    border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%;
+    transform: scale(0.8) rotate(180deg);
+    opacity: 0.4;
+  }
+  75% {
+    border-radius: 40% 60% 60% 40% / 40% 40% 60% 60%;
+    transform: scale(1.1) rotate(270deg);
+    opacity: 0.6;
+  }
+} */
+
+/* Mobile styles moved to proper location */
+
+.heroInnerContainer {
+  max-width: 84rem; /* max-w-7xl */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem; /* px-4 */
+  padding-right: 1rem; /* px-4 */
+  padding-left: 1.5rem; /* sm:px-6 */
+  padding-right: 1.5rem; /* sm:px-6 */
+  padding-left: 2rem; /* lg:px-8 */
+  padding-right: 2rem; /* lg:px-8 */
+  position: relative;
+  z-index: 10;
+}
+
+.heroContent {
+  text-align: center;
+  max-width: 64rem; /* max-w-4xl */
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+
+/* Floating particle animations removed */
+
+.heroTitle {
+  font-size: 3.5rem; /* text-5xl */
+  font-weight: 800; /* font-extrabold */
+  margin-bottom: 1.5rem; /* mb-6 */
+  line-height: 1.1;
+  color: #ffffff; /* text-white */
+}
+
+.heroTitleSpectacular {
+  position: relative;
+  z-index: 15;
+}
+
+.titleWordGlow {
+  background: linear-gradient(135deg, #ffffff, #e0e7ff, #c7d2fe);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+  animation: titleGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes titleGlow {
+  0% {
+    filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.6));
+  }
+  100% {
+    filter: drop-shadow(0 0 40px rgba(255, 255, 255, 1));
+  }
+}
+
+@media (max-width: 768px) {
+  .heroTitle {
+    font-size: 2.5rem; /* text-4xl */
+  }
+  
+  .titleWordGlow {
+    font-size: 2.5rem; /* text-4xl */
+  }
+  
+  .heroSubtitleSpectacular {
+    font-size: 1rem; /* text-base */
+    padding: 0 1rem; /* px-4 */
+  }
+}
+
+@media (min-width: 768px) { /* md */
+  .heroTitle {
+    font-size: 4.5rem; /* md:text-6xl */
+  }
+}
+
+.heroTitleHighlight {
+  background: linear-gradient(45deg, #667eea, #764ba2, #f093fb, #f5576c, #4facfe, #00f2fe);
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: mesmerizingGradient 3s ease-in-out infinite;
+}
+
+@keyframes mesmerizingGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.heroSubtitle {
+  font-size: 1.25rem; /* text-xl */
+  line-height: 1.7;
+  opacity: 0.9;
+  max-width: 48rem; /* max-w-3xl */
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  color: #e5e7eb; /* text-gray-200 - Simple white color */
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+
+.heroSubtitle:hover {
+  transform: scale(1.02);
+  color: #ffffff; /* text-white - Brighter on hover */
+}
+
+
+
+@media (max-width: 768px) {
+  .heroSubtitle {
+    font-size: 1rem; /* text-base */
+    padding: 0 1rem; /* px-4 */
+  }
+}
+
+@media (min-width: 768px) { /* md */
+  .heroSubtitle {
+    font-size: 1.5rem; /* md:text-2xl */
+  }
+}
+
+.heroSubtitleSpectacular {
+  position: relative;
+  z-index: 15;
+  background: linear-gradient(135deg, #e0e7ff, #c7d2fe, #a5b4fc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 20px rgba(224, 231, 255, 0.6);
+  animation: subtitleShine 4s ease-in-out infinite;
+}
+
+@keyframes subtitleShine {
+  0%, 100% {
+    filter: drop-shadow(0 0 15px rgba(224, 231, 255, 0.4));
+  }
+  50% {
+    filter: drop-shadow(0 0 25px rgba(224, 231, 255, 0.8));
+  }
+}
+
+/* Solutions Section */
+.solutionsSection {
+  padding-top: 6rem; /* py-24 */
+  padding-bottom: 6rem; /* py-24 */
+  background-color: #FFD7D7; /* bg-[#FFD7D7] - Matching HomePage */
+}
+
+@media (max-width: 768px) {
+  .solutionsSection {
+    padding-top: 3rem; /* py-12 */
+    padding-bottom: 3rem; /* py-12 */
+  }
+}
+
+.solutionsInnerContainer {
   max-width: 84rem; /* max-w-7xl */
   margin-left: auto;
   margin-right: auto;
@@ -23,165 +353,542 @@
   padding-right: 2rem; /* lg:px-8 */
 }
 
-.rovServicesHeader {
+.solutionsHeader {
   text-align: center;
-  margin-bottom: 4rem; /* mb-16 */
+  margin-bottom: 5rem; /* mb-20 */
 }
 
-.rovServicesTitle {
+.solutionsTitle {
   font-size: 3rem; /* text-4xl */
   font-weight: 700; /* font-bold */
-  color: #111827; /* text-gray-900 */
+  color: #1e293b; /* text-slate-800 */
   margin-bottom: 1.5rem; /* mb-6 */
 }
 
 @media (min-width: 768px) { /* md */
-  .rovServicesTitle {
+  .solutionsTitle {
     font-size: 3.75rem; /* md:text-5xl */
   }
 }
 
-.rovServicesSubtitle {
+.solutionsTitleHighlight {
+  color: #E60000; /* text-[#E60000] - Matching navbar red color */
+}
+
+.solutionsSubtitle {
   font-size: 1.25rem; /* text-xl */
-  color: #4b5563; /* text-gray-600 */
+  color: #64748b; /* text-slate-600 */
   max-width: 48rem; /* max-w-3xl */
   margin-left: auto;
   margin-right: auto;
+  line-height: 1.6;
 }
 
-.rovServicesContentGrid {
-  display: grid;
-  gap: 3rem; /* gap-12 */
-  align-items: center;
-  margin-bottom: 4rem; /* mb-16 */
+.solutionsGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 6rem; /* gap-24 */
 }
 
-@media (min-width: 1024px) { /* lg */
-  .rovServicesContentGrid {
-    grid-template-columns: repeat(2, minmax(0, 1fr)); /* lg:grid-cols-2 */
+@media (max-width: 768px) {
+  .solutionsGrid {
+    gap: 3rem; /* gap-12 */
   }
 }
 
-.rovServiceList {
+/* Solution Cards */
+.solutionCard {
+  width: 100%;
+  transition: all 0.3s ease;
+  border-radius: 1rem; /* rounded-2xl */
+  padding: 1rem; /* p-4 */
+}
+
+@media (max-width: 768px) {
+  .solutionCard {
+    padding: 0.75rem; /* p-3 */
+  }
+}
+
+.solutionCard:hover {
+  background-color: rgba(230, 0, 0, 0.05); /* bg-[#E60000]/5 - Light red background */
+  box-shadow: 0 20px 40px -10px rgba(230, 0, 0, 0.2); /* Red shadow on hover */
+  transform: translateY(-4px); /* -translate-y-1 - Slight lift effect */
+  border: 2px solid rgba(230, 0, 0, 0.3); /* border-[#E60000]/30 - Red border on hover */
+}
+
+.solutionCardContent {
   display: flex;
   flex-direction: column;
-  gap: 1rem; /* space-y-4 */
+  gap: 2rem; /* gap-8 */
+  align-items: center;
 }
 
-.rovServiceItem {
-  padding: 1.5rem; /* p-6 */
-  border-radius: 0.75rem; /* rounded-xl */
-  cursor: pointer;
-  transition-property: all;
-  transition-duration: 300ms;
+@media (min-width: 1024px) { /* lg */
+  .solutionCardContent {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr)); /* lg:grid-cols-2 */
+    gap: 4rem; /* gap-16 */
+    align-items: center;
+  }
+  
+  /* Force alternating layout on desktop */
+  .solutionCardLeft .solutionCardContent {
+    grid-template-areas: "image content";
+  }
+  
+  .solutionCardRight .solutionCardContent {
+    grid-template-areas: "content image";
+  }
 }
 
-.rovServiceItemActive {
-  background-color: #ffffff; /* bg-white */
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-lg */
-  transform: scale(1.05); /* scale-105 */
+/* Left Layout (Image Left, Content Right) */
+.solutionCardLeft .solutionCardContent {
+  direction: ltr;
 }
 
-.rovServiceItemInactive {
-  background-color: rgba(255, 255, 255, 0.5); /* bg-white/50 */
+.solutionCardLeft .solutionImageContainer {
+  order: 1;
 }
 
-.rovServiceItemInactive:hover {
-  background-color: #ffffff; /* hover:bg-white */
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1); /* hover:shadow-md */
+.solutionCardLeft .solutionContent {
+  order: 2;
 }
 
-.rovServiceItemFlex {
+/* Right Layout (Image Right, Content Left) */
+.solutionCardRight .solutionCardContent {
+  direction: rtl;
+}
+
+.solutionCardRight .solutionImageContainer {
+  order: 2;
+}
+
+.solutionCardRight .solutionContent {
+  order: 1;
+  direction: ltr; /* Reset text direction for content */
+}
+
+/* Image Container */
+.solutionImageContainer {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1.5rem; /* rounded-3xl */
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); /* shadow-2xl */
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  grid-area: image;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .solutionImageContainer {
+    margin-bottom: 1.5rem; /* mb-6 */
+    grid-area: unset; /* Remove grid-area on mobile */
+  }
+}
+
+.solutionImageContainer:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 32px 64px -12px rgba(0, 0, 0, 0.3); /* shadow-2xl */
+}
+
+.solutionImageWrapper {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 75%; /* 4:3 aspect ratio */
+}
+
+@media (max-width: 768px) {
+  .solutionImageWrapper {
+    min-height: 200px; /* Ensure minimum height on mobile */
+  }
+}
+
+.solutionImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.solutionImageContainer:hover .solutionImage {
+  transform: scale(1.1);
+}
+
+.solutionImageOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.solutionImageContainer:hover .solutionImageOverlay {
+  opacity: 1;
+}
+
+.solutionCategory {
+  position: absolute;
+  top: 1.5rem; /* top-6 */
+  left: 1.5rem; /* left-6 */
+  background: rgba(255, 255, 255, 0.95);
+  color: #1e293b; /* text-slate-800 */
+  padding: 0.5rem 1rem; /* px-4 py-2 */
+  border-radius: 2rem; /* rounded-full */
+  font-size: 0.875rem; /* text-sm */
+  font-weight: 600; /* font-semibold */
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* Content Section */
+.solutionContent {
+  padding: 2rem; /* p-8 */
+  grid-area: content;
+}
+
+@media (max-width: 768px) {
+  .solutionContent {
+    padding: 1rem; /* p-4 */
+    grid-area: unset; /* Remove grid-area on mobile */
+  }
+}
+
+.solutionHeader {
   display: flex;
   align-items: center;
   gap: 1rem; /* space-x-4 */
+  margin-bottom: 1.5rem; /* mb-6 */
 }
 
-.rovServiceIconContainer {
-  width: 3rem; /* w-12 */
-  height: 3rem; /* h-12 */
-  border-radius: 0.5rem; /* rounded-lg */
+@media (max-width: 768px) {
+  .solutionHeader {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem; /* gap-4 */
+  }
+}
+
+.solutionIconContainer {
+  width: 4rem; /* w-16 */
+  height: 4rem; /* h-16 */
+  border-radius: 1rem; /* rounded-2xl */
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #ffffff; /* text-white */
+  color: white;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
 }
 
-.rovServiceTitle {
+.solutionIconContainer:hover {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.solutionTitle {
+  font-size: 2rem; /* text-3xl */
+  font-weight: 700; /* font-bold */
+  color: #1e293b; /* text-slate-800 */
+  line-height: 1.2;
+}
+
+@media (max-width: 768px) {
+  .solutionTitle {
+    font-size: 1.5rem; /* text-2xl */
+    text-align: center;
+  }
+}
+
+.solutionDescription {
+  font-size: 1.125rem; /* text-lg */
+  color: #64748b; /* text-slate-600 */
+  line-height: 1.7;
+  margin-bottom: 2rem; /* mb-8 */
+}
+
+@media (max-width: 768px) {
+  .solutionDescription {
+    font-size: 1rem; /* text-base */
+    text-align: center;
+  }
+}
+
+/* Features */
+.solutionFeatures {
+  margin-bottom: 2rem; /* mb-8 */
+}
+
+.solutionFeaturesTitle {
   font-size: 1.25rem; /* text-xl */
-  font-weight: 700; /* font-bold */
-  color: #111827; /* text-gray-900 */
-}
-
-.rovServiceDescription {
-  color: #4b5563; /* text-gray-600 */
-}
-
-.rovServiceArrowIcon {
-  width: 1.25rem; /* w-5 */
-  height: 1.25rem; /* h-5 */
-  color: #9ca3af; /* text-gray-400 */
-  transition-property: transform;
-  transition-duration: 300ms;
-}
-
-.rovServiceArrowIconRotate {
-  transform: rotate(90deg);
-}
-
-.rovServiceImageContainer {
-  position: relative;
-}
-
-.rovServiceImageWrapper {
-  position: relative;
-  overflow: hidden;
-  border-radius: 1rem; /* rounded-2xl */
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1); /* shadow-2xl */
-}
-
-.rovServiceImage {
-  width: 100%;
-  height: 24rem; /* h-96 */
-  object-fit: cover;
-}
-
-.rovServiceImageGradient {
-  position: absolute;
-  inset: 0;
-  background-image: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent); /* bg-gradient-to-t from-black/50 to-transparent */
-}
-
-.rovServiceImageTextContent {
-  position: absolute;
-  bottom: 1.5rem; /* bottom-6 */
-  left: 1.5rem; /* left-6 */
-  right: 1.5rem; /* right-6 */
-}
-
-.rovServiceImageTitle {
-  font-size: 1.5rem; /* text-2xl */
-  font-weight: 700; /* font-bold */
-  color: #ffffff; /* text-white */
+  font-weight: 600; /* font-semibold */
+  color: #1e293b; /* text-slate-800 */
   margin-bottom: 1rem; /* mb-4 */
 }
 
-.rovServiceFeaturesGrid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr)); /* grid-cols-2 */
-  gap: 0.5rem; /* gap-2 */
+@media (max-width: 768px) {
+  .solutionFeaturesTitle {
+    text-align: center;
+  }
 }
 
-.rovServiceFeatureItem {
+.solutionFeaturesList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem; /* space-y-3 */
+}
+
+.solutionFeatureItem {
   display: flex;
   align-items: center;
-  color: #ffffff; /* text-white */
-  font-size: 0.875rem; /* text-sm */
+  gap: 0.75rem; /* space-x-3 */
+  font-size: 1rem; /* text-base */
+  color: #475569; /* text-slate-600 */
+  line-height: 1.5;
 }
 
-.rovServiceFeatureIcon {
-  width: 1rem; /* w-4 */
-  height: 1rem; /* h-4 */
-  margin-right: 0.5rem; /* mr-2 */
-  color: #65a30d; /* text-green-400 */
+.solutionFeatureIcon {
+  width: 1.25rem; /* w-5 */
+  height: 1.25rem; /* h-5 */
+  color: #10b981; /* text-emerald-500 */
+  flex-shrink: 0;
+}
+
+/* CTA Button */
+.solutionCTA {
+  margin-top: 2rem; /* mt-8 */
+}
+
+@media (max-width: 768px) {
+  .solutionCTA {
+    text-align: center;
+  }
+}
+
+.solutionCTAButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem; /* space-x-2 */
+  padding: 1rem 2rem; /* px-8 py-4 */
+  color: white;
+  font-weight: 600; /* font-semibold */
+  border-radius: 0.75rem; /* rounded-xl */
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+  font-size: 1.125rem; /* text-lg */
+}
+
+.solutionCTAButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.3);
+}
+
+.solutionCTAArrow {
+  width: 1.25rem; /* w-5 */
+  height: 1.25rem; /* h-5 */
+  transition: transform 0.3s ease;
+}
+
+.solutionCTAButton:hover .solutionCTAArrow {
+  transform: translateX(4px);
+}
+
+/* Technology Section */
+.technologySection {
+  padding-top: 6rem; /* py-24 */
+  padding-bottom: 6rem; /* py-24 */
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  color: white;
+}
+
+.technologyInnerContainer {
+  max-width: 84rem; /* max-w-7xl */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem; /* px-4 */
+  padding-right: 1rem; /* px-4 */
+  padding-left: 1.5rem; /* sm:px-6 */
+  padding-right: 1.5rem; /* sm:px-6 */
+  padding-left: 2rem; /* lg:px-8 */
+  padding-right: 2rem; /* lg:px-8 */
+}
+
+.technologyHeader {
+  text-align: center;
+  margin-bottom: 4rem; /* mb-16 */
+}
+
+.technologyTitle {
+  font-size: 3rem; /* text-4xl */
+  font-weight: 700; /* font-bold */
+  margin-bottom: 1.5rem; /* mb-6 */
+}
+
+@media (min-width: 768px) { /* md */
+  .technologyTitle {
+    font-size: 3.75rem; /* md:text-5xl */
+  }
+}
+
+.technologyTitleHighlight {
+  background: linear-gradient(45deg, #ffd700, #ffed4e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.technologySubtitle {
+  font-size: 1.25rem; /* text-xl */
+  opacity: 0.8;
+  max-width: 48rem; /* max-w-3xl */
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+.technologyGrid {
+  display: grid;
+  gap: 2rem; /* gap-8 */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.technologyCard {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 1.5rem; /* rounded-3xl */
+  padding: 2rem; /* p-8 */
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.technologyCard:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-8px);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
+}
+
+.technologyIconContainer {
+  width: 4rem; /* w-16 */
+  height: 4rem; /* h-16 */
+  background: linear-gradient(135deg, #ffd700, #ffed4e);
+  border-radius: 1rem; /* rounded-2xl */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem; /* mx-auto mb-6 */
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+}
+
+.technologyIcon {
+  width: 2rem; /* w-8 */
+  height: 2rem; /* h-8 */
+  color: #1e293b; /* text-slate-800 */
+}
+
+.technologyCardTitle {
+  font-size: 1.5rem; /* text-2xl */
+  font-weight: 600; /* font-semibold */
+  margin-bottom: 1rem; /* mb-4 */
+}
+
+.technologyCardDescription {
+  font-size: 1rem; /* text-base */
+  opacity: 0.8;
+  line-height: 1.6;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .heroTitle {
+    font-size: 2.5rem; /* text-4xl */
+  }
+  
+  .heroSubtitle {
+    font-size: 1.125rem; /* text-lg */
+  }
+  
+  .solutionsTitle {
+    font-size: 2.25rem; /* text-3xl */
+  }
+  
+  .solutionsSubtitle {
+    font-size: 1.125rem; /* text-lg */
+  }
+  
+  .solutionTitle {
+    font-size: 1.75rem; /* text-2xl */
+  }
+  
+  .solutionDescription {
+    font-size: 1rem; /* text-base */
+  }
+  
+  .technologyTitle {
+    font-size: 2.25rem; /* text-3xl */
+  }
+  
+  .technologySubtitle {
+    font-size: 1.125rem; /* text-lg */
+  }
+  
+  .solutionCardContent {
+    gap: 2rem; /* gap-8 */
+    padding: 1rem; /* p-4 */
+    display: flex !important; /* Force flexbox on mobile */
+    flex-direction: column !important;
+  }
+  
+  .solutionsGrid {
+    gap: 3rem; /* gap-12 */
+  }
+  
+  .solutionCard {
+    margin-bottom: 2rem; /* mb-8 */
+  }
+  
+  .solutionImageContainer {
+    margin-bottom: 1.5rem; /* mb-6 */
+    grid-area: unset; /* Remove grid-area on mobile */
+    width: 100% !important;
+  }
+  
+  .solutionContent {
+    padding: 1rem; /* p-4 */
+    grid-area: unset; /* Remove grid-area on mobile */
+    width: 100% !important;
+  }
+  
+  .solutionHeader {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem; /* gap-4 */
+  }
+  
+  .solutionTitle {
+    text-align: center;
+  }
+  
+  .solutionDescription {
+    text-align: center;
+  }
+  
+  .solutionFeaturesTitle {
+    text-align: center;
+  }
+  
+  .solutionCTA {
+    text-align: center;
+  }
 }
