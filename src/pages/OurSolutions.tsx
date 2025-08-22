@@ -66,7 +66,7 @@ const OurSolutions: React.FC = () => {
               Advanced ROV Capabilities
             </h2>
             <p className={styles.rovServicesSubtitle}>
-              Our state-of-the-art ROV systems deliver precision, reliability, and comprehensive data collection
+            We revolutionize underwater inspection with in-house ROVs and Crawlers powered by robotics, AI, and precision engineering to deliver unmatched clarity, safety, and confidence in asset management
             </p>
           </div>
 

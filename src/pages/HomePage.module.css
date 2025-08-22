@@ -681,3 +681,249 @@
 .clientLogoImage:hover {
   filter: grayscale(0%);
 }
+
+/* Testimonials Section */
+.testimonialsWrapper {
+  position: relative;
+  max-width: 1200px;
+  margin: 3rem auto 0;
+  padding: 0 4rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.testimonialsContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  flex: 1;
+}
+
+.testimonialCard {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  overflow: hidden;
+  position: relative;
+  height: 100%;
+}
+
+.testimonialCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #2563eb 0%, #3b82f6 50%, #60a5fa 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.testimonialCard:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
+}
+
+.testimonialCard:hover::before {
+  opacity: 1;
+}
+
+.testimonialContent {
+  padding: 2rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  min-height: 200px;
+}
+
+.testimonialContent::before {
+  content: '"';
+  position: absolute;
+  top: 0.5rem;
+  left: 1rem;
+  font-size: 3rem;
+  color: #e5e7eb;
+  font-family: serif;
+  line-height: 1;
+}
+
+.testimonialText {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #4b5563;
+  font-style: italic;
+  flex-grow: 1;
+  margin-bottom: 1rem;
+  margin-top: 0.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.testimonialCompany {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #2563eb;
+  text-align: right;
+  border-top: 2px solid #f1f5f9;
+  padding-top: 0.75rem;
+  margin-top: auto;
+  position: relative;
+  z-index: 2;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.testimonialNavBtn {
+  background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 3.5rem;
+  height: 3.5rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.testimonialNavBtn:hover {
+  background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%);
+  box-shadow: 0 12px 35px rgba(37, 99, 235, 0.4);
+  transform: scale(1.1);
+}
+
+.testimonialDots {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  background: #dee2e6;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dot:hover {
+  background: #adb5bd;
+  transform: scale(1.2);
+}
+
+.activeDot {
+  background: #2563eb;
+  transform: scale(1.3);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .testimonialsContainer {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .testimonialsWrapper {
+    padding: 0 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .testimonialsContainer {
+    grid-template-columns: 1fr;
+  }
+  
+  .testimonialsWrapper {
+    padding: 0 1rem;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .testimonialNavBtn {
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.25rem;
+  }
+  
+  .testimonialContent {
+    padding: 1.5rem;
+    min-height: 180px;
+  }
+  
+  .testimonialContent::before {
+    font-size: 3rem;
+    top: 0.5rem;
+    left: 1rem;
+  }
+  
+  .testimonialText {
+    font-size: 0.95rem;
+  }
+  
+  .testimonialCompany {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .testimonialsWrapper {
+    padding: 0 0.5rem;
+  }
+  
+  .testimonialContent {
+    padding: 1.25rem;
+    min-height: 160px;
+  }
+  
+  .testimonialContent::before {
+    font-size: 2.5rem;
+    top: 0.25rem;
+    left: 0.75rem;
+  }
+  
+  .testimonialText {
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+  
+  .testimonialCompany {
+    font-size: 0.95rem;
+    letter-spacing: 0.25px;
+  }
+  
+  .testimonialNavBtn {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1rem;
+  }
+}
+
+/* Vision & Mission Grid - 2 Column Centered Layout */
+.visionMissionGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  max-width: 64rem; /* max-w-4xl */
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (max-width: 768px) {
+  .visionMissionGrid {
+    grid-template-columns: 1fr;
+    max-width: 32rem; /* max-w-2xl */
+    gap: 1.5rem;
+  }
+}

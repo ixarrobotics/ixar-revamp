@@ -1,53 +1,70 @@
-import React from 'react';
-import { Anchor, Zap, Mountain, Fuel, Grid as Bridge, Ship, CheckCircle, ArrowRight, Play } from 'lucide-react';
-import styles from './ServicesPage.module.css';
+import React from 'react'
+import {
+  CheckCircle,
+  ArrowRight,
+  Play,
+  Flame,
+  Ship,
+  Building2,
+  Search,
+} from 'lucide-react'
+import styles from './ServicesPage.module.css'
 
 const ServicesPage: React.FC = () => {
-
   const industries = [
     {
-      name: 'Ports & Marine',
-      icon: <Anchor className={styles.iconLarge} />,
-      image: 'https://images.pexels.com/photos/8566473/pexels-photo-8566473.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
-      services: ['Breakwater Inspection', 'Jetty & Wharf Assessment', 'Harbor Maintenance', 'Underwater Structures'],
-      gradientClass: styles.gradientBlueToTeal
-    },
-    {
-      name: 'Power Generation',
-      icon: <Zap className={styles.iconLarge} />,
-      image: 'https://images.pexels.com/photos/2599244/pexels-photo-2599244.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
-      services: ['Intake/Outfall Pipelines', 'Cooling Water Systems', 'Tank Inspections', 'Thermal Monitoring'],
-      gradientClass: styles.gradientYellowToOrange
-    },
-    {
-      name: 'Dams & Hydropower',
-      icon: <Mountain className={styles.iconLarge} />,
-      image: 'https://images.pexels.com/photos/1001682/pexels-photo-1001682.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
-      services: ['Dam Structure Assessment', 'Tunnel Inspections', 'Spillway Monitoring', 'Sediment Analysis'],
-      gradientClass: styles.gradientGreenToEmerald
-    },
-    {
       name: 'Oil & Gas',
-      icon: <Fuel className={styles.iconLarge} />,
-      image: 'https://images.pexels.com/photos/8566473/pexels-photo-8566473.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
-      services: ['Pipeline Integrity', 'Platform Inspections', 'Subsea Equipment', 'Environmental Monitoring'],
-      gradientClass: styles.gradientGrayToDark
+      icon: <Flame className={styles.iconLarge} />,
+      image:
+        'https://images.pexels.com/photos/8566473/pexels-photo-8566473.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
+      services: [
+        'Underwater Visual Inspection of Pipeline (inside/Outside), Water Storage Tank, Cooling Tower Sump',
+        'Visual Inspection of Offshore Platform & Pipeline',
+        'Robotic Cleaning using ROV & Crowler/Magnetic Crowler',
+        'Underwater Ultrasonic Testing',
+      ],
+      gradientClass: styles.gradientBlueToTeal,
     },
     {
-      name: 'Bridge Infrastructure',
-      icon: <Bridge className={styles.iconLarge} />,
-      image: 'https://images.pexels.com/photos/2599244/pexels-photo-2599244.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
-      services: ['Pier Inspections', 'Foundation Assessment', 'Scour Monitoring', 'Structural Health'],
-      gradientClass: styles.gradientPurpleToIndigo
-    },
-    {
-      name: 'Maritime Vessels',
+      name: 'Ships & Ports',
       icon: <Ship className={styles.iconLarge} />,
-      image: 'https://images.pexels.com/photos/1001682/pexels-photo-1001682.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
-      services: ['Hull Inspections', 'Propeller Analysis', 'Ballast Tank Survey', 'Coating Assessment'],
-      gradientClass: styles.gradientTealToCyan
-    }
-  ];
+      image:
+        'https://images.pexels.com/photos/2599244/pexels-photo-2599244.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
+      services: [
+        'Underwater Visual Inspection of Ship Structure',
+        'Underwater Visual Inspection of Ports & Jetty',
+        'Robotic Cleaning of Ship Hull',
+        'Underwater Ultrasonic Testing',
+      ],
+      gradientClass: styles.gradientYellowToOrange,
+    },
+    {
+      name: 'Submersible Structure',
+      icon: <Building2 className={styles.iconLarge} />,
+      image:
+        'https://images.pexels.com/photos/1001682/pexels-photo-1001682.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
+      services: [
+        'Underwater Visual Inspection Bridge Piles',
+        'Underwater Visual Inspection of Jetty',
+        'Cleaning of Piles',
+        'UPV Testing of Underwater Concrete Structure',
+        'Bathymetric Survey',
+        'Sonar Survey',
+      ],
+      gradientClass: styles.gradientGreenToEmerald,
+    },
+    {
+      name: 'Search & Rescue',
+      icon: <Search className={styles.iconLarge} />,
+      image:
+        'https://images.pexels.com/photos/8566473/pexels-photo-8566473.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
+      services: [
+        'Underwater Searching and Coordination System',
+        'Underwater Robotic Gripper Arm for Rescue',
+      ],
+      gradientClass: styles.gradientGrayToDark,
+    },
+  ]
 
   return (
     <div className={styles.minHeightScreen}>
@@ -55,17 +72,16 @@ const ServicesPage: React.FC = () => {
       <section className={styles.heroSection}>
         <div className={styles.heroImageOverlay}>
           <img
-            src="https://images.pexels.com/photos/8566473/pexels-photo-8566473.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop"
+            src="https://images.pexels.com/photos/4484078/pexels-photo-4484078.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop"
             alt="Underwater ROV"
             className={styles.heroImage}
           />
         </div>
         <div className={styles.heroContentContainer}>
-          <h1 className={styles.heroTitle}>
-            Comprehensive ROV Services
-          </h1>
+          <h1 className={styles.heroTitle}>Comprehensive ROV Services</h1>
           <p className={styles.heroSubtitle}>
-            Advanced underwater inspection, surveying, and maintenance solutions powered by cutting-edge robotics technology
+            Advanced underwater inspection, surveying, and maintenance solutions
+            powered by cutting-edge robotics technology
           </p>
           <button className={styles.heroButton}>
             <Play className={styles.heroButtonIcon} />
@@ -74,17 +90,14 @@ const ServicesPage: React.FC = () => {
         </div>
       </section>
 
-      
-
       {/* Industries Section */}
       <section className={styles.industriesSection}>
         <div className={styles.industriesInnerContainer}>
           <div className={styles.industriesHeader}>
-            <h2 className={styles.industriesTitle}>
-              Industries We Serve
-            </h2>
+            <h2 className={styles.industriesTitle}>Industries We Serve</h2>
             <p className={styles.industriesSubtitle}>
-              Delivering specialized underwater solutions across diverse sectors with proven expertise
+              Delivering specialized underwater solutions across diverse sectors
+              with proven expertise
             </p>
           </div>
 
@@ -102,21 +115,30 @@ const ServicesPage: React.FC = () => {
                   />
                   <div className={styles.industryImageGradient} />
                   <div className={styles.industryIconContainer}>
-                    <div className={`${styles.rovServiceIconContainer} ${industry.gradientClass}`}>
+                    <div
+                      className={`${styles.rovServiceIconContainer} ${industry.gradientClass}`}
+                    >
                       {industry.icon}
                     </div>
                   </div>
                   <div className={styles.industryTitleCard}>
-                    <h3 className={styles.industryTitleCard}>{industry.name}</h3>
+                    <h3 className={styles.industryTitleCard}>
+                      {industry.name}
+                    </h3>
                   </div>
                 </div>
 
                 <div className={styles.industryCardContent}>
                   <div className={styles.industryServicesList}>
                     {industry.services.map((service, serviceIndex) => (
-                      <div key={serviceIndex} className={styles.industryServiceItem}>
+                      <div
+                        key={serviceIndex}
+                        className={styles.industryServiceItem}
+                      >
                         <CheckCircle className={styles.industryServiceIcon} />
-                        <span className={styles.industryServiceText}>{service}</span>
+                        <span className={styles.industryServiceText}>
+                          {service}
+                        </span>
                       </div>
                     ))}
                   </div>
@@ -130,11 +152,10 @@ const ServicesPage: React.FC = () => {
       {/* CTA Section */}
       <section className={styles.ctaSection}>
         <div className={styles.ctaInnerContainer}>
-          <h2 className={styles.ctaTitle}>
-            Ready to Explore the Depths?
-          </h2>
+          <h2 className={styles.ctaTitle}>Ready to Explore the Depths?</h2>
           <p className={styles.ctaSubtitle}>
-            Contact our experts to discuss your underwater inspection and surveying needs
+            Contact our experts to discuss your underwater inspection and
+            surveying needs
           </p>
           <div className={styles.ctaButtonsContainer}>
             <button className={styles.requestQuoteButton}>
@@ -148,7 +169,7 @@ const ServicesPage: React.FC = () => {
         </div>
       </section>
     </div>
-  );
-};
+  )
+}
 
-export default ServicesPage;
+export default ServicesPage

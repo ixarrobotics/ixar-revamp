@@ -278,6 +278,10 @@
   border-radius: 1rem; /* rounded-2xl */
 }
 
+.iconContainerNoGap {
+  margin-bottom: 0 !important; /* Remove gap completely */
+}
+
 /* Flex utilities */
 .flexCenter {
   display: flex;

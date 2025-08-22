@@ -102,21 +102,7 @@ const Footer: React.FC = () => {
         
       </div>
 
-      {/* Bottom Bar */}
-      <div className={styles.bottomBar}>
-        <div className={styles.bottomBarInnerContainer}>
-          <div className={`${styles.bottomBarContent} md:flex-row`}>
-            <div className={`${styles.copyrightText} md:mb-0`}>
-              © {new Date().getFullYear()} IXAR Robotic Solutions. All Rights Reserved.
-            </div>
-            <div className={styles.legalLinksContainer}>
-              <a href="#" className={styles.legalLink}>Privacy Policy</a>
-              <a href="#" className={styles.legalLink}>Terms of Service</a>
-              <a href="#" className={styles.legalLink}>Sitemap</a>
-            </div>
-          </div>
-        </div>
-      </div>
+
     </footer>
   );
 };

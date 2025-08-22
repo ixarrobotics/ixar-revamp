@@ -1,9 +1,9 @@
 import { useMemo } from 'react';
 import React from 'react';
 import {
-  Shield,
-  Zap,
-  Award,
+  Eye,
+  Compass,
+  BookOpen,
   Users,
   Target
 } from 'lucide-react';
@@ -17,21 +17,21 @@ import sineLogo from '../assets/sine.558e30bd.jpeg';
 export const useHomePageData = () => {
   const features = useMemo<Feature[]>(() => [
     {
-      icon: React.createElement(Zap, { className: "w-8 h-8" }),
-      title: "Rapid Deployment",
-      description: "Get operational within hours with our portable ROV systems",
+      icon: React.createElement(BookOpen, { className: "w-8 h-8" }),
+      title: "Our Story",
+      description: "We solve the ineffectiveness of traditional inspection methods which often leading to poor asset management by revolutionizing underwater inspections with in-house ROVs and Crawlers powered by robotics, AI, and precision engineering to deliver unmatched clarity, safety, and confidence",
       color: "from-yellow-400 to-orange-500"
     },
     {
-      icon: React.createElement(Shield, { className: "w-8 h-8" }),
-      title: "24/7 Operations",
-      description: "Continuous underwater monitoring and inspection capabilities",
+      icon: React.createElement(Users, { className: "w-8 h-8" }),
+      title: "Our Expertise",
+      description: "Our team blends 5+ years of expertise in robotics, underwater inspection, and non-destructive testing with hands-on experience across offshore oil & gas assets, marine infrastructure, industrial tanks, and inland water systems.",
       color: "from-green-400 to-emerald-500"
     },
     {
-      icon: React.createElement(Award, { className: "w-8 h-8" }),
-      title: "Cost Effective",
-      description: "Indigenous technology delivering premium results at competitive rates",
+      icon: React.createElement(Target, { className: "w-8 h-8" }),
+      title: "Our Commitment",
+      description: "We are committed to pushing the boundaries of what's possible in underwater robotics, continuously innovating to solve our clients' most challenging inspection requirements while minimizing environmental impact and operational risk.",
       color: "from-blue-400 to-cyan-500"
     }
   ], []);
@@ -65,19 +65,14 @@ export const useHomePageData = () => {
 
   const companyValues = useMemo<CompanyValue[]>(() => [
     {
-      icon: React.createElement(Target, { className: "w-8 h-8" }),
-      title: 'Innovation First',
-      description: 'Pushing boundaries in underwater robotics technology'
+      icon: React.createElement(Eye, { className: "w-8 h-8" }),
+      title: 'Vision',
+      description: 'To be the world’s most trusted provider of underwater intelligence by making critical infrastructure safer, more resilient and more sustainable'
     },
     {
-      icon: React.createElement(Users, { className: "w-8 h-8" }),
-      title: 'Team Excellence',
-      description: 'Collaborative approach with diverse expertise'
-    },
-    {
-      icon: React.createElement(Award, { className: "w-8 h-8" }),
-      title: 'Quality Commitment',
-      description: 'Delivering reliable solutions that exceed expectations'
+      icon: React.createElement(Compass, { className: "w-8 h-8" }),
+      title: 'Mission',
+      description: 'To deliver precise, rapid and thorough underwater inspection data using rugged, in-house robotic systems and expert engineering analysis'
     }
   ], []);
 

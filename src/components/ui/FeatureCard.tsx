@@ -34,7 +34,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ feature, className = '' }) =>
 
   return (
     <Card hover className={`${styles.textCenter} ${className}`}>
-      <div className={`${styles.iconContainer} ${getGradientClass(feature.color)}`}>
+      <div className={`${styles.iconContainer} ${getGradientClass(feature.color)} ${styles.iconContainerNoGap}`}>
         {feature.icon}
       </div>
       <h3 className="text-xl font-semibold text-gray-800 mb-3">
