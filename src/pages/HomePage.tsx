@@ -166,42 +166,77 @@ const ClientsSection = memo(() => {
 
   const renderClientLogo = useMemo(() => (logo: ClientLogo, index: number) => (
     <div key={`${logo.alt}-${index}`} className={`${styles.clientLogoContainer} ${styles.clientLogoAnimated}`}>
-      <LazyImage
-        src={logo.src}
-        alt={logo.alt}
-        className={styles.clientLogoImage}
-      />
-      {/* Logo Glow Effect */}
-      <div className={styles.logoGlowEffect}></div>
+      {/* Floating Energy Ring */}
+      <div className={styles.clientEnergyRing}></div>
+      
+      {/* Logo Container with Glass Effect */}
+      <div className={styles.clientLogoGlassContainer}>
+        <LazyImage
+          src={logo.src}
+          alt={logo.alt}
+          className={styles.clientLogoImage}
+        />
+        
+        {/* Hover Glow Effect */}
+        <div className={styles.clientLogoHoverGlow}></div>
+        
+        {/* Floating Particles */}
+        <div className={styles.clientLogoParticles}>
+          <div className={styles.clientParticle1}></div>
+          <div className={styles.clientParticle2}></div>
+          <div className={styles.clientParticle3}></div>
+        </div>
+      </div>
     </div>
   ), []);
 
   return (
-    <Section id="our-clients" className={styles.sectionBgAlternate1} ref={setRef}>
-      {/* Floating Client Elements */}
-      {/* <div className={styles.floatingClientElements}>
-        <div className={styles.clientElement1}>🏢</div>
-        <div className={styles.clientElement2}>🌍</div>
-        <div className={styles.clientElement3}>⭐</div>
-        <div className={styles.clientElement4}>🤝</div>
-      </div> */}
-      
-      {/* Morphing Client Background */}
-      <div className={styles.morphingClientBackground}>
-        <div className={styles.clientMorph1}></div>
-        <div className={styles.clientMorph2}></div>
+    <Section id="our-clients" className={styles.clientsSectionSpectacular} ref={setRef}>
+      {/* Spectacular Background Grid */}
+      <div className={styles.clientsBackgroundGrid}>
+        <div className={styles.gridLine1}></div>
+        <div className={styles.gridLine2}></div>
+        <div className={styles.gridLine3}></div>
+        <div className={styles.gridLine4}></div>
       </div>
       
-      <div className={commonStyles.textCenter}>
-        <h2 className={`${commonStyles.sectionTitle} ${styles.clientTitleSpectacular} ${isIntersecting ? commonStyles.fadeIn : ''}`}>
-          <span className={styles.clientTitleGlow}>Our</span>{" "}
-          <span className={styles.clientTitleGlow}>Clients</span>
-        </h2>
-        <p className={`${commonStyles.sectionSubtitle} ${styles.clientSubtitleSpectacular} ${isIntersecting ? commonStyles.fadeIn : ''}`}>
+      {/* Floating Geometric Shapes */}
+      <div className={styles.floatingGeometricShapes}>
+        <div className={styles.geometricShape1}></div>
+        <div className={styles.geometricShape2}></div>
+        <div className={styles.geometricShape3}></div>
+        <div className={styles.geometricShape4}></div>
+      </div>
+      
+      {/* Energy Field Background */}
+      <div className={styles.clientsEnergyField}>
+        <div className={styles.energyWave1}></div>
+        <div className={styles.energyWave2}></div>
+        <div className={styles.energyWave3}></div>
+      </div>
+      
+      {/* Spectacular Header */}
+      <div className={styles.clientsHeaderSpectacular}>
+        <div className={styles.clientTitleContainer}>
+          <h2 className={`${styles.clientTitleSpectacular} ${isIntersecting ? commonStyles.fadeIn : ''}`}>
+            <span className={styles.clientTitleWord1}>Our</span>
+            <span className={styles.clientTitleWord2}>Clients</span>
+          </h2>
+          
+          {/* Animated Underline */}
+          <div className={styles.clientTitleUnderline}>
+            <div className={styles.underlineBar}></div>
+            <div className={styles.underlineGlow}></div>
+          </div>
+        </div>
+        
+        <p className={`${styles.clientSubtitleSpectacular} ${isIntersecting ? commonStyles.fadeIn : ''}`}>
           Trusted by leading organizations worldwide for their critical underwater operations.
         </p>
       </div>
-      <div className={`${isIntersecting ? commonStyles.fadeIn : ''} ${styles.clientsCarouselWrapper}`}>
+      
+      {/* Enhanced Clients Carousel */}
+      <div className={`${styles.clientsCarouselSpectacular} ${isIntersecting ? commonStyles.fadeIn : ''}`}>
         <Carousel
           items={clientLogos}
           visibleItems={4}
@@ -338,19 +373,7 @@ const TestimonialsSection = memo(() => {
 
   return (
     <Section id="testimonials" className={styles.sectionBgAlternate2} ref={setRef}>
-      {/* Floating Testimonial Elements */}
-      {/* <div className={styles.floatingTestimonialElements}>
-        <div className={styles.testimonialElement1}>💬</div>
-        <div className={styles.testimonialElement2}>✨</div>
-        <div className={styles.testimonialElement3}>🌟</div>
-        <div className={styles.testimonialElement4}>🎯</div>
-      </div> */}
-      
-      {/* Morphing Testimonial Background */}
-      <div className={styles.morphingTestimonialBackground}>
-        <div className={styles.testimonialMorph1}></div>
-        <div className={styles.testimonialMorph2}></div>
-      </div>
+
       
       <div className={commonStyles.textCenter}>
         <h2 className={`${commonStyles.sectionTitle} ${styles.testimonialTitleSpectacular} ${isIntersecting ? commonStyles.fadeIn : ''}`}>
@@ -363,39 +386,38 @@ const TestimonialsSection = memo(() => {
       </div>
       
       <div className={`${styles.testimonialsWrapper} ${isIntersecting ? commonStyles.fadeIn : ''}`}>
-        <button className={`${styles.testimonialNavBtn} ${styles.testimonialNavBtnSpectacular}`} onClick={prevSlide} aria-label="Previous testimonials">
+        <button className={styles.testimonialNavBtn} onClick={prevSlide} aria-label="Previous testimonials">
           ‹
         </button>
         
-        <div className={`${styles.testimonialsContainer} ${styles.testimonialsContainerAnimated}`}>
+        <div className={styles.testimonialsContainer}>
           {getVisibleTestimonials().map((testimonial, index) => (
             <div 
               key={currentIndex * testimonalsPerView + index} 
-              className={`${styles.testimonialCard} ${styles.testimonialCardAnimated} ${styles.testimonialCardSpectacular}`}
+              className={`${styles.testimonialCard} ${styles.testimonialCardProfessional}`}
               style={{ animationDelay: `${index * 0.2}s` }}
             >
-              {/* Testimonial Glow Effect */}
-              <div className={styles.testimonialGlowEffect}></div>
+              {/* Floating Particles */}
+              <div className={styles.floatingParticle}></div>
+              <div className={styles.floatingParticle}></div>
+              <div className={styles.floatingParticle}></div>
+              
+              {/* MESMERIZING Quote Mark */}
+              <div className={styles.testimonialQuoteElegant}>"</div>
               
               <div className={styles.testimonialContent}>
                 <p className={styles.testimonialText}>
-                  "{testimonial.text}"
+                  {testimonial.text}
                 </p>
                 <div className={styles.testimonialCompany}>
-                  {testimonial.company}
+                  <div className={styles.companyName}>{testimonial.company}</div>
                 </div>
-              </div>
-              
-              {/* Floating Quote Marks */}
-              <div className={styles.floatingQuoteMarks}>
-                <div className={styles.quoteMark1}>"</div>
-                <div className={styles.quoteMark2}>"</div>
               </div>
             </div>
           ))}
         </div>
         
-        <button className={`${styles.testimonialNavBtn} ${styles.testimonialNavBtnSpectacular}`} onClick={nextSlide} aria-label="Next testimonials">
+        <button className={styles.testimonialNavBtn} onClick={nextSlide} aria-label="Next testimonials">
           ›
         </button>
       </div>
