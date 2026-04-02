@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { env } from '../config/env';
 import { 
   Mail, 
   Phone, 
@@ -39,7 +40,7 @@ const ContactPage: React.FC = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          access_key: 'e5a781f3-d123-4f5a-ad12-3960e4ed8702',
+          access_key: env.WEB3FORMS_KEY,
           from_name: formData.name,
           from_email: formData.email,
           name: formData.name,
