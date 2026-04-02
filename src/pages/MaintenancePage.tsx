@@ -136,9 +136,9 @@ const MaintenancePage: React.FC = () => {
         {/* Contact info */}
         <p className={styles.contactLabel}>For any queries, reach us at:</p>
         <div className={styles.contactCards}>
-          <a href="mailto:info@ixarrobotic.com" className={styles.contactCard}>
+          <a href="mailto:ixarroboticsolutions@gmail.com" className={styles.contactCard}>
             <Mail className={styles.contactIcon} />
-            <span>info@ixarrobotic.com</span>
+            <span>ixarroboticsolutions@gmail.com</span>
           </a>
           <a href="tel:+919575763347" className={styles.contactCard}>
             <Phone className={styles.contactIcon} />
