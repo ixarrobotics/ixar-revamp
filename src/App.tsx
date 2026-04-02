@@ -1,12 +1,8 @@
 import React from 'react';
-import NavbarWrapper from './components/NavbarWrapper';
+import MaintenancePage from './pages/MaintenancePage';
 
 function App() {
-  return (
-    <>
-      <NavbarWrapper />
-    </>
-  );
+  return <MaintenancePage />;
 }
 
 export default App;
