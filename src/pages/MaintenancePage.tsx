@@ -136,10 +136,10 @@ const MaintenancePage: React.FC = () => {
         {/* Contact info */}
         <p className={styles.contactLabel}>For any queries, reach us at:</p>
         <div className={styles.contactCards}>
-          <a href="mailto:ixarroboticsolutions@gmail.com" className={styles.contactCard}>
+          <button className={styles.contactCard} onClick={() => setIsDialogOpen(true)}>
             <Mail className={styles.contactIcon} />
             <span>ixarroboticsolutions@gmail.com</span>
-          </a>
+          </button>
           <a href="tel:+919575763347" className={styles.contactCard}>
             <Phone className={styles.contactIcon} />
             <span>+91 9575763347</span>
